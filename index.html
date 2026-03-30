@@ -190,79 +190,24 @@
       min-height: 520px;
     }
 
-    .glass {
-      padding: 22px;
-    }
-
-    .mockup {
-      min-height: 320px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background:
-        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 25%),
-        linear-gradient(180deg, #090909, #050505);
-      padding: 18px;
+    .info-card {
+      padding: 26px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      justify-content: center;
+      min-height: 155px;
     }
 
-    .mockup-top {
-      display: flex;
-      gap: 8px;
+    .info-card h3 {
+      font-size: 1.4rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
     }
 
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.18);
-    }
-
-    .phone {
-      flex: 1;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #000;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .phone-label {
-      color: var(--muted-2);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .phone-title {
-      font-size: 1.55rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      margin-top: 8px;
-    }
-
-    .phone-box {
-      flex: 1;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      display: grid;
-      place-items: center;
-      text-align: center;
-      color: var(--muted);
-      line-height: 1.6;
-      padding: 18px;
-      font-size: 0.95rem;
-    }
-
-    .side-copy {
+    .info-card p {
       color: var(--muted);
       line-height: 1.65;
-      font-size: 0.96rem;
+      margin: 0;
     }
 
     .mini-stats {
@@ -422,10 +367,7 @@
         align-items: flex-start;
       }
 
-      .hero-card {
-        min-height: auto;
-      }
-
+      .hero-card,
       .hero-side {
         min-height: auto;
       }
@@ -437,7 +379,7 @@
       }
 
       .hero-card,
-      .glass,
+      .info-card,
       .project-card,
       .feature-card,
       .contact-card,
@@ -447,10 +389,6 @@
 
       h1 {
         font-size: 2.8rem;
-      }
-
-      .phone-title {
-        font-size: 1.3rem;
       }
 
       .nav {
@@ -489,30 +427,29 @@
         </div>
 
         <div class="hero-side">
-          <div class="glass">
-            <div class="mockup">
-              <div class="mockup-top">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-              </div>
-              <div class="phone">
-                <div>
-                  <div class="phone-label">Product direction</div>
-                  <div class="phone-title">Minimal products. Strong focus.</div>
-                </div>
-                <div class="phone-box">
-                  SwipeSort and sketchIT reflect the current vision:
-                  clean interfaces, fast workflows and products with a clear purpose.
-                </div>
-              </div>
-            </div>
+          <div class="glass info-card">
+            <span class="tag">Apps</span>
+            <h3>SwipeSort + sketchIT</h3>
+            <p>
+              Two focused products with different use cases, but the same philosophy:
+              fast workflows, clean design and practical value.
+            </p>
           </div>
 
-          <div class="glass">
-            <p class="side-copy">
-              Built step by step with a product-first mindset. Start small, validate quickly,
-              improve relentlessly.
+          <div class="glass info-card">
+            <span class="tag">Focus</span>
+            <h3>Utility first</h3>
+            <p>
+              Products should feel simple from the first second. Less noise, less friction,
+              more clarity.
+            </p>
+          </div>
+
+          <div class="glass info-card">
+            <span class="tag">Style</span>
+            <h3>Minimal and premium</h3>
+            <p>
+              High contrast, reduced UI and a consistent visual language across projects.
             </p>
           </div>
         </div>
