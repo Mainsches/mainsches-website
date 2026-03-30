@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 const rateLimitStore = global.rateLimitStore || new Map();
 global.rateLimitStore = rateLimitStore;
 
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 Minuten
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 
 export default async function handler(req, res) {
@@ -33,7 +33,6 @@ export default async function handler(req, res) {
       formStartedAt = ""
     } = req.body || {};
 
-    // Honeypot-Felder: echte Nutzer füllen diese nicht aus
     if (company || website) {
       return res.status(400).json({ error: "Spam detected" });
     }
@@ -43,7 +42,6 @@ export default async function handler(req, res) {
     const cleanSubject = String(subject).trim();
     const cleanMessage = String(message).trim();
 
-    // Zeitprüfung: Bots senden oft "zu schnell"
     if (formStartedAt) {
       const started = Number(formStartedAt);
       if (Number.isFinite(started)) {
@@ -54,7 +52,6 @@ export default async function handler(req, res) {
       }
     }
 
-    // Basis-Validierung
     if (!cleanName || !cleanEmail || !cleanSubject || !cleanMessage) {
       return res.status(400).json({ error: "Missing required fields." });
     }
@@ -79,7 +76,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid email address." });
     }
 
-    // Primitive Spam-Heuristik
     if (looksSpammy(cleanSubject, cleanMessage)) {
       return res.status(400).json({ error: "Message looks like spam." });
     }
@@ -94,6 +90,7 @@ export default async function handler(req, res) {
       }
     });
 
+    // Mail an dich / dein Support-Postfach
     await transporter.sendMail({
       from: `"Mainsches Contact Form" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_TO,
@@ -119,6 +116,31 @@ ${cleanMessage}
           <div style="white-space: pre-wrap; border: 1px solid #ddd; padding: 12px; border-radius: 8px;">
             ${escapeHtml(cleanMessage)}
           </div>
+        </div>
+      `
+    });
+
+    // Auto-Reply an den Nutzer
+    await transporter.sendMail({
+      from: `"Mainsches" <${process.env.SMTP_USER}>`,
+      to: cleanEmail,
+      subject: "We received your message",
+      text: `
+Hi ${cleanName},
+
+thanks for reaching out.
+
+We have received your message and will get back to you as soon as possible.
+
+— Mainsches
+      `.trim(),
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
+          <p>Hi ${escapeHtml(cleanName)},</p>
+          <p>thanks for reaching out.</p>
+          <p>We have received your message and will get back to you as soon as possible.</p>
+          <br>
+          <p>— Mainsches</p>
         </div>
       `
     });
@@ -194,10 +216,8 @@ function looksSpammy(subject, message) {
   ];
 
   const hasSpamTerm = spamTerms.some((term) => text.includes(term));
-
   const urlMatches = text.match(/https?:\/\/|www\./g) || [];
   const tooManyLinks = urlMatches.length >= 3;
-
   const tooManyRepeats = /(.)\1{7,}/.test(text);
 
   return hasSpamTerm || tooManyLinks || tooManyRepeats;
