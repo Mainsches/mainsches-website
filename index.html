@@ -4,576 +4,302 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mainsches</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
   <meta
     name="description"
     content="Mainsches entwickelt minimalistische Apps und digitale Tools mit Fokus auf Klarheit, Geschwindigkeit und Nutzen."
   />
+
   <style>
     :root {
-      --bg: #000000;
+      --bg: #000;
       --panel: #0a0a0a;
-      --panel-2: #101010;
       --line: #1a1a1a;
       --line-strong: #2a2a2a;
-      --text: #ffffff;
-      --muted: #aaaaaa;
+      --text: #fff;
+      --muted: #aaa;
       --muted-2: #7c7c7c;
-      --radius: 26px;
-      --max: 1160px;
+      --radius: 24px;
+      --max: 1100px;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 28%),
-        radial-gradient(circle at 85% 20%, rgba(255,255,255,0.035), transparent 22%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,0.04), transparent 24%),
-        var(--bg);
+      font-family: Inter, system-ui, sans-serif;
+      background: radial-gradient(circle at top, #111, #000);
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
     .container {
       width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
+      margin: auto;
     }
 
+    /* HEADER */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(12px);
-      background: rgba(0,0,0,0.72);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .topbar-inner {
-      min-height: 78px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      align-items: center;
+      height: 70px;
     }
 
     .brand {
-      font-size: 1.02rem;
-      font-weight: 800;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 32px;
     }
 
     .nav {
       display: flex;
-      align-items: center;
       gap: 20px;
-      flex-wrap: wrap;
     }
 
     .nav a {
       color: var(--muted);
-      font-size: 0.96rem;
-      transition: color 0.18s ease;
+      font-size: 0.95rem;
     }
 
     .nav a:hover {
-      color: var(--text);
+      color: #fff;
     }
 
+    /* HERO */
     .hero {
-      padding: 96px 0 56px;
-    }
-
-    .hero-grid {
+      padding: 90px 0;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
-      align-items: stretch;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
     }
 
-    .hero-card,
-    .glass,
-    .project-card,
-    .feature-card,
-    .contact-card {
+    .hero-left {
+      padding: 40px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
-    }
-
-    .hero-card {
-      padding: 44px;
-      min-height: 520px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line-strong);
-      color: var(--muted);
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    h1, h2, h3, p {
-      margin: 0;
     }
 
     h1 {
-      font-size: clamp(3rem, 6vw, 5.9rem);
-      line-height: 0.92;
-      letter-spacing: -0.065em;
-      max-width: 800px;
+      font-size: 60px;
+      line-height: 1;
+      margin: 0 0 20px;
+      letter-spacing: -2px;
     }
 
-    .hero-subtext {
-      margin-top: 22px;
-      max-width: 640px;
+    .hero-left p {
       color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.7;
+      max-width: 500px;
+      line-height: 1.6;
     }
 
-    .hero-actions {
+    .buttons {
+      margin-top: 25px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
+      gap: 10px;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52px;
-      padding: 0 18px;
+    .btn {
+      padding: 12px 18px;
       border-radius: 999px;
       border: 1px solid var(--line-strong);
-      background: #ffffff;
-      color: #000000;
-      font-weight: 700;
-      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+      font-weight: 600;
     }
 
-    .button:hover {
-      transform: translateY(-1px);
-      opacity: 0.95;
+    .btn.primary {
+      background: #fff;
+      color: #000;
     }
 
-    .button.ghost {
-      background: transparent;
-      color: var(--text);
+    .btn.ghost {
+      color: #fff;
     }
 
-    .hero-side {
-      display: grid;
-      gap: 18px;
-      min-height: 520px;
-    }
-
-    .info-card {
-      padding: 26px;
+    /* RIGHT CARDS */
+    .hero-right {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      min-height: 155px;
+      gap: 15px;
     }
 
-    .info-card h3 {
-      font-size: 1.4rem;
-      letter-spacing: -0.04em;
-      margin-bottom: 10px;
-    }
-
-    .info-card p {
-      color: var(--muted);
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    .mini-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .mini-stat {
+    .card {
       border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 18px;
-      background: rgba(255,255,255,0.01);
+      padding: 20px;
+      border-radius: var(--radius);
     }
 
-    .mini-stat strong {
-      display: block;
-      font-size: 1.5rem;
-      letter-spacing: -0.05em;
-      margin-bottom: 6px;
+    .card h3 {
+      margin: 5px 0;
     }
 
-    .mini-stat span {
+    .card p {
       color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    section {
-      padding: 0 0 24px;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 18px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(2rem, 4vw, 3.15rem);
-      letter-spacing: -0.055em;
-    }
-
-    .section-head p {
-      max-width: 580px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .project-card {
-      padding: 26px;
-      transition: transform 0.18s ease, border-color 0.18s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--line-strong);
+      font-size: 0.95rem;
     }
 
     .tag {
-      display: inline-flex;
-      margin-bottom: 14px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line-strong);
-      color: var(--muted);
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
+      font-size: 0.75rem;
+      color: var(--muted-2);
       text-transform: uppercase;
     }
 
-    .project-card h3,
-    .feature-card h3 {
-      font-size: 1.45rem;
-      letter-spacing: -0.045em;
-      margin-bottom: 10px;
+    /* PROJECTS */
+    .projects {
+      margin-top: 60px;
     }
 
-    .project-card p,
-    .feature-card p {
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 18px;
+    .projects h2 {
+      font-size: 32px;
     }
 
-    .meta {
-      color: var(--muted-2);
-      font-size: 0.92rem;
-    }
-
-    .features-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 20px;
     }
 
-    .feature-card {
-      padding: 24px;
+    .project {
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: var(--radius);
     }
 
-    .contact-card {
-      padding: 30px;
-      margin: 18px 0 72px;
-    }
-
-    .contact-card p {
-      margin: 10px 0 24px;
+    .project p {
       color: var(--muted);
-      max-width: 720px;
-      line-height: 1.65;
     }
 
+    /* FOOTER */
     footer {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 24px 0 40px;
-    }
-
-    .footer-inner {
+      margin-top: 80px;
+      border-top: 1px solid var(--line);
+      padding: 20px 0;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 16px;
       color: var(--muted-2);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+    footer a {
+      color: var(--muted);
     }
 
-    .footer-links a:hover {
-      color: var(--text);
+    footer a:hover {
+      color: #fff;
     }
 
-    @media (max-width: 980px) {
-      .hero-grid,
-      .projects-grid,
-      .features-grid,
-      .mini-stats {
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
         grid-template-columns: 1fr;
       }
 
-      .section-head,
-      .footer-inner,
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-card,
-      .hero-side {
-        min-height: auto;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding-top: 72px;
-      }
-
-      .hero-card,
-      .info-card,
-      .project-card,
-      .feature-card,
-      .contact-card,
-      .mini-stat {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 2.8rem;
-      }
-
-      .nav {
-        gap: 14px;
+      .grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
+
 <body>
+
   <header class="topbar">
     <div class="container topbar-inner">
-      <a href="#top" class="brand">Mainsches</a>
+      <a href="#" class="brand">
+        <img src="/assets/logo.png" class="logo-img" />
+      </a>
+
       <nav class="nav">
         <a href="#projects">Projects</a>
-        <a href="#why">Why us</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
+  <main class="container">
+
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <span class="eyebrow">Independent app studio</span>
-          <h1>Build simple. Make it useful.</h1>
-          <p class="hero-subtext">
-            Mainsches creates focused apps and digital tools with a minimalist interface,
-            strong UX and practical value. From mobile utilities to AI-driven workflows,
-            the goal stays the same: clarity, speed and real usefulness.
-          </p>
-          <div class="hero-actions">
-            <a class="button" href="#projects">Explore projects</a>
-            <a class="button ghost" href="#contact">Get in touch</a>
-          </div>
+      <div class="hero-left">
+        <h1>Build simple.<br>Make it useful.</h1>
+        <p>
+          Mainsches creates minimal apps focused on clarity, speed and real utility.
+        </p>
+
+        <div class="buttons">
+          <a href="#projects" class="btn primary">Explore</a>
+          <a href="#contact" class="btn ghost">Contact</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card">
+          <span class="tag">Apps</span>
+          <h3>SwipeSort + sketchIT</h3>
+          <p>Fast workflows. Clean design. Real utility.</p>
         </div>
 
-        <div class="hero-side">
-          <div class="glass info-card">
-            <span class="tag">Apps</span>
-            <h3>SwipeSort + sketchIT</h3>
-            <p>
-              Two focused products with different use cases, but the same philosophy:
-              fast workflows, clean design and practical value.
-            </p>
-          </div>
+        <div class="card">
+          <span class="tag">Focus</span>
+          <h3>Utility first</h3>
+          <p>Less noise, more clarity.</p>
+        </div>
 
-          <div class="glass info-card">
-            <span class="tag">Focus</span>
-            <h3>Utility first</h3>
-            <p>
-              Products should feel simple from the first second. Less noise, less friction,
-              more clarity.
-            </p>
-          </div>
-
-          <div class="glass info-card">
-            <span class="tag">Style</span>
-            <h3>Minimal and premium</h3>
-            <p>
-              High contrast, reduced UI and a consistent visual language across projects.
-            </p>
-          </div>
+        <div class="card">
+          <span class="tag">Style</span>
+          <h3>Minimal & premium</h3>
+          <p>High contrast and consistent UI.</p>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container mini-stats">
-        <div class="mini-stat">
-          <strong>2</strong>
-          <span>Core products currently in focus</span>
-        </div>
-        <div class="mini-stat">
-          <strong>1</strong>
-          <span>Consistent design language across projects</span>
-        </div>
-        <div class="mini-stat">
-          <strong>100%</strong>
-          <span>Focus on clarity, speed and practical value</span>
-        </div>
-      </div>
-    </section>
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
 
-    <section id="projects">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Projects</h2>
-          </div>
-          <p>
-            A growing portfolio of apps and digital tools built with a strong focus
-            on usability, speed and visual clarity.
-          </p>
+      <div class="grid">
+        <div class="project">
+          <h3>SwipeSort</h3>
+          <p>Swipe-based photo cleaner for fast gallery cleanup.</p>
         </div>
 
-        <div class="projects-grid">
-          <article class="project-card">
-            <span class="tag">Mobile app</span>
-            <h3>SwipeSort</h3>
-            <p>
-              A fast Android photo cleanup app. Swipe left to delete, right to keep.
-              Designed to make gallery cleanup fast, intuitive and satisfying.
-            </p>
-            <div class="meta">Status: Active</div>
-          </article>
-
-          <article class="project-card">
-            <span class="tag">AI tool</span>
-            <h3>sketchIT</h3>
-            <p>
-              An evolving AI-based product concept that turns sketches into useful digital outputs,
-              with a focus on practical workflows and clean interaction design.
-            </p>
-            <div class="meta">Status: In development</div>
-          </article>
+        <div class="project">
+          <h3>sketchIT</h3>
+          <p>Turn sketches into usable digital outputs.</p>
         </div>
       </div>
     </section>
 
-    <section id="why">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Why Mainsches</h2>
-          </div>
-          <p>
-            The goal is not to build noisy products. The goal is to build products that feel clear,
-            intentional and genuinely useful from the first interaction.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <article class="feature-card">
-            <span class="tag">Design</span>
-            <h3>Minimal by default</h3>
-            <p>
-              High contrast, reduced clutter and a premium visual language that supports focus.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <span class="tag">Execution</span>
-            <h3>Fast iteration</h3>
-            <p>
-              Start with a focused MVP, validate quickly and improve step by step based on actual use.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <span class="tag">Product thinking</span>
-            <h3>Real utility first</h3>
-            <p>
-              Every product should solve a real problem and feel simple enough to use immediately.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="contact-card">
-          <span class="tag">Contact</span>
-          <h2>Let’s connect.</h2>
-          <p>
-            For project questions, collaborations or product-related topics, feel free to get in touch.
-          </p>
-          <a class="button" href="mailto:hello@mainsches.com">hello@mainsches.com</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Mainsches</div>
-      <div class="footer-links">
-        <a href="/impressum.html">Kontakt</a>
-      </div>
+  <footer class="container">
+    <div>© <span id="year"></span> Mainsches</div>
+    <div>
+      <a href="/impressum.html">Kontakt</a>
     </div>
   </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
