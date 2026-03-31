@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sketchIT — Mainsches</title>
-  <meta name="description" content="sketchIT turns rough visual ideas into AI-generated output.">
+  <title>SwipeSort — Mainsches</title>
+  <meta name="description" content="SwipeSort is a minimal photo cleanup app built around fast swipe-based decisions.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.10), transparent 30%),
-        radial-gradient(circle at 85% 8%, rgba(255,255,255,0.08), transparent 24%),
+        radial-gradient(circle at 16% 18%, rgba(255,255,255,0.10), transparent 30%),
+        radial-gradient(circle at 88% 6%, rgba(255,255,255,0.08), transparent 24%),
         linear-gradient(180deg, #090909 0%, #040404 48%, #020202 100%);
       min-height: 100vh;
       overflow-x: hidden;
@@ -43,7 +43,7 @@
       mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
     }
 
-    .container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
+    .container { width: min(100% - 32px, 1180px); margin: 0 auto; }
 
     .topbar {
       position: sticky;
@@ -123,8 +123,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-      gap: 26px;
+      grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+      gap: 28px;
       align-items: center;
     }
 
@@ -193,7 +193,6 @@
       color: #000;
       box-shadow: 0 12px 40px rgba(255,255,255,0.14);
     }
-
     .button-secondary {
       color: #fff;
       background: rgba(255,255,255,0.04);
@@ -210,116 +209,140 @@
     }
 
     .visual {
-      padding: 26px;
-      min-height: 520px;
+      padding: 28px;
+      min-height: 540px;
       display: grid;
       place-items: center;
     }
 
-    .flow {
+    .visual-grid {
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+      gap: 20px;
       align-items: center;
-      gap: 16px;
     }
 
-    .box {
-      min-height: 320px;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.32);
+    .phone {
+      width: min(100%, 260px);
+      margin: 0 auto;
+      border-radius: 34px;
+      padding: 10px;
+      background: linear-gradient(180deg, #111, #050505);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.46), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .screen {
+      border-radius: 26px;
       overflow: hidden;
+      padding: 12px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.09), transparent 30%),
+        linear-gradient(180deg, #191919 0%, #0c0c0c 100%);
+      min-height: 430px;
       position: relative;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
-    .box-head {
+    .notch {
+      height: 24px;
+      width: 84px;
+      border-radius: 999px;
+      margin: 0 auto 14px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .card-stack {
+      position: relative;
+      min-height: 300px;
+      margin-bottom: 16px;
+    }
+
+    .stack-card,
+    .stack-card-back {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.10);
+      overflow: hidden;
+    }
+
+    .stack-card-back {
+      transform: rotate(-4deg) translate(10px, 8px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      opacity: 0.7;
+    }
+
+    .stack-card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)),
+        radial-gradient(circle at 70% 20%, rgba(255,255,255,0.22), transparent 24%),
+        linear-gradient(135deg, #383838, #171717 58%, #2a2a2a);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
+      align-items: flex-end;
       padding: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.88);
-      font-weight: 700;
+      transform: rotate(4deg);
     }
 
     .tag {
       display: inline-flex;
       padding: 9px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.40);
       border: 1px solid rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.88);
+      color: rgba(255,255,255,0.9);
       font-size: 0.82rem;
       font-weight: 700;
     }
 
-    .canvas {
-      position: relative;
-      height: calc(100% - 58px);
-      min-height: 260px;
+    .swipe-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
-    .sketch-rect,
-    .render-rect,
-    .sketch-line,
-    .sketch-line-2,
-    .sketch-line-3,
-    .render-glow,
-    .render-core {
-      position: absolute;
-    }
-
-    .sketch-rect {
-      width: 58%;
-      height: 40%;
-      top: 26%;
-      left: 20%;
-      border: 2px solid rgba(255,255,255,0.68);
-      border-radius: 22px;
-      transform: rotate(-8deg);
-    }
-
-    .sketch-line,
-    .sketch-line-2,
-    .sketch-line-3 {
-      height: 2px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.68);
-    }
-
-    .sketch-line { width: 88px; top: 30%; left: 24%; transform: rotate(18deg); }
-    .sketch-line-2 { width: 56px; bottom: 30%; right: 26%; transform: rotate(-16deg); }
-    .sketch-line-3 { width: 44px; top: 54%; right: 20%; transform: rotate(34deg); }
-
-    .render-core {
-      width: 60%;
-      height: 44%;
-      top: 24%;
-      left: 20%;
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.32), transparent 24%),
-        linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.04));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 18px 40px rgba(0,0,0,0.34);
-    }
-
-    .render-glow {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      filter: blur(26px);
-      background: rgba(255,255,255,0.16);
-      top: 18%;
-      right: 18%;
-    }
-
-    .arrow {
-      font-size: 1.9rem;
-      color: rgba(255,255,255,0.72);
+    .swipe-pill {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      padding: 12px 10px;
+      text-align: center;
       font-weight: 700;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .side-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metric {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.30);
+      padding: 18px;
+    }
+
+    .metric-label {
+      color: var(--muted-2);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .metric-value {
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .metric p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
     .section {
@@ -387,6 +410,7 @@
     @media (max-width: 980px) {
       .hero-grid,
       .cards,
+      .visual-grid,
       .cta { grid-template-columns: 1fr; }
       .hero-grid { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr; }
@@ -413,9 +437,8 @@
       .panel,
       .card,
       .cta { border-radius: 26px; }
-      .flow { grid-template-columns: 1fr; }
-      .arrow { transform: rotate(90deg); }
-      .box { min-height: 280px; }
+      .phone { width: 100%; max-width: 290px; }
+      .screen { min-height: 380px; }
     }
   
 
@@ -506,8 +529,8 @@
       <nav class="nav" aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/contact.html">Contact</a>
-        <a href="/sketchit.html" class="active">sketchIT</a>
-        <a href="/swipesort.html">SwipeSort</a>
+        <a href="/sketchit.html">sketchIT</a>
+        <a href="/swipesort.html" class="active">SwipeSort</a>
       </nav>
     </div>
   </header>
@@ -516,40 +539,50 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">AI visual workflow</div>
-          <h1>From rough sketch to clean AI output.</h1>
+          <div class="eyebrow">Mobile utility app</div>
+          <h1>Photo cleanup at swipe speed.</h1>
           <p class="lead">
-            sketchIT is built around a simple but powerful promise: take an early visual idea and transform it into a clearer, more polished result.
+            SwipeSort makes large photo libraries easier to manage by reducing the action to a single fast decision. Keep it or remove it — no clutter, no friction.
           </p>
           <div class="actions">
             <a class="button button-primary" href="/contact.html">Discuss the project</a>
-            <a class="button button-secondary" href="/swipesort.html">View SwipeSort</a>
+            <a class="button button-secondary" href="/sketchit.html">View sketchIT</a>
           </div>
         </div>
 
         <div class="panel visual" aria-hidden="true">
-          <div class="flow">
-            <div class="box">
-              <div class="box-head">
-                <span>Input</span>
-                <span class="tag">Sketch</span>
-              </div>
-              <div class="canvas">
-                <div class="sketch-rect"></div>
-                <div class="sketch-line"></div>
-                <div class="sketch-line-2"></div>
-                <div class="sketch-line-3"></div>
+          <div class="visual-grid">
+            <div class="phone">
+              <div class="screen">
+                <div class="notch"></div>
+                <div class="card-stack">
+                  <div class="stack-card-back"></div>
+                  <div class="stack-card">
+                    <span class="tag">Travel / Ready to sort</span>
+                  </div>
+                </div>
+                <div class="swipe-actions">
+                  <div class="swipe-pill">Delete</div>
+                  <div class="swipe-pill">Keep</div>
+                </div>
               </div>
             </div>
-            <div class="arrow">→</div>
-            <div class="box">
-              <div class="box-head">
-                <span>Output</span>
-                <span class="tag">AI render</span>
+
+            <div class="side-panel">
+              <div class="metric">
+                <div class="metric-label">Core interaction</div>
+                <div class="metric-value">Swipe left or right</div>
+                <p>A simple decision model that keeps the interface fast, clear and easy to repeat across large libraries.</p>
               </div>
-              <div class="canvas">
-                <div class="render-glow"></div>
-                <div class="render-core"></div>
+              <div class="metric">
+                <div class="metric-label">Design philosophy</div>
+                <div class="metric-value">Minimal, direct, calm</div>
+                <p>Built with a premium black and white visual language that keeps attention on the current photo and action.</p>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Product focus</div>
+                <div class="metric-value">Speed + UX</div>
+                <p>Everything about the layout supports quick sorting and a frictionless cleanup flow.</p>
               </div>
             </div>
           </div>
@@ -561,23 +594,23 @@
       <div class="container">
         <div class="cards">
           <article class="card">
-            <h3>Simple visual story</h3>
-            <p>The product idea is instantly understandable: sketch in, refined result out. That clarity makes it ideal for modern product marketing.</p>
+            <h3>Fast decision loop</h3>
+            <p>The experience is built around momentum, making repetitive cleanup work feel lighter and more intuitive.</p>
           </article>
           <article class="card">
-            <h3>Focused interface</h3>
-            <p>The experience is designed to feel clean, minimal and premium without adding unnecessary complexity or visual noise.</p>
+            <h3>Visual clarity</h3>
+            <p>A focused interface reduces distraction and keeps the action obvious from the very first second.</p>
           </article>
           <article class="card">
-            <h3>Built for iteration</h3>
-            <p>It supports exploration, concept communication and fast visual feedback around an initial idea or rough sketch.</p>
+            <h3>Premium minimalism</h3>
+            <p>Clean contrast, subtle surfaces and restrained motion help the product feel polished rather than overloaded.</p>
           </article>
         </div>
 
         <div class="cta">
           <div>
-            <h2>Interested in the concept behind sketchIT?</h2>
-            <p>Use the contact page if you want to talk about the workflow, the product direction or broader AI-based software ideas.</p>
+            <h2>Want to talk about SwipeSort?</h2>
+            <p>Use the contact page if you want to discuss the concept, user experience or broader product strategy around mobile utility apps.</p>
           </div>
           <a class="button button-primary" href="/contact.html">Contact Mainsches</a>
         </div>
