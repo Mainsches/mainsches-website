@@ -19,7 +19,7 @@
       --text: #ffffff;
       --muted: #aaaaaa;
       --radius: 24px;
-      --max: 1000px;
+      --max: 1040px;
     }
 
     * {
@@ -55,7 +55,9 @@
     }
 
     .hero,
-    .card {
+    .card,
+    .visual,
+    .feature-card {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
@@ -78,7 +80,7 @@
       letter-spacing: 0.06em;
     }
 
-    h1, h2, p {
+    h1, h2, h3, p {
       margin: 0;
     }
 
@@ -99,25 +101,121 @@
       line-height: 1.7;
     }
 
-    .grid {
+    .visual {
+      margin-bottom: 18px;
+      padding: 26px;
+    }
+
+    .phone-frame {
+      max-width: 340px;
+      margin: 0 auto;
+      border: 1px solid var(--line-strong);
+      border-radius: 30px;
+      background: #050505;
+      padding: 18px;
+    }
+
+    .phone-screen {
+      border: 1px solid #222;
+      border-radius: 22px;
+      background: #000;
+      padding: 18px;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .screen-top {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .photo-card {
+      flex: 1;
+      border: 1px solid #222;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #151515, #0b0b0b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 330px;
+    }
+
+    .photo-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.03), transparent 50%);
+    }
+
+    .photo-label {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .swipe-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .swipe-pill {
+      flex: 1;
+      min-height: 48px;
+      border-radius: 999px;
+      border: 1px solid #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .swipe-pill.left {
+      background: #0d0d0d;
+    }
+
+    .swipe-pill.right {
+      background: #f5f5f5;
+      color: #000;
+    }
+
+    .section-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-top: 16px;
     }
 
-    .card {
+    .feature-card {
       padding: 24px;
     }
 
     @media (max-width: 800px) {
-      .grid {
+      .section-grid {
         grid-template-columns: 1fr;
       }
 
       .hero,
-      .card {
+      .visual,
+      .feature-card {
         padding: 20px;
+      }
+
+      .phone-frame {
+        max-width: 100%;
       }
     }
   </style>
@@ -134,8 +232,26 @@
       </p>
     </section>
 
-    <section class="grid">
-      <div class="card">
+    <section class="visual">
+      <span class="tag">Workflow</span>
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="screen-top">SwipeSort</div>
+
+          <div class="photo-card">
+            <div class="photo-label">Photo preview</div>
+          </div>
+
+          <div class="swipe-row">
+            <div class="swipe-pill left">Delete</div>
+            <div class="swipe-pill right">Keep</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-grid">
+      <div class="feature-card">
         <span class="tag">Feature</span>
         <h2>Swipe-based cleanup</h2>
         <p>
@@ -143,7 +259,7 @@
         </p>
       </div>
 
-      <div class="card">
+      <div class="feature-card">
         <span class="tag">Feature</span>
         <h2>Built for speed</h2>
         <p>
@@ -151,7 +267,7 @@
         </p>
       </div>
 
-      <div class="card">
+      <div class="feature-card">
         <span class="tag">Design</span>
         <h2>Minimal interface</h2>
         <p>
@@ -159,7 +275,7 @@
         </p>
       </div>
 
-      <div class="card">
+      <div class="feature-card">
         <span class="tag">Status</span>
         <h2>Active product</h2>
         <p>
