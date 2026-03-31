@@ -13,7 +13,6 @@
   <style>
     :root {
       --bg: #000000;
-      --panel: #0a0a0a;
       --line: #1a1a1a;
       --line-strong: #2a2a2a;
       --text: #ffffff;
@@ -41,16 +40,54 @@
     .container {
       width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
+    }
+
+    .page {
       padding: 40px 0 70px;
     }
 
-    .top-link {
-      display: inline-flex;
-      margin-bottom: 24px;
-      color: var(--muted);
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    .top-link:hover {
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.18s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
       color: var(--text);
     }
 
@@ -80,7 +117,7 @@
       letter-spacing: 0.06em;
     }
 
-    h1, h2, h3, p {
+    h1, h2, p {
       margin: 0;
     }
 
@@ -217,13 +254,31 @@
       .phone-frame {
         max-width: 100%;
       }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="/" class="top-link">← Back to Mainsches</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="/" class="brand" aria-label="Mainsches">
+        <img src="/assets/logo.png" class="logo-img" alt="Mainsches Logo" />
+      </a>
 
+      <nav class="nav">
+        <a href="/contact.html">Contact</a>
+        <a href="/sketchit.html">sketchIT</a>
+        <a href="/swipesort.html" class="active">SwipeSort</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container page">
     <section class="hero">
       <span class="tag">Mobile app</span>
       <h1>SwipeSort</h1>
@@ -239,7 +294,7 @@
           <div class="screen-top">SwipeSort</div>
 
           <div class="photo-card">
-            <div class="photo-label">Photo preview</div>
+            <div class="photo-label">Photo Preview</div>
           </div>
 
           <div class="swipe-row">
@@ -284,6 +339,7 @@
       </div>
     </section>
   </div>
-<script defer src="/_vercel/insights/script.js"></script>  
+
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
