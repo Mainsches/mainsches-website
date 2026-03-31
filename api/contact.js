@@ -90,13 +90,14 @@ export default async function handler(req, res) {
       }
     });
 
-    // Mail an dich / dein Support-Postfach
     await transporter.sendMail({
-      from: `"Mainsches Contact Form" <${process.env.SMTP_USER}>`,
+      from: `"Mainsches Contact" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_TO,
       replyTo: cleanEmail,
-      subject: `[Mainsches] ${cleanSubject}`,
+      subject: `New message from ${cleanName} — ${cleanSubject}`,
       text: `
+New contact form message
+
 Name: ${cleanName}
 Email: ${cleanEmail}
 Subject: ${cleanSubject}
@@ -106,41 +107,76 @@ Message:
 ${cleanMessage}
       `.trim(),
       html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
-          <h2>New contact form message</h2>
-          <p><strong>Name:</strong> ${escapeHtml(cleanName)}</p>
-          <p><strong>Email:</strong> ${escapeHtml(cleanEmail)}</p>
-          <p><strong>Subject:</strong> ${escapeHtml(cleanSubject)}</p>
-          <p><strong>IP:</strong> ${escapeHtml(ip)}</p>
-          <p><strong>Message:</strong></p>
-          <div style="white-space: pre-wrap; border: 1px solid #ddd; padding: 12px; border-radius: 8px;">
-            ${escapeHtml(cleanMessage)}
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111; max-width: 640px; margin: 0 auto; padding: 24px;">
+          <div style="border: 1px solid #e5e5e5; border-radius: 16px; overflow: hidden;">
+            <div style="background: #000; color: #fff; padding: 20px 24px;">
+              <h2 style="margin: 0; font-size: 22px;">New contact form message</h2>
+            </div>
+
+            <div style="padding: 24px; background: #fff;">
+              <p style="margin: 0 0 16px;"><strong>Name:</strong> ${escapeHtml(cleanName)}</p>
+              <p style="margin: 0 0 16px;"><strong>Email:</strong> ${escapeHtml(cleanEmail)}</p>
+              <p style="margin: 0 0 16px;"><strong>Subject:</strong> ${escapeHtml(cleanSubject)}</p>
+              <p style="margin: 0 0 20px;"><strong>IP:</strong> ${escapeHtml(ip)}</p>
+
+              <p style="margin: 0 0 10px;"><strong>Message:</strong></p>
+              <div style="white-space: pre-wrap; border: 1px solid #ddd; padding: 14px; border-radius: 12px; background: #fafafa;">
+                ${escapeHtml(cleanMessage)}
+              </div>
+            </div>
           </div>
         </div>
       `
     });
 
-    // Auto-Reply an den Nutzer
     await transporter.sendMail({
       from: `"Mainsches" <${process.env.SMTP_USER}>`,
       to: cleanEmail,
-      subject: "We received your message",
+      subject: "Mainsches — Message received",
       text: `
 Hi ${cleanName},
 
-thanks for reaching out.
+thanks for contacting Mainsches.
 
-We have received your message and will get back to you as soon as possible.
+We have received your message successfully and will get back to you as soon as possible.
 
-— Mainsches
+Your subject:
+${cleanSubject}
+
+Best regards,
+Mainsches
+mainsches.com
       `.trim(),
       html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
-          <p>Hi ${escapeHtml(cleanName)},</p>
-          <p>thanks for reaching out.</p>
-          <p>We have received your message and will get back to you as soon as possible.</p>
-          <br>
-          <p>— Mainsches</p>
+        <div style="font-family: Arial, sans-serif; line-height: 1.7; color: #111; max-width: 640px; margin: 0 auto; padding: 24px;">
+          <div style="border: 1px solid #e5e5e5; border-radius: 16px; overflow: hidden;">
+            <div style="background: #000; color: #fff; padding: 20px 24px;">
+              <h2 style="margin: 0; font-size: 22px;">Message received</h2>
+            </div>
+
+            <div style="padding: 24px; background: #fff;">
+              <p style="margin: 0 0 16px;">Hi ${escapeHtml(cleanName)},</p>
+
+              <p style="margin: 0 0 16px;">
+                thanks for contacting <strong>Mainsches</strong>.
+              </p>
+
+              <p style="margin: 0 0 16px;">
+                We have received your message successfully and will get back to you as soon as possible.
+              </p>
+
+              <div style="margin: 22px 0; padding: 14px 16px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa;">
+                <p style="margin: 0 0 6px; color: #666; font-size: 14px;">Your subject</p>
+                <p style="margin: 0; font-weight: 600;">${escapeHtml(cleanSubject)}</p>
+              </div>
+
+              <p style="margin: 24px 0 0;">
+                Best regards,<br>
+                <strong>Mainsches</strong><br>
+                <span style="color: #666;">mainsches.com</span>
+              </p>
+            </div>
+          </div>
         </div>
       `
     });
