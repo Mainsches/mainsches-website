@@ -21,6 +21,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -46,8 +47,8 @@
       mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
     }
 
-    .container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
     a { color: inherit; }
+    .container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
 
     .topbar {
       position: sticky;
@@ -114,7 +115,8 @@
       border: 1px solid transparent;
     }
 
-    .nav a:hover {
+    .nav a:hover,
+    .nav a[aria-current="page"] {
       color: #fff;
       background: rgba(255,255,255,0.05);
       border-color: rgba(255,255,255,0.10);
@@ -166,14 +168,7 @@
       color: var(--muted);
       font-size: 1.08rem;
       line-height: 1.8;
-      max-width: 720px;
-    }
-
-    .legal-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.72fr) minmax(320px, 0.48fr);
-      gap: 24px;
-      align-items: start;
+      max-width: 760px;
     }
 
     .panel {
@@ -198,6 +193,12 @@
       padding: 32px;
     }
 
+    .legal-card + .legal-card {
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
     .section-label {
       margin: 0 0 10px;
       color: var(--muted-2);
@@ -207,56 +208,20 @@
       font-weight: 700;
     }
 
-    .legal-card + .legal-card {
-      margin-top: 18px;
-    }
-
     .legal-card h2 {
       margin: 0 0 10px;
       font-size: 1.28rem;
       letter-spacing: -0.04em;
     }
 
-    .legal-card p,
-    .legal-card li {
+    .legal-card p {
       margin: 0;
       color: rgba(255,255,255,0.88);
       line-height: 1.85;
     }
 
-    .legal-card ul {
-      margin: 0;
-      padding-left: 18px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .info-stack {
-      display: grid;
-      gap: 16px;
-    }
-
-    .info-card {
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.09);
-      background: rgba(0,0,0,0.26);
-      padding: 20px;
-    }
-
-    .info-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.02rem;
-      letter-spacing: -0.03em;
-    }
-
-    .info-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .footer-shell {
-      padding: 28px 0 34px;
+    .site-footer-wrap {
+      margin-top: 28px;
     }
 
     .site-footer {
@@ -271,27 +236,10 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
     }
 
-    .site-footer h3 {
-      margin: 0 0 6px;
-      font-size: 1.02rem;
-      letter-spacing: -0.03em;
-    }
-
-    .footer-kicker {
-      display: inline-block;
-      margin-bottom: 8px;
-      color: var(--muted-2);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
     .site-footer p {
       margin: 0;
       color: var(--muted);
       line-height: 1.7;
-      max-width: 720px;
     }
 
     .footer-links {
@@ -300,8 +248,7 @@
       gap: 10px;
     }
 
-    .footer-link,
-    .button {
+    .footer-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -316,24 +263,10 @@
       transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
-    .button {
-      padding: 0 18px;
-      background: #fff;
-      color: #000;
-      border-color: transparent;
-      font-weight: 700;
-      box-shadow: 0 12px 40px rgba(255,255,255,0.14);
-    }
-
-    .footer-link:hover,
-    .button:hover {
+    .footer-link:hover {
       transform: translateY(-2px);
-    }
-
-    @media (max-width: 980px) {
-      .legal-grid {
-        grid-template-columns: 1fr;
-      }
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.16);
     }
 
     @media (max-width: 760px) {
@@ -391,103 +324,58 @@
     <section class="container hero">
       <span class="eyebrow">Legal notice</span>
       <h1>Impressum / Legal Notice</h1>
-      <p class="lead">This page provides the legal notice for Mainsches. The website currently serves as an informational presence for software projects and tools in development. No products are sold directly through this website at this time.</p>
+      <p class="lead">
+        This website provides information about Mainsches and its software projects. It is currently an informational website and does not offer direct online sales through this site.
+      </p>
     </section>
 
     <section class="container">
-      <div class="legal-grid">
-        <div class="panel">
-          <div class="panel-content">
-            <div class="legal-card">
-              <p class="section-label">Website operator</p>
-              <h2>Mainsches</h2>
-              <p>
-                Operator: Angelo S.<br>
-                Country of operation: Switzerland<br>
-                Public contact email: [your-business-email@example.com]
-              </p>
-            </div>
+      <div class="panel">
+        <div class="panel-content">
+          <div class="legal-card">
+            <p class="section-label">Website operator</p>
+            <h2>Mainsches</h2>
+            <p>
+              Operator: Angelo S.<br>
+              Country of operation: Switzerland<br>
+              Contact email: contact@mainsches.com
+            </p>
+          </div>
 
-            <div class="legal-card">
-              <p class="section-label">Website status</p>
-              <h2>Current scope of this website</h2>
-              <p>
-                mainsches.com currently presents software projects, concepts and general information about Mainsches. No products or paid services are sold directly through this website at this time, and no binding online orders can be placed here.
-              </p>
-            </div>
+          <div class="legal-card">
+            <p class="section-label">Website status</p>
+            <h2>Current scope of this website</h2>
+            <p>
+              mainsches.com currently presents software projects, concepts, and general information about Mainsches. No products or paid services are sold directly through this website at this time, and no binding online orders can be placed here.
+            </p>
+          </div>
 
-            <div class="legal-card">
-              <p class="section-label">Responsible for content</p>
-              <h2>Content responsibility</h2>
-              <p>
-                Responsible for the content of this website:<br>
-                Angelo S.<br>
-                Mainsches
-              </p>
-            </div>
+          <div class="legal-card">
+            <p class="section-label">Responsible for content</p>
+            <h2>Content responsibility</h2>
+            <p>
+              Responsible for the content of this website:<br>
+              Angelo S.<br>
+              Mainsches
+            </p>
+          </div>
 
-            <div class="legal-card">
-              <p class="section-label">Address note</p>
-              <h2>Postal address</h2>
-              <p>
-                A dedicated public business correspondence address has not yet been published on this website. Before launching direct online sales, paid offers, or active commercial promotion, this page should be updated with a public postal business address suitable for legal and business correspondence.
-              </p>
-            </div>
-
-            <div class="legal-card">
-              <p class="section-label">Notes</p>
-              <h2>Important information</h2>
-              <ul>
-                <li>For a purely informational website, this lean legal notice can be a practical interim setup, but it may not be sufficient once you actively offer goods or services online.</li>
-                <li>If you later run an online shop or sell digital products/services through the site, Swiss e-commerce rules require clear identity and contact details, including a postal address and email address.</li>
-                <li>If you want to protect your home address, use a dedicated business address, registered office, c/o address, or PO box that is suitable for public publication.</li>
-                <li>A privacy policy is also recommended because the contact form and analytics involve data processing.</li>
-              </ul>
-            </div>
+          <div class="legal-card">
+            <p class="section-label">Address notice</p>
+            <h2>Postal address</h2>
+            <p>
+              A public business correspondence address is not currently published on this website.
+            </p>
           </div>
         </div>
-
-        <aside class="info-stack">
-          <div class="panel">
-            <div class="panel-content">
-              <p class="section-label">Publishing status</p>
-              <div class="info-card">
-                <h3>Interim privacy-friendly version</h3>
-                <p>This version is designed for your current stage: informational website, no direct sales on the site, and reduced exposure of your private home address.</p>
-              </div>
-              <div class="info-card">
-                <h3>When to upgrade this page</h3>
-                <p>Update this legal notice before you start selling software, running paid offers, collecting customer accounts, or publishing stronger commercial advertising on the site.</p>
-              </div>
-              <div class="info-card">
-                <h3>Best next step</h3>
-                <p>Set up a public business email and a publishable business correspondence address, then replace the placeholders before broader commercial rollout.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <div class="panel-content">
-              <p class="section-label">Quick actions</p>
-              <div class="footer-links">
-                <a class="button" href="/contact.html">Contact</a>
-                <a class="footer-link" href="/index.html">Back to home</a>
-              </div>
-            </div>
-          </div>
-        </aside>
       </div>
-    </section>
 
-    <section class="container footer-shell">
-      <div class="site-footer">
-        <div>
-          <span class="footer-kicker">Mainsches</span>
-          <h3>Consistent site system</h3>
-          <p>This legal page uses the same premium visual system as the rest of the site and is written for your current stage: international-facing, Switzerland-based, and not yet selling directly through the website.</p>
-        </div>
-        <div class="footer-links">
-          <a class="footer-link" href="/impressum.html">Impressum</a>
+      <div class="site-footer-wrap">
+        <div class="site-footer">
+          <p>For general inquiries, please use the contact page.</p>
+          <div class="footer-links">
+            <a class="footer-link" href="/contact.html">Contact</a>
+          </div>
         </div>
       </div>
     </section>
