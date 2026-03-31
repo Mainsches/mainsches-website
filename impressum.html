@@ -1,155 +1,482 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt – Mainsches</title>
-  <link rel="icon" type="image/png" href="/assets/logo.png" />
-
-  <meta
-    name="description"
-    content="Kontaktseite von Mainsches."
-  />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum — Mainsches</title>
+  <meta name="description" content="Legal notice and contact details for Mainsches.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #000000;
-      --panel: #0a0a0a;
-      --line: #1a1a1a;
-      --line-strong: #2a2a2a;
-      --text: #ffffff;
-      --muted: #aaaaaa;
-      --muted-2: #7c7c7c;
-      --radius: 24px;
-      --max: 900px;
+      --bg: #030303;
+      --line: rgba(255,255,255,0.11);
+      --text: #fff;
+      --muted: rgba(255,255,255,0.68);
+      --muted-2: rgba(255,255,255,0.48);
+      --max: 1180px;
+      --shadow: 0 24px 90px rgba(0,0,0,0.52);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at top, #111111 0%, #000000 55%);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 14%, rgba(255,255,255,0.10), transparent 28%),
+        radial-gradient(circle at 90% 6%, rgba(255,255,255,0.06), transparent 22%),
+        linear-gradient(180deg, #090909 0%, #040404 48%, #020202 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.14;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 120px 120px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
+    }
+
+    .container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(6,6,6,0.68);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .topbar-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
       text-decoration: none;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-      padding: 36px 0 60px;
-    }
-
-    .top-link {
       display: inline-flex;
-      margin-bottom: 24px;
+      align-items: center;
+      gap: 12px;
+      min-width: 152px;
+      color: inherit;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: rgba(255,255,255,0.96);
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .nav a {
+      width: 96px;
+      min-width: 96px;
+      text-align: center;
+      text-decoration: none;
+      padding: 12px 10px;
+      border-radius: 999px;
       color: var(--muted);
       font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      border: 1px solid transparent;
     }
 
-    .top-link:hover {
-      color: var(--text);
+    .nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.10);
     }
 
-    .card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+    .page {
+      padding: 78px 0 92px;
     }
 
-    .tag {
+    .hero {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
       display: inline-flex;
-      margin-bottom: 14px;
-      padding: 7px 10px;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid var(--line-strong);
-      color: var(--muted);
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.82);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      backdrop-filter: blur(12px);
     }
 
-    h1, h2, p {
-      margin: 0;
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 18px rgba(255,255,255,0.7);
     }
 
     h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -0.05em;
-      margin-bottom: 12px;
+      margin: 0;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.08em;
+      font-weight: 800;
+      max-width: 760px;
     }
 
-    p {
+    .lead {
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(320px, 0.48fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      position: relative;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04);
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 45%, transparent 58%, rgba(255,255,255,0.03));
+      pointer-events: none;
+    }
+
+    .panel-content {
+      position: relative;
+      padding: 32px;
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--muted-2);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+    }
+
+    .legal-card + .legal-card {
+      margin-top: 18px;
+    }
+
+    .legal-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.28rem;
+      letter-spacing: -0.04em;
+    }
+
+    .legal-card p,
+    .legal-card li {
+      margin: 0;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.85;
+    }
+
+    .legal-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .info-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .info-card {
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(0,0,0,0.26);
+      padding: 20px;
+    }
+
+    .info-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+      letter-spacing: -0.03em;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .footer-shell {
+      padding: 28px 0 34px;
+    }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .site-footer h3 {
+      margin: 0 0 6px;
+      font-size: 1.02rem;
+      letter-spacing: -0.03em;
+    }
+
+    .footer-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--muted-2);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .site-footer p {
+      margin: 0;
       color: var(--muted);
       line-height: 1.7;
+      max-width: 720px;
     }
 
-    .contacts {
-      margin-top: 24px;
-      display: grid;
-      gap: 12px;
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .contact-item {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px 18px;
-      background: rgba(255,255,255,0.01);
+    .footer-link,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
-    .contact-item strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-      color: var(--text);
+    .button {
+      padding: 0 18px;
+      background: #fff;
+      color: #000;
+      border-color: transparent;
+      font-weight: 700;
+      box-shadow: 0 12px 40px rgba(255,255,255,0.14);
     }
 
-    .contact-item a {
-      color: var(--muted);
-      word-break: break-word;
+    .footer-link:hover,
+    .button:hover {
+      transform: translateY(-2px);
     }
 
-    .contact-item a:hover {
-      color: var(--text);
+    @media (max-width: 980px) {
+      .legal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .nav {
+        width: 100%;
+        justify-content: center;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .nav a {
+        width: 92px;
+        min-width: 92px;
+      }
+
+      .panel-content {
+        padding: 24px;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="/" class="top-link">← Zurück zu Mainsches</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/index.html" aria-label="Mainsches home">
+        <span class="brand-mark">M</span>
+        <span class="brand-text">Mainsches</span>
+      </a>
 
-    <div class="card">
-      <span class="tag">Kontakt</span>
-      <h1>Mainsches</h1>
-      <p>
-        Für Fragen zu Projekten, Apps oder allgemeinen Themen kannst du uns per E-Mail erreichen.
-      </p>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/index.html">Home</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/sketchit.html">sketchIT</a>
+        <a href="/swipesort.html">SwipeSort</a>
+      </nav>
+    </div>
+  </header>
 
-      <div class="contacts">
-        <div class="contact-item">
-          <strong>General</strong>
-          <a href="mailto:hello@mainsches.com">hello@mainsches.com</a>
+  <main class="page">
+    <section class="container hero">
+      <span class="eyebrow">Legal notice</span>
+      <h1>Impressum</h1>
+      <p class="lead">This page provides the legal notice for Mainsches. The styling matches the rest of the website so the legal section feels integrated instead of disconnected.</p>
+    </section>
+
+    <section class="container">
+      <div class="legal-grid">
+        <div class="panel">
+          <div class="panel-content">
+            <div class="legal-card">
+              <p class="section-label">Company details</p>
+              <h2>Mainsches</h2>
+              <p>
+                Please replace the following placeholder details with your final legal information before publishing this page as your live legal notice.<br><br>
+                Name: Angelo S.<br>
+                Street / number: [Your address]<br>
+                Postal code / city: [ZIP] [City]<br>
+                Country: Switzerland<br>
+                Email: [Your business email]
+              </p>
+            </div>
+
+            <div class="legal-card">
+              <p class="section-label">Responsible for content</p>
+              <h2>Website operator</h2>
+              <p>
+                Responsible person according to applicable law:<br>
+                Angelo S.<br>
+                Mainsches
+              </p>
+            </div>
+
+            <div class="legal-card">
+              <p class="section-label">Notes</p>
+              <h2>Important information</h2>
+              <ul>
+                <li>Check whether you also need a privacy policy page depending on the final data processing setup of your site and contact workflow.</li>
+                <li>Verify all required Swiss or EU legal details with a qualified professional if you want full legal certainty.</li>
+                <li>Update the email address and postal address before deploying this page publicly.</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <div class="contact-item">
-          <strong>Support</strong>
-          <a href="mailto:support@mainsches.com">support@mainsches.com</a>
-        </div>
+        <aside class="info-stack">
+          <div class="panel">
+            <div class="panel-content">
+              <p class="section-label">Publishing status</p>
+              <div class="info-card">
+                <h3>Ready for integration</h3>
+                <p>This page already matches the visual style of the rest of the Mainsches website and is designed to slot in without affecting the navbar stability.</p>
+              </div>
+              <div class="info-card">
+                <h3>Linked from all pages</h3>
+                <p>The footer area can now point users to the Impressum page from the homepage, product pages and contact page.</p>
+              </div>
+              <div class="info-card">
+                <h3>Next recommended step</h3>
+                <p>Add your final legal details, then deploy the updated files to GitHub and Vercel as usual.</p>
+              </div>
+            </div>
+          </div>
 
-        <div class="contact-item">
-          <strong>Info</strong>
-          <a href="mailto:info@mainsches.com">info@mainsches.com</a>
+          <div class="panel">
+            <div class="panel-content">
+              <p class="section-label">Quick actions</p>
+              <div class="footer-links">
+                <a class="button" href="/contact.html">Contact</a>
+                <a class="footer-link" href="/index.html">Back to home</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="container footer-shell">
+      <div class="site-footer">
+        <div>
+          <span class="footer-kicker">Mainsches</span>
+          <h3>Consistent site system</h3>
+          <p>This legal page uses the same premium visual system as the rest of the site so future pages can follow the same design language.</p>
+        </div>
+        <div class="footer-links">
+          <a class="footer-link" href="/impressum.html">Impressum</a>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </body>
 </html>
