@@ -5,153 +5,506 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – Mainsches</title>
   <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <meta
+    name="description"
+    content="Contact Mainsches for support, questions or collaborations."
+  />
 
   <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
+    :root {
+      --bg: #000000;
+      --panel: #0a0a0a;
+      --panel-2: #050505;
+      --line: #1a1a1a;
+      --line-strong: #2a2a2a;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --muted-2: #7c7c7c;
+      --success-bg: rgba(26, 94, 32, 0.18);
+      --success-line: rgba(60, 160, 80, 0.45);
+      --success-text: #b8f5c2;
+      --error-bg: rgba(120, 24, 24, 0.18);
+      --error-line: rgba(210, 70, 70, 0.45);
+      --error-text: #ffb5b5;
+      --radius: 24px;
+      --radius-sm: 16px;
+      --max: 960px;
     }
 
-    .container {
-      max-width: 600px;
-      margin: 60px auto;
-      padding: 20px;
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #111111 0%, #000000 58%);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     a {
-      color: #aaa;
+      color: inherit;
       text-decoration: none;
     }
 
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .page {
+      padding: 40px 0 70px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.18s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--text);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card,
+    .side-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+    }
+
+    .card {
+      padding: 30px;
+    }
+
+    .side {
+      display: grid;
+      gap: 16px;
+    }
+
+    .side-card {
+      padding: 24px;
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
     h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
       margin-bottom: 10px;
     }
 
     p {
-      color: #aaa;
-      margin-bottom: 30px;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      background: #111;
-      border: 1px solid #333;
-      color: #fff;
-      border-radius: 10px;
+    .intro {
+      max-width: 640px;
     }
 
-    button {
+    .form {
+      margin-top: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .field input,
+    .field textarea {
       width: 100%;
-      padding: 14px;
-      background: #fff;
-      color: #000;
-      border: none;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: var(--muted-2);
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #3a3a3a;
+      background: #080808;
+    }
+
+    .field textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 20px;
       border-radius: 999px;
-      font-weight: bold;
+      border: 1px solid var(--line-strong);
+      background: #ffffff;
+      color: #000000;
+      font-weight: 700;
       cursor: pointer;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
     }
 
-    button:disabled {
-      opacity: 0.6;
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .submit-btn:disabled {
       cursor: not-allowed;
+      opacity: 0.72;
     }
 
     .status {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 10px;
       display: none;
+      margin-top: 6px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 0.94rem;
+      line-height: 1.55;
     }
 
-    .success {
-      background: #1a3d1a;
+    .status.show {
+      display: block;
     }
 
-    .error {
-      background: #3d1a1a;
+    .status.success {
+      background: var(--success-bg);
+      border: 1px solid var(--success-line);
+      color: var(--success-text);
+    }
+
+    .status.error {
+      background: var(--error-bg);
+      border: 1px solid var(--error-line);
+      color: var(--error-text);
+    }
+
+    .hint {
+      font-size: 0.9rem;
+      color: var(--muted-2);
+      line-height: 1.6;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .feature-item {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .feature-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 0.94rem;
+    }
+
+    .feature-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.6;
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .side-card {
+        padding: 22px;
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="/" class="brand" aria-label="Mainsches">
+        <img src="/assets/logo.png" class="logo-img" alt="Mainsches Logo" />
+      </a>
 
-    <a href="/">← Back</a>
+      <nav class="nav">
+        <a href="/contact.html" class="active">Contact</a>
+        <a href="/sketchit.html">sketchIT</a>
+        <a href="/swipesort.html">SwipeSort</a>
+      </nav>
+    </div>
+  </header>
 
-    <h1>Contact</h1>
-    <p>Send a message for support or development inquiries.</p>
+  <div class="container page">
+    <div class="layout">
+      <div class="card">
+        <span class="tag">Contact</span>
+        <h1>Get in touch</h1>
+        <p class="intro">
+          For support, project questions or collaborations, send a message using the form below.
+        </p>
 
-    <form id="contact-form">
+        <form class="form" id="contact-form">
+          <div style="display:none;">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
 
-      <!-- Honeypot -->
-      <div style="display:none;">
-        <input name="company">
-        <input name="website">
+            <label for="website">Website</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <input type="hidden" id="formStartedAt" name="formStartedAt" />
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" placeholder="Subject" required />
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Your message" required></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="submit-btn" id="submit-btn">Send message</button>
+          </div>
+
+          <div id="form-status" class="status"></div>
+
+          <p class="hint">
+            Your message will be sent directly to our support inbox.
+          </p>
+        </form>
       </div>
 
-      <input type="hidden" name="formStartedAt" id="formStartedAt">
+      <div class="side">
+        <div class="side-card">
+          <span class="tag">Support</span>
+          <h2>Direct support</h2>
+          <p>
+            For technical issues, app questions or general support, use this contact form.
+          </p>
 
-      <input name="name" placeholder="Name" required>
-      <input name="email" placeholder="Email" required>
-      <input name="subject" placeholder="Subject" required>
-      <textarea name="message" placeholder="Message" required></textarea>
+          <div class="feature-list" style="margin-top: 18px;">
+            <div class="feature-item">
+              <strong>Best for support</strong>
+              <span>
+                Messages from this page are routed to <b>support@mainsches.com</b>.
+              </span>
+            </div>
+          </div>
+        </div>
 
-      <button id="submit-btn">Send message</button>
+        <div class="side-card">
+          <span class="tag">Info</span>
+          <h2>What to include</h2>
 
-      <div id="status" class="status"></div>
+          <div class="feature-list">
+            <div class="feature-item">
+              <strong>Be specific</strong>
+              <span>
+                A short and clear subject helps us respond faster.
+              </span>
+            </div>
 
-    </form>
+            <div class="feature-item">
+              <strong>Describe the issue</strong>
+              <span>
+                Include the product name and a short description of your request.
+              </span>
+            </div>
 
+            <div class="feature-item">
+              <strong>Reply path</strong>
+              <span>
+                We can reply directly to the email address you enter in the form.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
     const form = document.getElementById("contact-form");
-    const statusBox = document.getElementById("status");
-    const btn = document.getElementById("submit-btn");
+    const statusBox = document.getElementById("form-status");
+    const submitBtn = document.getElementById("submit-btn");
+    const formStartedAt = document.getElementById("formStartedAt");
+    formStartedAt.value = Date.now().toString();
 
-    document.getElementById("formStartedAt").value = Date.now();
+    function showStatus(message, type) {
+      statusBox.textContent = message;
+      statusBox.className = "status show " + type;
+    }
+
+    function clearStatus() {
+      statusBox.textContent = "";
+      statusBox.className = "status";
+    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      statusBox.style.display = "none";
-      btn.disabled = true;
-      btn.innerText = "Sending...";
+      clearStatus();
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
 
-      const data = Object.fromEntries(new FormData(form));
+      const formData = new FormData(form);
+
+      const payload = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        subject: formData.get("subject"),
+        message: formData.get("message"),
+        company: formData.get("company"),
+        website: formData.get("website"),
+        formStartedAt: formData.get("formStartedAt")
+      };
 
       try {
-        const res = await fetch("/api/contact", {
+        const response = await fetch("/api/contact", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
         });
 
-        const result = await res.json();
+        const data = await response.json();
 
-        if (!res.ok) throw new Error(result.error);
+        if (!response.ok) {
+          showStatus(data.error || "Something went wrong. Please try again.", "error");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send message";
+          return;
+        }
 
-        statusBox.innerText = "Message sent successfully.";
-        statusBox.className = "status success";
-        statusBox.style.display = "block";
-
+        showStatus("Message sent successfully. We will get back to you soon.", "success");
         form.reset();
-
-      } catch (err) {
-        statusBox.innerText = err.message || "Error occurred.";
-        statusBox.className = "status error";
-        statusBox.style.display = "block";
+        formStartedAt.value = Date.now().toString();
+      } catch (error) {
+        showStatus("Network error. Please try again.", "error");
       }
 
-      btn.disabled = false;
-      btn.innerText = "Send message";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send message";
     });
   </script>
 
-<script defer src="/_vercel/insights/script.js"></script>  
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
