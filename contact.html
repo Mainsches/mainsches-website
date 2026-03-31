@@ -1,510 +1,57 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact – Mainsches</title>
-  <link rel="icon" type="image/png" href="/assets/logo.png" />
-  <meta
-    name="description"
-    content="Contact Mainsches for support, questions or collaborations."
-  />
+<meta charset="UTF-8">
+<title>Contact</title>
+<link rel="icon" href="/assets/logo.png">
+<style>
+body{background:#000;color:#fff;font-family:Arial;margin:0}
+.topbar{padding:20px;border-bottom:1px solid #222;display:flex;justify-content:space-between}
 
-  <style>
-    :root {
-      --bg: #000000;
-      --panel: #0a0a0a;
-      --panel-2: #050505;
-      --line: #1a1a1a;
-      --line-strong: #2a2a2a;
-      --text: #ffffff;
-      --muted: #aaaaaa;
-      --muted-2: #7c7c7c;
-      --success-bg: rgba(26, 94, 32, 0.18);
-      --success-line: rgba(60, 160, 80, 0.45);
-      --success-text: #b8f5c2;
-      --error-bg: rgba(120, 24, 24, 0.18);
-      --error-line: rgba(210, 70, 70, 0.45);
-      --error-text: #ffb5b5;
-      --radius: 24px;
-      --radius-sm: 16px;
-      --max: 1120px;
-    }
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+.nav a {
+  width: 90px;
+  min-width: 90px;
+  text-align: center;
+  color: #aaaaaa;
+  font-size: 0.95rem;
+  transition: color 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    body {
-      margin: 0;
-      background: radial-gradient(circle at top, #111111 0%, #000000 58%);
-      color: var(--text);
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+.nav a:hover,
+.nav a.active {
+  color: #ffffff;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-    }
-
-    .page {
-      padding: 40px 0 70px;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(0, 0, 0, 0.72);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .topbar-inner {
-      min-height: 74px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      flex: 0 0 auto;
-    }
-
-    .logo-img {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: nowrap;
-      white-space: nowrap;
-      flex: 0 0 auto;
-    }
-
-    .nav a {
-      color: var(--muted);
-      font-size: 0.95rem;
-      transition: color 0.18s ease;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: var(--text);
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .card,
-    .side-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
-    }
-
-    .card {
-      padding: 30px;
-    }
-
-    .side {
-      display: grid;
-      gap: 16px;
-    }
-
-    .side-card {
-      padding: 24px;
-    }
-
-    .tag {
-      display: inline-flex;
-      margin-bottom: 14px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line-strong);
-      color: var(--muted);
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    h1, h2, h3, p {
-      margin: 0;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
-      letter-spacing: -0.05em;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: 1.2rem;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .intro {
-      max-width: 640px;
-    }
-
-    .form {
-      margin-top: 24px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .field {
-      display: grid;
-      gap: 8px;
-    }
-
-    .field label {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--line);
-      background: var(--panel-2);
-      color: var(--text);
-      font: inherit;
-      outline: none;
-      transition: border-color 0.18s ease, background 0.18s ease;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: var(--muted-2);
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-color: #3a3a3a;
-      background: #080808;
-    }
-
-    .field textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
-
-    .submit-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 20px;
-      border-radius: 999px;
-      border: 1px solid var(--line-strong);
-      background: #ffffff;
-      color: #000000;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
-    }
-
-    .submit-btn:hover:not(:disabled) {
-      transform: translateY(-1px);
-      opacity: 0.96;
-    }
-
-    .submit-btn:disabled {
-      cursor: not-allowed;
-      opacity: 0.72;
-    }
-
-    .status {
-      display: none;
-      margin-top: 6px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      font-size: 0.94rem;
-      line-height: 1.55;
-    }
-
-    .status.show {
-      display: block;
-    }
-
-    .status.success {
-      background: var(--success-bg);
-      border: 1px solid var(--success-line);
-      color: var(--success-text);
-    }
-
-    .status.error {
-      background: var(--error-bg);
-      border: 1px solid var(--error-line);
-      color: var(--error-text);
-    }
-
-    .hint {
-      font-size: 0.9rem;
-      color: var(--muted-2);
-      line-height: 1.6;
-    }
-
-    .feature-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 6px;
-    }
-
-    .feature-item {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px 16px;
-      background: rgba(255,255,255,0.01);
-    }
-
-    .feature-item strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--text);
-      font-size: 0.94rem;
-    }
-
-    .feature-item span {
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.6;
-      display: block;
-    }
-
-    @media (max-width: 920px) {
-      .topbar-inner,
-      .layout {
-        flex-direction: column;
-        align-items: flex-start;
-        grid-template-columns: 1fr;
-      }
-
-      .card,
-      .side-card {
-        padding: 22px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .nav {
-        gap: 14px;
-      }
-    }
-  </style>
+.container{padding:40px}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="/" class="brand" aria-label="Mainsches">
-        <img src="/assets/logo.png" class="logo-img" alt="Mainsches Logo" />
-      </a>
 
-      <nav class="nav">
-        <a href="/">Home</a>
-        <a href="/contact.html" class="active">Contact</a>
-        <a href="/sketchit.html">sketchIT</a>
-        <a href="/swipesort.html">SwipeSort</a>
-      </nav>
-    </div>
-  </header>
+<div class="topbar">
+<div>Mainsches</div>
+<nav class="nav">
+<a href="/" >Home</a>
+<a href="/contact.html" class="active">Contact</a>
+<a href="/sketchit.html" >sketchIT</a>
+<a href="/swipesort.html" >SwipeSort</a>
+</nav>
+</div>
 
-  <div class="container page">
-    <div class="layout">
-      <div class="card">
-        <span class="tag">Contact</span>
-        <h1>Get in touch</h1>
-        <p class="intro">
-          For support, project questions or collaborations, send a message using the form below.
-        </p>
+<div class="container">
+<h1>Contact</h1>
+<p>Content placeholder</p>
+</div>
 
-        <form class="form" id="contact-form">
-          <div style="display:none;">
-            <label for="company">Company</label>
-            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
-            <label for="website">Website</label>
-            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <input type="hidden" id="formStartedAt" name="formStartedAt" />
-
-          <div class="field">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required />
-          </div>
-
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required />
-          </div>
-
-          <div class="field">
-            <label for="subject">Subject</label>
-            <input id="subject" name="subject" type="text" placeholder="Subject" required />
-          </div>
-
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Your message" required></textarea>
-          </div>
-
-          <div class="actions">
-            <button type="submit" class="submit-btn" id="submit-btn">Send message</button>
-          </div>
-
-          <div id="form-status" class="status"></div>
-
-          <p class="hint">
-            Your message will be sent directly to our support inbox.
-          </p>
-        </form>
-      </div>
-
-      <div class="side">
-        <div class="side-card">
-          <span class="tag">Support</span>
-          <h2>Direct support</h2>
-          <p>
-            For technical issues, app questions or general support, use this contact form.
-          </p>
-
-          <div class="feature-list" style="margin-top: 18px;">
-            <div class="feature-item">
-              <strong>Best for support</strong>
-              <span>
-                Messages from this page are routed to <b>support@mainsches.com</b>.
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="side-card">
-          <span class="tag">Info</span>
-          <h2>What to include</h2>
-
-          <div class="feature-list">
-            <div class="feature-item">
-              <strong>Be specific</strong>
-              <span>
-                A short and clear subject helps us respond faster.
-              </span>
-            </div>
-
-            <div class="feature-item">
-              <strong>Describe the issue</strong>
-              <span>
-                Include the product name and a short description of your request.
-              </span>
-            </div>
-
-            <div class="feature-item">
-              <strong>Reply path</strong>
-              <span>
-                We can reply directly to the email address you enter in the form.
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const form = document.getElementById("contact-form");
-    const statusBox = document.getElementById("form-status");
-    const submitBtn = document.getElementById("submit-btn");
-    const formStartedAt = document.getElementById("formStartedAt");
-    formStartedAt.value = Date.now().toString();
-
-    function showStatus(message, type) {
-      statusBox.textContent = message;
-      statusBox.className = "status show " + type;
-    }
-
-    function clearStatus() {
-      statusBox.textContent = "";
-      statusBox.className = "status";
-    }
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      clearStatus();
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Sending...";
-
-      const formData = new FormData(form);
-
-      const payload = {
-        name: formData.get("name"),
-        email: formData.get("email"),
-        subject: formData.get("subject"),
-        message: formData.get("message"),
-        company: formData.get("company"),
-        website: formData.get("website"),
-        formStartedAt: formData.get("formStartedAt")
-      };
-
-      try {
-        const response = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          showStatus(data.error || "Something went wrong. Please try again.", "error");
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Send message";
-          return;
-        }
-
-        showStatus("Message sent successfully. We will get back to you soon.", "success");
-        form.reset();
-        formStartedAt.value = Date.now().toString();
-      } catch (error) {
-        showStatus("Network error. Please try again.", "error");
-      }
-
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Send message";
-    });
-  </script>
-
-  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
