@@ -13,7 +13,6 @@
   <style>
     :root {
       --bg: #000000;
-      --panel: #0a0a0a;
       --line: #1a1a1a;
       --line-strong: #2a2a2a;
       --text: #ffffff;
@@ -22,9 +21,7 @@
       --max: 1040px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -41,16 +38,54 @@
     .container {
       width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
+    }
+
+    .page {
       padding: 40px 0 70px;
     }
 
-    .top-link {
-      display: inline-flex;
-      margin-bottom: 24px;
-      color: var(--muted);
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    .top-link:hover {
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.18s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
       color: var(--text);
     }
 
@@ -79,7 +114,7 @@
       letter-spacing: 0.06em;
     }
 
-    h1, h2, h3, p {
+    h1, h2, p {
       margin: 0;
     }
 
@@ -133,23 +168,26 @@
     .sketch-line {
       position: absolute;
       border: 2px solid rgba(255,255,255,0.75);
-      border-radius: 12px;
+      border-radius: 10px;
     }
 
     .sketch-line.one {
-      width: 90px;
-      height: 60px;
+      width: 74px;
+      height: 44px;
+      transform: rotate(-6deg);
       left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%) rotate(-4deg);
+      margin-left: -37px;
+      margin-top: -22px;
     }
 
     .sketch-line.two {
-      width: 72px;
-      height: 48px;
-      left: 54%;
-      top: 42%;
-      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 32px;
+      left: 50%;
+      top: 50%;
+      margin-left: -18px;
+      margin-top: -20px;
     }
 
     .output-image {
@@ -165,7 +203,7 @@
     }
 
     .arrow {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #fff;
       opacity: 0.85;
     }
@@ -205,13 +243,32 @@
       .feature-card {
         padding: 20px;
       }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="/" class="top-link">← Back to Mainsches</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="/" class="brand" aria-label="Mainsches">
+        <img src="/assets/logo.png" class="logo-img" alt="Mainsches Logo" />
+      </a>
 
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/sketchit.html" class="active">sketchIT</a>
+        <a href="/swipesort.html">SwipeSort</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container page">
     <section class="hero">
       <span class="tag">AI product</span>
       <h1>sketchIT</h1>
@@ -275,6 +332,7 @@
       </div>
     </section>
   </div>
-<script defer src="/_vercel/insights/script.js"></script>  
+
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
