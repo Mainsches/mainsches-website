@@ -18,10 +18,8 @@
       --max: 1180px;
       --shadow: 0 24px 90px rgba(0,0,0,0.52);
     }
-
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -33,7 +31,6 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-
     body::before {
       content: "";
       position: fixed;
@@ -46,10 +43,8 @@
       background-size: 120px 120px;
       mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
     }
-
     a { color: inherit; }
     .container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
-
     .topbar {
       position: sticky;
       top: 0;
@@ -58,7 +53,6 @@
       background: rgba(6,6,6,0.68);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-
     .topbar-inner {
       min-height: 78px;
       display: flex;
@@ -66,7 +60,6 @@
       justify-content: space-between;
       gap: 18px;
     }
-
     .brand {
       text-decoration: none;
       display: inline-flex;
@@ -75,7 +68,6 @@
       min-width: 152px;
       color: inherit;
     }
-
     .brand-mark {
       width: 38px;
       height: 38px;
@@ -87,20 +79,17 @@
       font-weight: 800;
       letter-spacing: -0.04em;
     }
-
     .brand-text {
       font-size: 0.98rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       color: rgba(255,255,255,0.96);
     }
-
     .nav {
       display: flex;
       gap: 8px;
       flex-wrap: nowrap;
     }
-
     .nav a {
       width: 96px;
       min-width: 96px;
@@ -114,22 +103,14 @@
       transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
       border: 1px solid transparent;
     }
-
     .nav a:hover,
     .nav a[aria-current="page"] {
       color: #fff;
       background: rgba(255,255,255,0.05);
       border-color: rgba(255,255,255,0.10);
     }
-
-    .page {
-      padding: 78px 0 92px;
-    }
-
-    .hero {
-      margin-bottom: 28px;
-    }
-
+    .page { padding: 78px 0 92px; }
+    .hero { margin-bottom: 28px; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -144,7 +125,6 @@
       margin-bottom: 20px;
       backdrop-filter: blur(12px);
     }
-
     .eyebrow::before {
       content: "";
       width: 8px;
@@ -153,7 +133,6 @@
       background: #fff;
       box-shadow: 0 0 18px rgba(255,255,255,0.7);
     }
-
     h1 {
       margin: 0;
       font-size: clamp(2.8rem, 6vw, 5.2rem);
@@ -162,7 +141,6 @@
       font-weight: 800;
       max-width: 760px;
     }
-
     .lead {
       margin: 22px 0 0;
       color: var(--muted);
@@ -170,7 +148,6 @@
       line-height: 1.8;
       max-width: 760px;
     }
-
     .panel {
       position: relative;
       border-radius: 32px;
@@ -179,7 +156,6 @@
       box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04);
       overflow: hidden;
     }
-
     .panel::before {
       content: "";
       position: absolute;
@@ -187,18 +163,12 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 45%, transparent 58%, rgba(255,255,255,0.03));
       pointer-events: none;
     }
-
-    .panel-content {
-      position: relative;
-      padding: 32px;
-    }
-
+    .panel-content { position: relative; padding: 32px; }
     .legal-card + .legal-card {
       margin-top: 22px;
       padding-top: 22px;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
-
     .section-label {
       margin: 0 0 10px;
       color: var(--muted-2);
@@ -207,47 +177,39 @@
       letter-spacing: 0.14em;
       font-weight: 700;
     }
-
     .legal-card h2 {
       margin: 0 0 10px;
       font-size: 1.28rem;
       letter-spacing: -0.04em;
     }
-
-    .legal-card p {
+    .legal-card p,
+    .legal-card li {
       margin: 0;
       color: rgba(255,255,255,0.88);
       line-height: 1.85;
     }
-
-    .site-footer-wrap {
-      margin-top: 28px;
+    .legal-card ul {
+      margin: 0;
+      padding-left: 1.2rem;
     }
-
+    .footer-shell { margin-top: 28px; }
     .site-footer {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      justify-content: center;
+      gap: 12px;
       padding: 20px 22px;
       border-radius: 24px;
       border: 1px solid rgba(255,255,255,0.10);
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
     }
-
-    .site-footer p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
     .footer-links {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      justify-content: center;
     }
-
     .footer-link {
       display: inline-flex;
       align-items: center;
@@ -262,44 +224,30 @@
       font-weight: 600;
       transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
-
-    .footer-link:hover {
+    .footer-link:hover,
+    .footer-link[aria-current="page"] {
       transform: translateY(-2px);
       background: rgba(255,255,255,0.06);
       border-color: rgba(255,255,255,0.16);
     }
-
     @media (max-width: 760px) {
       .topbar-inner {
         flex-direction: column;
         justify-content: center;
         padding: 16px 0;
       }
-
-      .brand {
-        min-width: 0;
-      }
-
+      .brand { min-width: 0; }
       .nav {
         width: 100%;
         justify-content: center;
         overflow-x: auto;
         padding-bottom: 2px;
       }
-
       .nav a {
         width: 92px;
         min-width: 92px;
       }
-
-      .panel-content {
-        padding: 24px;
-      }
-
-      .site-footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .panel-content { padding: 24px; }
     }
   </style>
 </head>
@@ -310,7 +258,6 @@
         <span class="brand-mark">M</span>
         <span class="brand-text">Mainsches</span>
       </a>
-
       <nav class="nav" aria-label="Primary navigation">
         <a href="/index.html">Home</a>
         <a href="/contact.html">Contact</a>
@@ -338,7 +285,7 @@
             <p>
               Operator: Angelo S.<br>
               Country of operation: Switzerland<br>
-              Contact email: support@mainsches.com
+              Contact email: contact@mainsches.com
             </p>
           </div>
 
@@ -370,14 +317,14 @@
         </div>
       </div>
 
-      <div class="site-footer-wrap">
+      <section class="footer-shell">
         <div class="site-footer">
-          <p>For general inquiries, please use the contact page.</p>
           <div class="footer-links">
-            <a class="footer-link" href="/contact.html">Contact</a>
+            <a class="footer-link" href="/impressum.html" aria-current="page">Impressum</a>
+            <a class="footer-link" href="/privacy.html">Privacy</a>
           </div>
         </div>
-      </div>
+      </section>
     </section>
   </main>
 </body>
