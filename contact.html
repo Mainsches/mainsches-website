@@ -28,16 +28,11 @@
       --error-text: #ffb5b5;
       --radius: 24px;
       --radius-sm: 16px;
-      --max: 960px;
+      --max: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -74,12 +69,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 24px;
     }
 
     .brand {
       display: flex;
       align-items: center;
+      flex: 0 0 auto;
     }
 
     .logo-img {
@@ -90,8 +86,11 @@
 
     .nav {
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      flex: 0 0 auto;
     }
 
     .nav a {
@@ -305,8 +304,11 @@
       display: block;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 920px) {
+      .topbar-inner,
       .layout {
+        flex-direction: column;
+        align-items: flex-start;
         grid-template-columns: 1fr;
       }
 
@@ -314,11 +316,11 @@
       .side-card {
         padding: 22px;
       }
+    }
 
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 14px 0;
+    @media (max-width: 640px) {
+      .nav {
+        gap: 14px;
       }
     }
   </style>
@@ -331,6 +333,7 @@
       </a>
 
       <nav class="nav">
+        <a href="/">Home</a>
         <a href="/contact.html" class="active">Contact</a>
         <a href="/sketchit.html">sketchIT</a>
         <a href="/swipesort.html">SwipeSort</a>
@@ -351,7 +354,6 @@
           <div style="display:none;">
             <label for="company">Company</label>
             <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
-
             <label for="website">Website</label>
             <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
           </div>
@@ -478,9 +480,7 @@
       try {
         const response = await fetch("/api/contact", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
 
