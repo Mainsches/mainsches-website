@@ -4,585 +4,505 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SwipeSort — Mainsches</title>
-  <meta name="description" content="SwipeSort is a minimal photo cleanup app built around fast swipe-based decisions.">
+  <meta name="description" content="SwipeSort helps users clean up photos faster with swipe-based decisions and a focused mobile-first workflow.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --text: #fff;
-      --muted: rgba(255,255,255,0.68);
-      --muted-2: rgba(255,255,255,0.48);
-      --max: 1180px;
-      --shadow: 0 24px 90px rgba(0,0,0,0.52);
-    }
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 16% 18%, rgba(255,255,255,0.10), transparent 30%),
-        radial-gradient(circle at 88% 6%, rgba(255,255,255,0.08), transparent 24%),
-        linear-gradient(180deg, #090909 0%, #040404 48%, #020202 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+:root {
+  --bg: #030303;
+  --bg-soft: #0b0b0b;
+  --panel: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+  --panel-soft: rgba(255,255,255,0.04);
+  --line: rgba(255,255,255,0.10);
+  --line-strong: rgba(255,255,255,0.16);
+  --text: #ffffff;
+  --muted: rgba(255,255,255,0.68);
+  --muted-2: rgba(255,255,255,0.46);
+  --shadow: 0 24px 90px rgba(0,0,0,0.52);
+  --radius: 30px;
+  --radius-sm: 20px;
+  --max: 1180px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 14%, rgba(255,255,255,0.10), transparent 28%),
+    radial-gradient(circle at 88% 6%, rgba(255,255,255,0.06), transparent 22%),
+    radial-gradient(circle at 50% -12%, rgba(255,255,255,0.05), transparent 30%),
+    linear-gradient(180deg, #090909 0%, #040404 48%, #020202 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
+}
+a { color: inherit; }
+.container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.14;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 120px 120px;
-      mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
-    }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(18px);
+  background: rgba(6,6,6,0.68);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.topbar-inner {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.brand {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 152px;
+  color: inherit;
+}
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.brand-text {
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: rgba(255,255,255,0.96);
+}
+.nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.nav a {
+  width: 96px;
+  min-width: 96px;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px 10px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  border: 1px solid transparent;
+}
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.10);
+}
+.page { padding: 66px 0 34px; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.82);
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(12px);
+}
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 18px rgba(255,255,255,0.7);
+}
+h1 {
+  margin: 18px 0 0;
+  font-size: clamp(3rem, 6vw, 5.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.08em;
+  font-weight: 800;
+}
+h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+}
+h3 {
+  margin: 0;
+  font-size: 1.18rem;
+  letter-spacing: -0.04em;
+}
+.lead {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.82;
+  max-width: 760px;
+}
+.section {
+  padding: 24px 0;
+}
+.section-head {
+  margin-bottom: 24px;
+}
+.kicker {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--muted-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.panel {
+  position: relative;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 45%, transparent 58%, rgba(255,255,255,0.03));
+  pointer-events: none;
+}
+.panel-content {
+  position: relative;
+  padding: 30px;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.card {
+  position: relative;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.035);
+  padding: 22px;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.05);
+}
+.card p,
+.copy,
+.list {
+  color: var(--muted);
+  line-height: 1.8;
+}
+.metric {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.07em;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.btn {
+  text-decoration: none;
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 12px 40px rgba(255,255,255,0.14);
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 24px;
+  align-items: stretch;
+}
+.subtle {
+  color: var(--muted-2);
+}
+.footer-shell {
+  padding: 8px 0 34px;
+}
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.footer-link:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.18);
+}
+@media (max-width: 980px) {
+  .hero-grid, .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .topbar-inner {
+    flex-direction: column;
+    justify-content: center;
+    padding: 14px 0;
+  }
+  .nav {
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+  .nav a {
+    width: 92px;
+    min-width: 92px;
+  }
+  .panel-content, .card { padding: 22px; }
+  .page { padding-top: 50px; }
+}
 
-    .container { width: min(100% - 32px, 1180px); margin: 0 auto; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(18px);
-      background: rgba(6,6,6,0.68);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .topbar-inner {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 152px;
-      color: inherit;
-    }
-
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-
-    .brand-text {
-      font-size: 0.98rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: rgba(255,255,255,0.96);
-    }
-
-    .nav {
-      display: flex;
-      gap: 8px;
-      flex-wrap: nowrap;
-    }
-
-    .nav a {
-      width: 96px;
-      min-width: 96px;
-      text-align: center;
-      text-decoration: none;
-      padding: 12px 10px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: #fff;
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.10);
-    }
-
-    .hero {
-      padding: 82px 0 42px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
-      gap: 28px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.09);
-      color: rgba(255,255,255,0.82);
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      backdrop-filter: blur(12px);
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 0 18px rgba(255,255,255,0.7);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(3rem, 6vw, 5.8rem);
-      line-height: 0.95;
-      letter-spacing: -0.08em;
-      font-weight: 800;
-    }
-
-    .lead {
-      margin: 22px 0 0;
-      font-size: 1.08rem;
-      line-height: 1.8;
-      color: var(--muted);
-      max-width: 620px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52px;
-      padding: 0 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-    }
-
-    .button:hover { transform: translateY(-2px); }
-    .button-primary {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 12px 40px rgba(255,255,255,0.14);
-    }
-    .button-secondary {
-      color: #fff;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .panel {
-      position: relative;
-      border-radius: 32px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04);
-      overflow: hidden;
-    }
-
-    .visual {
-      padding: 28px;
-      min-height: 540px;
-      display: grid;
-      place-items: center;
-    }
-
-    .visual-grid {
-      width: 100%;
-      display: grid;
-      grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
-      gap: 20px;
-      align-items: center;
-    }
-
-    .phone {
-      width: min(100%, 260px);
-      margin: 0 auto;
-      border-radius: 34px;
-      padding: 10px;
-      background: linear-gradient(180deg, #111, #050505);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 16px 50px rgba(0,0,0,0.46), inset 0 1px 0 rgba(255,255,255,0.05);
-    }
-
-    .screen {
-      border-radius: 26px;
-      overflow: hidden;
-      padding: 12px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.09), transparent 30%),
-        linear-gradient(180deg, #191919 0%, #0c0c0c 100%);
-      min-height: 430px;
-      position: relative;
-    }
-
-    .notch {
-      height: 24px;
-      width: 84px;
-      border-radius: 999px;
-      margin: 0 auto 14px;
-      background: rgba(255,255,255,0.08);
-    }
-
-    .card-stack {
-      position: relative;
-      min-height: 300px;
-      margin-bottom: 16px;
-    }
-
-    .stack-card,
-    .stack-card-back {
-      position: absolute;
-      inset: 0;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.10);
-      overflow: hidden;
-    }
-
-    .stack-card-back {
-      transform: rotate(-4deg) translate(10px, 8px);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      opacity: 0.7;
-    }
-
-    .stack-card {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)),
-        radial-gradient(circle at 70% 20%, rgba(255,255,255,0.22), transparent 24%),
-        linear-gradient(135deg, #383838, #171717 58%, #2a2a2a);
-      display: flex;
-      align-items: flex-end;
-      padding: 16px;
-      transform: rotate(4deg);
-    }
-
-    .tag {
-      display: inline-flex;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.40);
-      border: 1px solid rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.9);
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .swipe-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .swipe-pill {
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-      padding: 12px 10px;
-      text-align: center;
-      font-weight: 700;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .side-panel {
-      display: grid;
-      gap: 14px;
-    }
-
-    .metric {
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.30);
-      padding: 18px;
-    }
-
-    .metric-label {
-      color: var(--muted-2);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .metric-value {
-      font-size: 1.35rem;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .metric p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .section {
-      padding: 28px 0 84px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: transform 0.24s ease, border-color 0.24s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,255,255,0.18);
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-      letter-spacing: -0.04em;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .cta {
-      margin-top: 26px;
-      padding: 32px;
-      border-radius: 32px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      box-shadow: var(--shadow);
-    }
-
-    .cta h2 {
-      margin: 0 0 8px;
-      font-size: clamp(1.9rem, 3vw, 2.7rem);
-      letter-spacing: -0.06em;
-    }
-
-    .cta p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 650px;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .cards,
-      .visual-grid,
-      .cta { grid-template-columns: 1fr; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: 1fr; }
-      .cta { display: grid; }
-    }
-
-    @media (max-width: 760px) {
-      .topbar-inner {
-        flex-direction: column;
-        justify-content: center;
-        padding: 14px 0;
-      }
-
-      .nav {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .nav a { width: 100%; min-width: 0; }
-      .hero { padding-top: 56px; }
-      .visual,
-      .cta { padding: 22px; }
-      .panel,
-      .card,
-      .cta { border-radius: 26px; }
-      .phone { width: 100%; max-width: 290px; }
-      .screen { min-height: 380px; }
-    }
-  
-
-    .footer-shell {
-      padding: 0 0 34px;
-    }
-
-    .site-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 20px 22px;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-
-    .site-footer h3 {
-      margin: 0 0 6px;
-      font-size: 1.02rem;
-      letter-spacing: -0.03em;
-    }
-
-    .footer-kicker {
-      display: inline-block;
-      margin-bottom: 8px;
-      color: var(--muted-2);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .site-footer p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 720px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .footer-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .footer-link:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,255,255,0.18);
-    }
-
-
-    @media (max-width: 760px) {
-      .site-footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 24px;
+  align-items: stretch;
+}
+.phone-frame {
+  width: min(100%, 340px);
+  margin: 0 auto;
+  aspect-ratio: 0.52;
+  border-radius: 40px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  padding: 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 70px rgba(0,0,0,0.45);
+}
+.phone-screen {
+  height: 100%;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    radial-gradient(circle at 35% 20%, rgba(255,255,255,0.14), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+.screen-top {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255,255,255,0.78);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.photo-area {
+  flex: 1;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,0.22), transparent 18%),
+    radial-gradient(circle at 68% 70%, rgba(255,255,255,0.14), transparent 20%),
+    linear-gradient(155deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  position: relative;
+  overflow: hidden;
+}
+.photo-area::after {
+  content: "Swipe to decide";
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  color: rgba(255,255,255,0.92);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.screen-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pill {
+  min-height: 48px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: rgba(255,255,255,0.05);
+}
+.list-block {
+  display: grid;
+  gap: 12px;
+}
+.list-item {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.list-item::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-top: 11px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 0 18px rgba(255,255,255,0.45);
+}
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+.stat {
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.035);
+  padding: 18px;
+}
+.stat strong {
+  display: block;
+  font-size: 1.55rem;
+  letter-spacing: -0.06em;
+  margin-bottom: 6px;
+}
+@media (max-width: 980px) {
+  .hero-layout, .stat-row {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 <body>
+
   <header class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="/" aria-label="Mainsches home">
+      <a class="brand" href="/index.html" aria-label="Mainsches home">
         <span class="brand-mark">M</span>
         <span class="brand-text">Mainsches</span>
       </a>
-
       <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/sketchit.html">sketchIT</a>
-        <a href="/swipesort.html" class="active">SwipeSort</a>
+        <a href="/index.html">Home</a><a href="/contact.html">Contact</a><a href="/sketchit.html">sketchIT</a><a href="/swipesort.html" aria-current="page">SwipeSort</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
+  <main class="page">
+    <section class="container section">
+      <div class="hero-layout">
         <div>
-          <div class="eyebrow">Mobile utility app</div>
-          <h1>Photo cleanup at swipe speed.</h1>
+          <span class="eyebrow">Photo cleanup rethought</span>
+          <h1>Clean up photos at swipe speed.</h1>
           <p class="lead">
-            SwipeSort makes large photo libraries easier to manage by reducing the action to a single fast decision. Keep it or remove it — no clutter, no friction.
+            SwipeSort is built for one job: helping people move through large photo libraries faster. Instead of tapping through menus and selecting images one by one, users make quick keep-or-delete decisions in a focused flow.
           </p>
           <div class="actions">
-            <a class="button button-primary" href="/contact.html">Discuss the project</a>
-            <a class="button button-secondary" href="/sketchit.html">View sketchIT</a>
+            <a class="btn btn-primary" href="/contact.html">Contact</a>
+            <a class="btn btn-secondary" href="/index.html">Back to Home</a>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat">
+              <strong>Faster</strong>
+              <span class="subtle">A direct decision interface designed to reduce friction.</span>
+            </div>
+            <div class="stat">
+              <strong>Cleaner</strong>
+              <span class="subtle">A minimal UI that keeps attention on the photo, not on controls.</span>
+            </div>
+            <div class="stat">
+              <strong>More usable</strong>
+              <span class="subtle">Designed around real cleanup behavior, not feature overload.</span>
+            </div>
           </div>
         </div>
 
-        <div class="panel visual" aria-hidden="true">
-          <div class="visual-grid">
-            <div class="phone">
-              <div class="screen">
-                <div class="notch"></div>
-                <div class="card-stack">
-                  <div class="stack-card-back"></div>
-                  <div class="stack-card">
-                    <span class="tag">Travel / Ready to sort</span>
-                  </div>
+        <div class="panel">
+          <div class="panel-content">
+            <div class="phone-frame">
+              <div class="phone-screen">
+                <div class="screen-top">
+                  <span>SwipeSort</span>
+                  <span>42 / 280</span>
                 </div>
-                <div class="swipe-actions">
-                  <div class="swipe-pill">Delete</div>
-                  <div class="swipe-pill">Keep</div>
+                <div class="photo-area"></div>
+                <div class="screen-actions">
+                  <div class="pill">Delete</div>
+                  <div class="pill">Keep</div>
                 </div>
-              </div>
-            </div>
-
-            <div class="side-panel">
-              <div class="metric">
-                <div class="metric-label">Core interaction</div>
-                <div class="metric-value">Swipe left or right</div>
-                <p>A simple decision model that keeps the interface fast, clear and easy to repeat across large libraries.</p>
-              </div>
-              <div class="metric">
-                <div class="metric-label">Design philosophy</div>
-                <div class="metric-value">Minimal, direct, calm</div>
-                <p>Built with a premium black and white visual language that keeps attention on the current photo and action.</p>
-              </div>
-              <div class="metric">
-                <div class="metric-label">Product focus</div>
-                <div class="metric-value">Speed + UX</div>
-                <p>Everything about the layout supports quick sorting and a frictionless cleanup flow.</p>
               </div>
             </div>
           </div>
@@ -590,46 +510,56 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="cards">
-          <article class="card">
-            <h3>Fast decision loop</h3>
-            <p>The experience is built around momentum, making repetitive cleanup work feel lighter and more intuitive.</p>
-          </article>
-          <article class="card">
-            <h3>Visual clarity</h3>
-            <p>A focused interface reduces distraction and keeps the action obvious from the very first second.</p>
-          </article>
-          <article class="card">
-            <h3>Premium minimalism</h3>
-            <p>Clean contrast, subtle surfaces and restrained motion help the product feel polished rather than overloaded.</p>
-          </article>
-        </div>
-
-        <div class="cta">
-          <div>
-            <h2>Want to talk about SwipeSort?</h2>
-            <p>Use the contact page if you want to discuss the concept, user experience or broader product strategy around mobile utility apps.</p>
+    <section class="container section">
+      <div class="grid-2">
+        <article class="panel">
+          <div class="panel-content">
+            <span class="kicker">Why it matters</span>
+            <h2>Most photo cleanup still feels too slow.</h2>
+            <p class="copy">
+              Camera rolls grow quietly until cleanup becomes annoying. SwipeSort makes the process feel lighter, faster and more intentional by turning deletion into a simple directional choice.
+            </p>
+            <div class="list-block" style="margin-top:20px;">
+              <div class="list-item">Reduce the effort of reviewing large batches of photos.</div>
+              <div class="list-item">Use a familiar swipe pattern that feels immediate on mobile.</div>
+              <div class="list-item">Keep the interface calm and visually focused.</div>
+            </div>
           </div>
-          <a class="button button-primary" href="/contact.html">Contact Mainsches</a>
-        </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-content">
+            <span class="kicker">Product direction</span>
+            <h2>Focused UX over clutter.</h2>
+            <p class="copy">
+              The product page now communicates benefits more directly: faster decisions, less friction and a workflow that feels more like momentum than management.
+            </p>
+            <div class="grid-3" style="margin-top:20px;">
+              <div class="card">
+                <h3>Decision-first</h3>
+                <p>Every part of the layout supports the next swipe instead of distracting from it.</p>
+              </div>
+              <div class="card">
+                <h3>Premium feel</h3>
+                <p>Minimal aesthetics and motion cues help position the app like a serious product.</p>
+              </div>
+              <div class="card">
+                <h3>Built to scale</h3>
+                <p>Strong enough for app-store marketing, landing pages and future growth material.</p>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
-  
 
     <section class="container footer-shell">
       <div class="site-footer">
-        <div>
-          <span class="footer-kicker">Legal</span>
-          <h3>Imprint</h3>
-          <p>View the legal notice for Mainsches. The design language stays consistent across every page, including the legal section.</p>
-        </div>
-        <div class="footer-links">
-          <a class="footer-link" href="/impressum.html">Open Impressum</a>
-        </div>
+        <a class="footer-link" href="/impressum.html">Impressum</a>
+        <a class="footer-link" href="/privacy.html">Privacy</a>
       </div>
     </section>
+
   </main>
 </body>
 </html>
