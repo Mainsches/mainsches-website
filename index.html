@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <title>Mainsches</title>
-  <meta name="description" content="Mainsches builds software projects and AI tools including SwipeSort and sketchIT." />
-  <style>
+  <meta name="description" content="Independent developer in Switzerland building focused software, mobile apps, and AI tools under Mainsches." />
+<style>
 
     :root{
       --bg:#040404;
@@ -256,6 +256,25 @@
       .footer-inner{justify-content:flex-start}
     }
 
+  
+    .hero-identity{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:28px;align-items:end}
+    .identity-panel{display:grid;gap:14px}
+    .signature-card{padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+    .signature-card h3{font-size:1.15rem;letter-spacing:-.04em;margin-bottom:8px}
+    .signature-card p{color:var(--muted);line-height:1.75}
+    .statements{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .statement{padding:18px;border-radius:22px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+    .statement strong{display:block;font-size:1.02rem;letter-spacing:-.03em;margin-bottom:8px}
+    .statement span{display:block;color:var(--muted);line-height:1.7}
+    .project-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .project-link{display:block;padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);transition:transform .2s ease, background .2s ease, border-color .2s ease}
+    .project-link:hover{transform:translateY(-3px);background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.12)}
+    .project-link .kicker{color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:700;margin-bottom:10px}
+    .project-link h3{font-size:1.24rem;letter-spacing:-.04em;margin-bottom:8px}
+    .project-link p{color:var(--muted);line-height:1.75}
+    .quote{padding:28px;border-radius:28px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025))}
+    .quote p{font-size:1.18rem;line-height:1.85;max-width:820px;color:rgba(255,255,255,.86)}
+    @media (max-width:980px){.hero-identity,.project-links,.statements{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -268,142 +287,106 @@
       </a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="/index.html" aria-current="page">Home</a>
-        <a href="/contact.html" >Contact</a>
-        <a href="/sketchit.html" >sketchIT</a>
-        <a href="/swipesort.html" >SwipeSort</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/sketchit.html">sketchIT</a>
+        <a href="/swipesort.html">SwipeSort</a>
       </nav>
     </div>
   </header>
 
-
   <main class="page">
     <section class="container hero">
-      <span class="eyebrow">Software projects and AI tools</span>
-      <div class="hero-split">
+      <span class="eyebrow">Independent developer in Switzerland</span>
+      <div class="hero-identity">
         <div>
-          <h1>Focused software with a premium product mindset.</h1>
+          <h1>I build focused software with a clean, premium feel.</h1>
           <p>
-            Mainsches builds clean, practical software experiences with a strong visual standard.
-            The current focus is fast everyday utility through SwipeSort and concept transformation through sketchIT.
+            Mainsches is my independent software label. I build minimal digital products, mobile apps,
+            and AI-driven tools with a strong focus on clarity, utility, and user experience.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/swipesort.html">View SwipeSort</a>
-            <a class="btn" href="/sketchit.html">View sketchIT</a>
+            <a class="btn btn-primary" href="/contact.html">Get in touch</a>
+            <a class="btn" href="#projects">View projects</a>
           </div>
         </div>
-        <div class="mini-shot">
-          <img src="/assets/sketchit-screen.jpg" alt="sketchIT app transforming a kitchen sketch into a generated interior image">
+        <div class="identity-panel">
+          <div class="signature-card">
+            <h3>What Mainsches stands for</h3>
+            <p>
+              Independent product thinking, restrained design, and software that solves a real problem instead of adding noise.
+            </p>
+          </div>
+          <div class="signature-card">
+            <h3>Current focus</h3>
+            <p>
+              Building compact products with clear use cases — from everyday utility apps to AI workflows that turn ideas into something tangible.
+            </p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="quote">
+        <p>
+          I am currently building products as an independent developer based in Switzerland, with an emphasis on modern UX, visual restraint, and software that feels polished from the first interaction.
+        </p>
       </div>
     </section>
 
     <section class="container section">
       <div class="section-head">
-        <div class="label">Products</div>
-        <h2>Two products, shown more clearly.</h2>
+        <div class="label">What I build</div>
+        <h2>A small set of focused product directions.</h2>
         <p>
-          The layout has been simplified so each product is easier to understand at a glance.
-          Real screenshots now do the explaining instead of abstract placeholder visuals.
+          Instead of trying to do everything, Mainsches concentrates on a few categories where tight UX and a clear product idea can make a visible difference.
         </p>
       </div>
-
-      <div class="panel">
-        <div class="panel-content">
-          <div class="product-grid">
-            <div class="device">
-              <div class="device-top">
-                <span>SwipeSort</span>
-                <span>Mobile app</span>
-              </div>
-              <div class="device-screen">
-                <img src="/assets/swipesort-screen.jpg" alt="SwipeSort app screenshot showing a photo card and swipe-based sorting flow">
-              </div>
-            </div>
-
-            <div>
-              <div class="feature-stack">
-                <div class="feature">
-                  <h3>Clean photos with fast swipe decisions</h3>
-                  <p>
-                    SwipeSort turns photo cleanup into a fast, focused flow. Users move through images quickly,
-                    keep what matters, and remove clutter without opening album after album.
-                  </p>
-                </div>
-                <div class="feature">
-                  <h3>Built around speed, clarity, and low friction</h3>
-                  <p>
-                    The interaction model is intentionally simple: one image, one decision, immediate momentum.
-                    That makes the value easy to understand within seconds.
-                  </p>
-                </div>
-              </div>
-
-              <div class="kpis">
-                <div class="kpi">
-                  <strong>Swipe</strong>
-                  <span>Fast left or right sorting instead of manual cleanup.</span>
-                </div>
-                <div class="kpi">
-                  <strong>Focus</strong>
-                  <span>One clear decision surface with almost no interface noise.</span>
-                </div>
-                <div class="kpi">
-                  <strong>Flow</strong>
-                  <span>Designed to keep users moving without friction.</span>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="statements">
+        <div class="statement">
+          <strong>Mobile apps</strong>
+          <span>Fast, practical tools built for direct everyday use, with clean interfaces and low friction.</span>
         </div>
+        <div class="statement">
+          <strong>AI tools</strong>
+          <span>Workflows that help transform rough input into clearer output for communication, iteration, and execution.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="projects">
+      <div class="section-head">
+        <div class="label">Selected projects</div>
+        <h2>Current products under Mainsches.</h2>
+        <p>
+          The product pages go deeper. On the home page, they stay intentionally light so the focus remains on the broader direction behind the work.
+        </p>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="/swipesort.html">
+          <div class="kicker">Mobile utility app</div>
+          <h3>SwipeSort</h3>
+          <p>Swipe-based photo cleanup designed to make sorting and deleting images feel faster, simpler, and more satisfying.</p>
+        </a>
+        <a class="project-link" href="/sketchit.html">
+          <div class="kicker">AI concept tool</div>
+          <h3>sketchIT</h3>
+          <p>A workflow that turns rough sketches and prompts into clearer visual concepts that are easier to show and refine.</p>
+        </a>
       </div>
     </section>
 
     <section class="container section">
       <div class="panel">
         <div class="panel-content">
-          <div class="product-grid">
-            <div class="device">
-              <div class="device-top">
-                <span>sketchIT</span>
-                <span>AI image workflow</span>
-              </div>
-              <div class="device-screen">
-                <img src="/assets/sketchit-screen.jpg" alt="sketchIT app screenshot showing a sketch and a generated AI output">
-              </div>
-            </div>
-
-            <div>
-              <div class="feature-stack">
-                <div class="feature">
-                  <h3>Turn rough sketches into clear visual output</h3>
-                  <p>
-                    sketchIT helps translate simple inputs into presentable results. A rough sketch and short prompt
-                    become a much clearer concept that is easier to show, discuss, and improve.
-                  </p>
-                </div>
-                <div class="feature">
-                  <h3>Made for concept communication</h3>
-                  <p>
-                    The value is not only generation. It is the jump from a vague idea to a usable visual reference,
-                    which helps teams and clients align faster.
-                  </p>
-                </div>
-              </div>
-
-              <div class="kpis">
-                <div class="kpi">
-                  <strong>Sketch</strong>
-                  <span>Start from a rough draft instead of a finished design.</span>
-                </div>
-                <div class="kpi">
-                  <strong>Prompt</strong>
-                  <span>Add quick direction in plain language.</span>
-                </div>
-                <div class="kpi">
-                  <strong>Output</strong>
-                  <span>Get a more tangible concept for feedback and iteration.</span>
-                </div>
-              </div>
+          <div class="section-head" style="margin-bottom:0">
+            <div class="label">Contact</div>
+            <h2>Open to conversations, ideas, and collaboration.</h2>
+            <p>
+              If you want to discuss a project, a product idea, or a possible collaboration, use the contact page.
+            </p>
+            <div class="hero-actions" style="margin-top:24px">
+              <a class="btn btn-primary" href="/contact.html">Contact Mainsches</a>
             </div>
           </div>
         </div>
@@ -411,13 +394,11 @@
     </section>
   </main>
 
-
   <footer class="footer">
     <div class="container footer-inner">
       <a href="/impressum.html">Impressum</a>
       <a href="/privacy.html">Privacy</a>
     </div>
   </footer>
-
 </body>
 </html>
