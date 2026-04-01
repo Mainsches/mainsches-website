@@ -466,6 +466,54 @@
     }
     .quote p{font-size:1.18rem;line-height:1.85;max-width:840px;color:rgba(255,255,255,.86);text-wrap:pretty}
 
+
+    .hero-visual{
+      margin-top:28px;
+    }
+    .hero-visual-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      box-shadow:0 24px 70px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.05);
+      transition:transform var(--speed-med) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-med) var(--ease);
+    }
+    .hero-visual-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.14);
+      box-shadow:0 28px 82px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .hero-visual-card img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
+    }
+    .hero-visual-card:hover img{
+      transform:scale(1.02);
+      filter:saturate(1.04) contrast(1.01);
+    }
+    .hero-visual-badge{
+      position:absolute;
+      top:16px;
+      left:16px;
+      z-index:2;
+      display:inline-flex;
+      align-items:center;
+      min-height:38px;
+      padding:0 14px;
+      border-radius:999px;
+      background:rgba(8,8,8,.72);
+      border:1px solid rgba(255,255,255,.10);
+      backdrop-filter:blur(10px);
+      color:#fff;
+      font-size:.84rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
     .compare-wrap{
       display:grid;
       grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
@@ -769,6 +817,17 @@
       .quote{padding:18px}
       .quote p{font-size:1rem}
 
+
+      .hero-visual-card{
+        border-radius:24px;
+      }
+      .hero-visual-badge{
+        top:12px;
+        left:12px;
+        min-height:32px;
+        padding:0 12px;
+        font-size:.76rem;
+      }
       .compare-wrap{
         grid-template-columns:1fr;
         gap:14px;
@@ -837,6 +896,13 @@
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="/contact.html">Contact</a>
+      </div>
+
+      <div class="hero-visual reveal delay-1">
+        <div class="hero-visual-card">
+          <span class="hero-visual-badge">Sketch → Reality</span>
+          <img src="/assets/sketchit-hero-visual.jpg" alt="sketchIT concept visual showing a sketch transforming into a realistic chair design">
+        </div>
       </div>
     </section>
 
