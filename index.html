@@ -1,486 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mainsches</title>
-  <meta name="description" content="Mainsches builds premium software concepts, apps and AI tools with a clean startup-grade product focus.">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <title>Mainsches</title>
+  <meta name="description" content="Mainsches builds software projects and AI tools including SwipeSort and sketchIT." />
   <style>
 
-:root {
-  --bg: #030303;
-  --bg-soft: #0b0b0b;
-  --panel: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-  --panel-soft: rgba(255,255,255,0.04);
-  --line: rgba(255,255,255,0.10);
-  --line-strong: rgba(255,255,255,0.16);
-  --text: #ffffff;
-  --muted: rgba(255,255,255,0.68);
-  --muted-2: rgba(255,255,255,0.46);
-  --shadow: 0 24px 90px rgba(0,0,0,0.52);
-  --radius: 30px;
-  --radius-sm: 20px;
-  --max: 1180px;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--text);
-  background:
-    radial-gradient(circle at 15% 14%, rgba(255,255,255,0.10), transparent 28%),
-    radial-gradient(circle at 88% 6%, rgba(255,255,255,0.06), transparent 22%),
-    radial-gradient(circle at 50% -12%, rgba(255,255,255,0.05), transparent 30%),
-    linear-gradient(180deg, #090909 0%, #040404 48%, #020202 100%);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.14;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 120px 120px;
-  mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
-}
-a { color: inherit; }
-.container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
+    :root{
+      --bg:#040404;
+      --bg-2:#090909;
+      --panel:rgba(255,255,255,.045);
+      --panel-2:rgba(255,255,255,.03);
+      --line:rgba(255,255,255,.10);
+      --line-2:rgba(255,255,255,.07);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.70);
+      --muted-2:rgba(255,255,255,.48);
+      --max:1180px;
+      --radius:28px;
+      --shadow:0 24px 90px rgba(0,0,0,.50);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.11), transparent 24%),
+        radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 18%),
+        linear-gradient(180deg, #0a0a0a 0%, #050505 42%, #030303 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.10;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size:120px 120px;
+      mask-image:radial-gradient(circle at center, black 28%, transparent 82%);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(100% - 32px, var(--max));margin:0 auto}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(18px);
+      background:rgba(7,7,7,.70);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{
+      min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+    }
+    .brand{
+      display:inline-flex;align-items:center;gap:12px;min-width:152px;font-weight:700;letter-spacing:-.03em;
+    }
+    .brand-mark{
+      width:38px;height:38px;border-radius:12px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+      font-weight:800;
+    }
+    .nav{display:flex;gap:8px;flex-wrap:nowrap}
+    .nav a{
+      width:96px;min-width:96px;padding:12px 10px;text-align:center;
+      border-radius:999px;border:1px solid transparent;
+      color:var(--muted);font-size:.95rem;font-weight:600;
+      transition:color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .nav a:hover,.nav a[aria-current="page"]{
+      color:#fff;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.10);
+      transform:translateY(-1px);
+    }
+    .page{padding:42px 0 96px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:999px;
+      background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+      color:rgba(255,255,255,.84);font-size:.90rem;font-weight:600;
+      backdrop-filter:blur(12px);
+    }
+    .eyebrow::before{
+      content:"";width:8px;height:8px;border-radius:50%;background:#fff;
+      box-shadow:0 0 18px rgba(255,255,255,.75);
+    }
+    h1,h2,h3,p{margin:0}
+    .hero{padding:44px 0 28px}
+    .hero h1{
+      margin-top:18px;
+      font-size:clamp(3rem,6vw,5.7rem);
+      line-height:.95;
+      letter-spacing:-.085em;
+      max-width:850px;
+    }
+    .hero p{
+      margin-top:22px;max-width:760px;
+      font-size:1.08rem;line-height:1.85;color:var(--muted);
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:54px;padding:0 22px;border-radius:999px;font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16)}
+    .btn-primary{background:#fff;color:#050505;border-color:#fff}
+    .btn-primary:hover{background:#f2f2f2}
+    .section{padding:24px 0}
+    .section + .section{margin-top:18px}
+    .section-head{margin-bottom:22px}
+    .section-head .label{
+      color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
+      margin-bottom:10px;
+    }
+    .section-head h2{
+      font-size:clamp(2rem,3.5vw,3rem);
+      letter-spacing:-.055em;line-height:1.02;max-width:760px;
+    }
+    .section-head p{
+      margin-top:14px;color:var(--muted);max-width:760px;line-height:1.8;
+    }
+    .panel{
+      position:relative;overflow:hidden;border-radius:32px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .panel::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(135deg, rgba(255,255,255,.05), transparent 36%, transparent 60%, rgba(255,255,255,.025));
+    }
+    .panel-content{position:relative;padding:28px}
+    .product-grid{
+      display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:28px;align-items:center;
+    }
+    .device{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:34px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .device-top{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:16px;padding:0 6px;color:rgba(255,255,255,.86);font-size:.9rem;font-weight:600;
+    }
+    .device-screen{
+      border-radius:26px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
+      background:#0b0b0b;aspect-ratio:10/17;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .device-screen img{width:100%;height:100%;object-fit:cover;object-position:top center}
+    .feature-stack{display:grid;gap:14px}
+    .feature{
+      padding:18px 18px 16px;border-radius:22px;
+      background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
+      min-width:0;
+    }
+    .feature h3{
+      font-size:1.12rem;letter-spacing:-.04em;line-height:1.15;
+      margin-bottom:8px;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+    }
+    .feature p{color:var(--muted);line-height:1.75}
+    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+    .kpi{
+      border-radius:22px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);padding:18px;
+    }
+    .kpi strong{display:block;font-size:1.3rem;letter-spacing:-.04em}
+    .kpi span{display:block;margin-top:6px;color:var(--muted);line-height:1.55}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .field{display:grid;gap:10px}
+    .field.full{grid-column:1/-1}
+    label{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.92)}
+    input, textarea{
+      width:100%;padding:16px 18px;
+      color:#fff;background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.10);border-radius:18px;
+      outline:none;font:inherit;transition:border-color .2s ease, background .2s ease, transform .2s ease;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    input:focus, textarea:focus{
+      border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.05)
+    }
+    textarea{min-height:170px;resize:vertical}
+    .helper{margin-top:10px;color:var(--muted-2);font-size:.92rem;line-height:1.6}
+    .status{
+      display:none;margin-top:18px;padding:16px 18px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045)
+    }
+    .status.show{display:block}
+    .status.success{border-color:rgba(90,255,150,.24);background:rgba(90,255,150,.08)}
+    .status.error{border-color:rgba(255,120,120,.24);background:rgba(255,120,120,.08)}
+    .footer{padding:28px 0 16px}
+    .footer-inner{
+      display:flex;justify-content:flex-end;gap:18px;
+      padding-top:18px;border-top:1px solid rgba(255,255,255,.08)
+    }
+    .footer-inner a{
+      color:var(--muted);font-size:.95rem;font-weight:600;
+      transition:color .2s ease, transform .2s ease;
+    }
+    .footer-inner a:hover{color:#fff;transform:translateY(-1px)}
+    .legal-stack{display:grid;gap:18px}
+    .legal-card{
+      padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03)
+    }
+    .legal-card .label{
+      color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
+      margin-bottom:10px;
+    }
+    .legal-card h2{font-size:1.2rem;letter-spacing:-.04em;margin-bottom:8px}
+    .legal-card p{color:var(--muted);line-height:1.8}
+    .hero-split{
+      display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:28px;align-items:end;
+    }
+    .mini-shot{
+      border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
+      background:#0c0c0c;box-shadow:var(--shadow);
+    }
+    .mini-shot img{width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top center}
+    .hidden{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    @media (max-width: 980px){
+      .product-grid,.hero-split{grid-template-columns:1fr}
+      .kpis{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      .topbar-inner{flex-direction:column;justify-content:center;padding:16px 0}
+      .nav{width:100%;justify-content:center;overflow-x:auto;padding-bottom:2px}
+      .nav a{width:92px;min-width:92px}
+      .page{padding-top:26px}
+      .hero{padding-top:28px}
+      .panel-content{padding:22px}
+      .form-grid{grid-template-columns:1fr}
+      .feature-stack{grid-template-columns:1fr}
+      .hero-actions{gap:12px}
+      .btn{width:100%}
+      .footer-inner{justify-content:flex-start}
+    }
 
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(18px);
-  background: rgba(6,6,6,0.68);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.topbar-inner {
-  min-height: 78px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-}
-.brand {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 152px;
-  color: inherit;
-}
-.brand-mark {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-  display: grid;
-  place-items: center;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-.brand-text {
-  font-size: 0.98rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: rgba(255,255,255,0.96);
-}
-.nav {
-  display: flex;
-  gap: 8px;
-  flex-wrap: nowrap;
-}
-.nav a {
-  width: 96px;
-  min-width: 96px;
-  text-align: center;
-  text-decoration: none;
-  padding: 12px 10px;
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  border: 1px solid transparent;
-}
-.nav a:hover,
-.nav a[aria-current="page"] {
-  color: #fff;
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.10);
-}
-.page { padding: 66px 0 34px; }
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.045);
-  border: 1px solid rgba(255,255,255,0.09);
-  color: rgba(255,255,255,0.82);
-  font-size: 0.9rem;
-  font-weight: 600;
-  backdrop-filter: blur(12px);
-}
-.eyebrow::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 18px rgba(255,255,255,0.7);
-}
-h1 {
-  margin: 18px 0 0;
-  font-size: clamp(3rem, 6vw, 5.6rem);
-  line-height: 0.95;
-  letter-spacing: -0.08em;
-  font-weight: 800;
-}
-h2 {
-  margin: 0;
-  font-size: clamp(1.9rem, 3vw, 2.8rem);
-  line-height: 1.02;
-  letter-spacing: -0.06em;
-}
-h3 {
-  margin: 0;
-  font-size: 1.18rem;
-  letter-spacing: -0.04em;
-}
-.lead {
-  margin: 22px 0 0;
-  color: var(--muted);
-  font-size: 1.08rem;
-  line-height: 1.82;
-  max-width: 760px;
-}
-.section {
-  padding: 24px 0;
-}
-.section-head {
-  margin-bottom: 24px;
-}
-.kicker {
-  display: inline-block;
-  margin-bottom: 12px;
-  color: var(--muted-2);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.panel {
-  position: relative;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: var(--panel);
-  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04);
-  overflow: hidden;
-}
-.panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 45%, transparent 58%, rgba(255,255,255,0.03));
-  pointer-events: none;
-}
-.panel-content {
-  position: relative;
-  padding: 30px;
-}
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-.card {
-  position: relative;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.035);
-  padding: 22px;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-.card:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: rgba(255,255,255,0.16);
-  background: rgba(255,255,255,0.05);
-}
-.card p,
-.copy,
-.list {
-  color: var(--muted);
-  line-height: 1.8;
-}
-.metric {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  letter-spacing: -0.07em;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-.actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 28px;
-}
-.btn {
-  text-decoration: none;
-  min-height: 54px;
-  padding: 0 22px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
-}
-.btn:hover { transform: translateY(-2px); }
-.btn-primary {
-  background: #fff;
-  color: #000;
-  box-shadow: 0 12px 40px rgba(255,255,255,0.14);
-}
-.btn-secondary {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: #fff;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
-  gap: 24px;
-  align-items: stretch;
-}
-.subtle {
-  color: var(--muted-2);
-}
-.footer-shell {
-  padding: 8px 0 34px;
-}
-.site-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 18px 20px;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-}
-.footer-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.04);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
-.footer-link:hover {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(255,255,255,0.18);
-}
-@media (max-width: 980px) {
-  .hero-grid, .grid-2, .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 760px) {
-  .topbar-inner {
-    flex-direction: column;
-    justify-content: center;
-    padding: 14px 0;
-  }
-  .nav {
-    width: 100%;
-    justify-content: center;
-    overflow-x: auto;
-    padding-bottom: 2px;
-  }
-  .nav a {
-    width: 92px;
-    min-width: 92px;
-  }
-  .panel-content, .card { padding: 22px; }
-  .page { padding-top: 50px; }
-}
-
-.hero-copy {
-  padding: 18px 0 0;
-}
-.hero-note {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 12px;
-  margin-top: 28px;
-}
-.hero-note .mini {
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.09);
-  background: rgba(255,255,255,0.035);
-  padding: 16px;
-}
-.hero-note strong {
-  display: block;
-  font-size: 0.95rem;
-  margin-bottom: 6px;
-}
-.visual-stack {
-  height: 100%;
-  min-height: 560px;
-  display: grid;
-  gap: 16px;
-}
-.mock-panel {
-  flex: 1;
-}
-.product-pair {
-  display: grid;
-  gap: 16px;
-}
-.product-chip {
-  display: inline-flex;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.035);
-  color: rgba(255,255,255,0.84);
-  font-size: 0.84rem;
-  font-weight: 600;
-}
-.phone-frame {
-  width: min(100%, 320px);
-  margin: 0 auto;
-  aspect-ratio: 0.53;
-  border-radius: 38px;
-  border: 1px solid rgba(255,255,255,0.16);
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-  padding: 12px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 70px rgba(0,0,0,0.45);
-}
-.phone-screen {
-  height: 100%;
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background:
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.14), transparent 30%),
-    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 18px;
-}
-.photo-card {
-  border-radius: 24px;
-  background: linear-gradient(160deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
-  border: 1px solid rgba(255,255,255,0.08);
-  min-height: 68%;
-  position: relative;
-  overflow: hidden;
-}
-.photo-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.24), transparent 25%),
-    radial-gradient(circle at 70% 70%, rgba(255,255,255,0.12), transparent 20%),
-    linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.2));
-}
-.swipe-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.swipe-btn {
-  min-height: 48px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.12);
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  background: rgba(255,255,255,0.05);
-}
-.flow-visual {
-  min-height: 230px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 18px;
-}
-.sketch-box, .output-box {
-  border-radius: 24px;
-  min-height: 180px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.035);
-  position: relative;
-  overflow: hidden;
-}
-.sketch-box::before {
-  content: "";
-  position: absolute;
-  inset: 16px;
-  border: 1px dashed rgba(255,255,255,0.22);
-  border-radius: 18px;
-  background:
-    linear-gradient(135deg, transparent 0 30%, rgba(255,255,255,0.08) 30% 32%, transparent 32% 55%, rgba(255,255,255,0.07) 55% 57%, transparent 57%),
-    radial-gradient(circle at 58% 45%, rgba(255,255,255,0.14), transparent 16%);
-}
-.output-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.18), transparent 28%),
-    radial-gradient(circle at 72% 72%, rgba(255,255,255,0.14), transparent 22%),
-    linear-gradient(130deg, rgba(255,255,255,0.1), transparent 40%, rgba(255,255,255,0.08));
-}
-.arrow {
-  font-size: 2rem;
-  color: rgba(255,255,255,0.9);
-}
-.compare-row {
-  display: grid;
-  gap: 18px;
-}
-@media (max-width: 980px) {
-  .hero-note, .flow-visual {
-    grid-template-columns: 1fr;
-  }
-  .arrow {
-    transform: rotate(90deg);
-    margin: -6px 0;
-  }
-  .visual-stack {
-    min-height: 0;
-  }
-}
   </style>
 </head>
 <body>
@@ -489,168 +264,160 @@ h3 {
     <div class="container topbar-inner">
       <a class="brand" href="/index.html" aria-label="Mainsches home">
         <span class="brand-mark">M</span>
-        <span class="brand-text">Mainsches</span>
+        <span>Mainsches</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
-        <a href="/index.html" aria-current="page">Home</a><a href="/contact.html">Contact</a><a href="/sketchit.html">sketchIT</a><a href="/swipesort.html">SwipeSort</a>
+        <a href="/index.html" aria-current="page">Home</a>
+        <a href="/contact.html" >Contact</a>
+        <a href="/sketchit.html" >sketchIT</a>
+        <a href="/swipesort.html" >SwipeSort</a>
       </nav>
     </div>
   </header>
 
+
   <main class="page">
-    <section class="container section">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Apps • software • AI workflows</span>
-          <h1>Software ideas made clear, useful and ready to scale.</h1>
-          <p class="lead">
-            Mainsches focuses on clean digital products with sharp UX, practical automation and strong visual clarity. The goal is simple: make software feel instantly understandable and instantly valuable.
+    <section class="container hero">
+      <span class="eyebrow">Software projects and AI tools</span>
+      <div class="hero-split">
+        <div>
+          <h1>Focused software with a premium product mindset.</h1>
+          <p>
+            Mainsches builds clean, practical software experiences with a strong visual standard.
+            The current focus is fast everyday utility through SwipeSort and concept transformation through sketchIT.
           </p>
-          <div class="actions">
+          <div class="hero-actions">
             <a class="btn btn-primary" href="/swipesort.html">View SwipeSort</a>
-            <a class="btn btn-secondary" href="/sketchit.html">View sketchIT</a>
-          </div>
-          <div class="hero-note">
-            <div class="mini">
-              <strong>Clear value fast</strong>
-              <span class="subtle">Built to explain the product in seconds, not minutes.</span>
-            </div>
-            <div class="mini">
-              <strong>Minimal by design</strong>
-              <span class="subtle">Quiet visuals, strong hierarchy and no unnecessary clutter.</span>
-            </div>
-            <div class="mini">
-              <strong>Ready for growth</strong>
-              <span class="subtle">Positioned like a serious startup brand from the first visit.</span>
-            </div>
+            <a class="btn" href="/sketchit.html">View sketchIT</a>
           </div>
         </div>
-
-        <div class="visual-stack">
-          <div class="panel mock-panel">
-            <div class="panel-content product-pair">
-              <span class="product-chip">SwipeSort</span>
-              <div class="phone-frame">
-                <div class="phone-screen">
-                  <div class="photo-card"></div>
-                  <div class="swipe-actions">
-                    <div class="swipe-btn">Delete</div>
-                    <div class="swipe-btn">Keep</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel mock-panel">
-            <div class="panel-content product-pair">
-              <span class="product-chip">sketchIT</span>
-              <div class="flow-visual">
-                <div class="sketch-box"></div>
-                <div class="arrow">→</div>
-                <div class="output-box"></div>
-              </div>
-            </div>
-          </div>
+        <div class="mini-shot">
+          <img src="/assets/sketchit-screen.jpg" alt="sketchIT app transforming a kitchen sketch into a generated interior image">
         </div>
       </div>
     </section>
 
     <section class="container section">
       <div class="section-head">
-        <span class="kicker">Focused products</span>
-        <h2>Two concepts. One principle.</h2>
-        <p class="lead">Every product page now leads with a clearer promise, stronger action language and more obvious user benefit.</p>
+        <div class="label">Products</div>
+        <h2>Two products, shown more clearly.</h2>
+        <p>
+          The layout has been simplified so each product is easier to understand at a glance.
+          Real screenshots now do the explaining instead of abstract placeholder visuals.
+        </p>
       </div>
 
-      <div class="grid-2">
-        <article class="panel">
-          <div class="panel-content">
-            <div class="kicker">SwipeSort</div>
-            <h3>Stop wasting time cleaning up your camera roll.</h3>
-            <p class="copy">
-              SwipeSort turns photo cleanup into a fast decision flow. Keep what matters, remove what does not, and get through large libraries without friction.
-            </p>
-            <div class="grid-3" style="margin-top:20px;">
-              <div class="card">
-                <div class="metric">Fast</div>
-                <p>Built around quick left/right decisions instead of slow manual deletion.</p>
-              </div>
-              <div class="card">
-                <div class="metric">Clean</div>
-                <p>Minimal interface keeps attention on the photo and the next action.</p>
-              </div>
-              <div class="card">
-                <div class="metric">Useful</div>
-                <p>Designed for real cleanup, not gimmicks or cluttered feature overload.</p>
-              </div>
-            </div>
-            <div class="actions">
-              <a class="btn btn-primary" href="/swipesort.html">Explore SwipeSort</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="panel">
-          <div class="panel-content">
-            <div class="kicker">sketchIT</div>
-            <h3>Turn rough ideas into convincing visual output.</h3>
-            <p class="copy">
-              sketchIT helps bridge the gap between an early sketch and a more refined visual result. It is built for concept communication, faster iteration and clearer presentation.
-            </p>
-            <div class="grid-3" style="margin-top:20px;">
-              <div class="card">
-                <div class="metric">Input</div>
-                <p>Works from rough ideas instead of requiring polished design assets first.</p>
-              </div>
-              <div class="card">
-                <div class="metric">Transform</div>
-                <p>Focuses on moving from concept to output with a strong visual jump.</p>
-              </div>
-              <div class="card">
-                <div class="metric">Communicate</div>
-                <p>Makes abstract ideas easier to show, discuss and improve.</p>
-              </div>
-            </div>
-            <div class="actions">
-              <a class="btn btn-primary" href="/sketchit.html">Explore sketchIT</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="container section">
       <div class="panel">
         <div class="panel-content">
-          <div class="grid-3">
-            <div class="card">
-              <span class="kicker">Clarity</span>
-              <h3>Instantly understandable</h3>
-              <p>The copy now focuses more strongly on what the product does for the user, not just what it is.</p>
+          <div class="product-grid">
+            <div class="device">
+              <div class="device-top">
+                <span>SwipeSort</span>
+                <span>Mobile app</span>
+              </div>
+              <div class="device-screen">
+                <img src="/assets/swipesort-screen.jpg" alt="SwipeSort app screenshot showing a photo card and swipe-based sorting flow">
+              </div>
             </div>
-            <div class="card">
-              <span class="kicker">Trust</span>
-              <h3>More startup-grade presence</h3>
-              <p>The site feels calmer, more deliberate and closer to a real product brand ready for public traffic.</p>
-            </div>
-            <div class="card">
-              <span class="kicker">Action</span>
-              <h3>Stronger next step</h3>
-              <p>Calls to action now point visitors toward product pages with a clearer reason to continue.</p>
+
+            <div>
+              <div class="feature-stack">
+                <div class="feature">
+                  <h3>Clean photos with fast swipe decisions</h3>
+                  <p>
+                    SwipeSort turns photo cleanup into a fast, focused flow. Users move through images quickly,
+                    keep what matters, and remove clutter without opening album after album.
+                  </p>
+                </div>
+                <div class="feature">
+                  <h3>Built around speed, clarity, and low friction</h3>
+                  <p>
+                    The interaction model is intentionally simple: one image, one decision, immediate momentum.
+                    That makes the value easy to understand within seconds.
+                  </p>
+                </div>
+              </div>
+
+              <div class="kpis">
+                <div class="kpi">
+                  <strong>Swipe</strong>
+                  <span>Fast left or right sorting instead of manual cleanup.</span>
+                </div>
+                <div class="kpi">
+                  <strong>Focus</strong>
+                  <span>One clear decision surface with almost no interface noise.</span>
+                </div>
+                <div class="kpi">
+                  <strong>Flow</strong>
+                  <span>Designed to keep users moving without friction.</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="container footer-shell">
-      <div class="site-footer">
-        <a class="footer-link" href="/impressum.html">Impressum</a>
-        <a class="footer-link" href="/privacy.html">Privacy</a>
+    <section class="container section">
+      <div class="panel">
+        <div class="panel-content">
+          <div class="product-grid">
+            <div class="device">
+              <div class="device-top">
+                <span>sketchIT</span>
+                <span>AI image workflow</span>
+              </div>
+              <div class="device-screen">
+                <img src="/assets/sketchit-screen.jpg" alt="sketchIT app screenshot showing a sketch and a generated AI output">
+              </div>
+            </div>
+
+            <div>
+              <div class="feature-stack">
+                <div class="feature">
+                  <h3>Turn rough sketches into clear visual output</h3>
+                  <p>
+                    sketchIT helps translate simple inputs into presentable results. A rough sketch and short prompt
+                    become a much clearer concept that is easier to show, discuss, and improve.
+                  </p>
+                </div>
+                <div class="feature">
+                  <h3>Made for concept communication</h3>
+                  <p>
+                    The value is not only generation. It is the jump from a vague idea to a usable visual reference,
+                    which helps teams and clients align faster.
+                  </p>
+                </div>
+              </div>
+
+              <div class="kpis">
+                <div class="kpi">
+                  <strong>Sketch</strong>
+                  <span>Start from a rough draft instead of a finished design.</span>
+                </div>
+                <div class="kpi">
+                  <strong>Prompt</strong>
+                  <span>Add quick direction in plain language.</span>
+                </div>
+                <div class="kpi">
+                  <strong>Output</strong>
+                  <span>Get a more tangible concept for feedback and iteration.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-
   </main>
+
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/impressum.html">Impressum</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
 </body>
 </html>
