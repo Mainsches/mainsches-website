@@ -1,51 +1,845 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mainsches — AI, Apps & Clean Software</title>
-<link rel="icon" href="/assets/logo.png">
-<style>
-body{margin:0;font-family:Inter, sans-serif;background:#0b0b0b;color:#fff}
-.container{max-width:1100px;margin:auto;padding:80px 20px}
-.hero{font-size:48px;font-weight:700;line-height:1.1}
-.sub{opacity:.7;margin-top:20px;font-size:18px}
-.section{margin-top:100px}
-.card{padding:30px;border-radius:20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);transition:.3s}
-.card:hover{transform:translateY(-5px)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:800px){.grid{grid-template-columns:1fr}}
-.footer{margin-top:120px;opacity:.5;font-size:14px}
-</style>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="shortcut icon" href="/assets/logo.png" />
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <title>Mainsches — AI Apps, UI & Performance</title>
+  <meta name="description" content="Mainsches builds AI apps and focused software with clean UI, fast performance, and modern product design." />
+    <link rel="canonical" href="https://mainsches.com/" />
+  <meta name="theme-color" content="#050505" />
+  <meta property="og:title" content="Mainsches — AI Apps, UI & Performance" />
+  <meta property="og:description" content="Mainsches builds AI apps and focused software with clean UI, fast performance, and modern product design." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mainsches.com/" />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Mainsches" />
+  <meta property="og:site_name" content="Mainsches" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mainsches — AI Apps, UI & Performance" />
+  <meta name="twitter:description" content="Mainsches builds AI apps and focused software with clean UI, fast performance, and modern product design." />
+  <meta property="og:image" content="https://mainsches.com/og-cover.jpg" />
+  <meta name="twitter:image" content="https://mainsches.com/og-cover.jpg" />
+  <style>
+
+    :root{
+      --bg:#040404;
+      --bg-2:#090909;
+      --panel:rgba(255,255,255,.045);
+      --panel-2:rgba(255,255,255,.03);
+      --line:rgba(255,255,255,.10);
+      --line-2:rgba(255,255,255,.07);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.70);
+      --muted-2:rgba(255,255,255,.48);
+      --max:1180px;
+      --radius:28px;
+      --shadow:0 24px 90px rgba(0,0,0,.50);
+      --hover-shadow:0 30px 110px rgba(0,0,0,.58);
+      --ease:cubic-bezier(.22,1,.36,1);
+      --speed-fast:180ms;
+      --speed-med:240ms;
+      --speed-slow:700ms;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.11), transparent 24%),
+        radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 18%),
+        linear-gradient(180deg, #0a0a0a 0%, #050505 42%, #030303 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.10;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size:120px 120px;
+      mask-image:radial-gradient(circle at center, black 28%, transparent 82%);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button,input,textarea{font:inherit}
+    .container{width:min(100% - 32px, var(--max));margin:0 auto}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(18px);
+      background:rgba(7,7,7,.70);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:background var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease);
+    }
+    .topbar-inner{
+      min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+    }
+    .brand{
+      display:inline-flex;align-items:center;gap:12px;min-width:152px;font-weight:700;letter-spacing:-.03em;
+      transition:transform var(--speed-fast) var(--ease), opacity var(--speed-fast) var(--ease);
+      white-space:nowrap;
+    }
+    .brand:hover{transform:translateY(-1px)}
+    .brand-mark{
+      width:38px;height:38px;border-radius:12px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+      font-weight:800;
+      transition:transform var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease);
+      flex:0 0 auto;
+    }
+    .brand:hover .brand-mark{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 10px 30px rgba(0,0,0,.35);
+      border-color:rgba(255,255,255,.18);
+    }
+    .nav{display:flex;gap:8px;flex-wrap:nowrap}
+    .nav a{
+      width:96px;min-width:96px;padding:12px 10px;text-align:center;
+      border-radius:999px;border:1px solid transparent;
+      color:var(--muted);font-size:.95rem;font-weight:600;
+      transition:
+        color var(--speed-fast) var(--ease),
+        background var(--speed-fast) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        transform var(--speed-fast) var(--ease),
+        box-shadow var(--speed-fast) var(--ease);
+      -webkit-tap-highlight-color:transparent;
+    }
+    .nav a:hover,.nav a[aria-current="page"]{
+      color:#fff;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.10);
+      transform:translateY(-1px);
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
+    }
+    .nav a:active{transform:translateY(0) scale(.985)}
+    .page{padding:42px 0 96px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:999px;
+      background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+      color:rgba(255,255,255,.84);font-size:.90rem;font-weight:600;
+      backdrop-filter:blur(12px);
+      transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease);
+      max-width:100%;
+    }
+    .eyebrow:hover{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.055);
+    }
+    .eyebrow::before{
+      content:"";width:8px;height:8px;border-radius:50%;background:#fff;
+      box-shadow:0 0 18px rgba(255,255,255,.75);
+      flex:0 0 auto;
+    }
+    h1,h2,h3,p{margin:0}
+    .hero{padding:44px 0 28px}
+    .hero h1{
+      margin-top:18px;
+      font-size:clamp(3.1rem,6vw,5.9rem);
+      line-height:.94;
+      letter-spacing:-.09em;
+      max-width:900px;
+      text-wrap:balance;
+    }
+    .hero p{
+      margin-top:22px;max-width:760px;
+      font-size:1.08rem;line-height:1.9;color:var(--muted);
+      text-wrap:pretty;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:54px;padding:0 22px;border-radius:999px;font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      transition:
+        transform var(--speed-fast) var(--ease),
+        background var(--speed-fast) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        box-shadow var(--speed-fast) var(--ease),
+        opacity var(--speed-fast) var(--ease);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+      will-change:transform;
+      -webkit-tap-highlight-color:transparent;
+      touch-action:manipulation;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.16);
+      box-shadow:0 14px 34px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .btn:active{
+      transform:translateY(0) scale(.985);
+    }
+    .btn-primary{background:#fff;color:#050505;border-color:#fff}
+    .btn-primary:hover{background:#f2f2f2}
+    .section{padding:24px 0}
+    .section + .section{margin-top:18px}
+    .section-head{margin-bottom:22px}
+    .section-head .label{
+      color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
+      margin-bottom:10px;
+    }
+    .section-head h2{
+      font-size:clamp(2rem,3.5vw,3rem);
+      letter-spacing:-.055em;line-height:1.02;max-width:760px;
+      text-wrap:balance;
+    }
+    .section-head p{
+      margin-top:14px;color:var(--muted);max-width:760px;line-height:1.8;
+      text-wrap:pretty;
+    }
+    .panel{
+      position:relative;overflow:hidden;border-radius:32px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
+      transition:
+        transform var(--speed-med) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        box-shadow var(--speed-med) var(--ease),
+        background var(--speed-med) var(--ease);
+      will-change:transform;
+    }
+    .panel:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.13);
+      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .panel::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(135deg, rgba(255,255,255,.05), transparent 36%, transparent 60%, rgba(255,255,255,.025));
+      opacity:.9;
+      transition:opacity var(--speed-med) var(--ease);
+    }
+    .panel:hover::before{opacity:1}
+    .panel-content{position:relative;padding:28px}
+    .product-grid{
+      display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:28px;align-items:center;
+    }
+    .device{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:34px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+      transition:
+        transform var(--speed-med) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        box-shadow var(--speed-med) var(--ease);
+    }
+    .panel:hover .device{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.14);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 18px 45px rgba(0,0,0,.24);
+    }
+    .device-top{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:16px;padding:0 6px;color:rgba(255,255,255,.86);font-size:.9rem;font-weight:600;
+      gap:12px;
+    }
+    .device-top span:last-child{color:var(--muted)}
+    .device-screen{
+      border-radius:26px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
+      background:#0b0b0b;aspect-ratio:10/17;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .device-screen img{
+      width:100%;height:100%;object-fit:cover;object-position:top center;
+      transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
+      will-change:transform;
+    }
+    .panel:hover .device-screen img{
+      transform:scale(1.018);
+      filter:saturate(1.03) contrast(1.01);
+    }
+    .feature-stack{display:grid;gap:14px}
+    .feature{
+      padding:18px 18px 16px;border-radius:22px;
+      background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
+      min-width:0;
+      transition:
+        transform var(--speed-fast) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        background var(--speed-fast) var(--ease),
+        box-shadow var(--speed-fast) var(--ease);
+    }
+    .feature:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.045);
+      box-shadow:0 18px 40px rgba(0,0,0,.20);
+    }
+    .feature h3{
+      font-size:1.12rem;letter-spacing:-.04em;line-height:1.15;
+      margin-bottom:8px;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      text-wrap:balance;
+    }
+    .feature p{color:var(--muted);line-height:1.75;text-wrap:pretty}
+    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+    .kpi{
+      border-radius:22px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);padding:18px;
+      transition:
+        transform var(--speed-fast) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        background var(--speed-fast) var(--ease);
+    }
+    .kpi:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .kpi strong{display:block;font-size:1.3rem;letter-spacing:-.04em}
+    .kpi span{display:block;margin-top:6px;color:var(--muted);line-height:1.55;text-wrap:pretty}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .field{display:grid;gap:10px}
+    .field.full{grid-column:1/-1}
+    label{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.92)}
+    input, textarea{
+      width:100%;padding:16px 18px;
+      color:#fff;background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.10);border-radius:18px;
+      outline:none;transition:
+        border-color var(--speed-fast) var(--ease),
+        background var(--speed-fast) var(--ease),
+        transform var(--speed-fast) var(--ease),
+        box-shadow var(--speed-fast) var(--ease);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+      min-height:56px;
+    }
+    input:hover, textarea:hover{
+      border-color:rgba(255,255,255,.15);
+      background:rgba(255,255,255,.04);
+    }
+    input:focus, textarea:focus{
+      border-color:rgba(255,255,255,.24);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 0 0 4px rgba(255,255,255,.04);
+      transform:translateY(-1px);
+    }
+    textarea{min-height:170px;resize:vertical}
+    .helper{margin-top:10px;color:var(--muted-2);font-size:.92rem;line-height:1.6;text-wrap:pretty}
+    .status{
+      display:none;margin-top:18px;padding:16px 18px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045)
+    }
+    .status.show{display:block;animation:statusIn 280ms var(--ease)}
+    .status.success{border-color:rgba(90,255,150,.24);background:rgba(90,255,150,.08)}
+    .status.error{border-color:rgba(255,120,120,.24);background:rgba(255,120,120,.08)}
+    .footer{padding:28px 0 16px}
+    .footer-inner{
+      display:flex;justify-content:flex-end;gap:18px;
+      padding-top:18px;border-top:1px solid rgba(255,255,255,.08)
+    }
+    .footer-inner a{
+      color:var(--muted);font-size:.95rem;font-weight:600;
+      transition:color var(--speed-fast) var(--ease), transform var(--speed-fast) var(--ease), opacity var(--speed-fast) var(--ease);
+      position:relative;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .footer-inner a::after{
+      content:"";
+      position:absolute;left:0;bottom:-4px;width:100%;height:1px;
+      background:rgba(255,255,255,.8);
+      transform:scaleX(0);transform-origin:left;
+      transition:transform var(--speed-fast) var(--ease);
+      opacity:.9;
+    }
+    .footer-inner a:hover{color:#fff;transform:translateY(-1px)}
+    .footer-inner a:hover::after{transform:scaleX(1)}
+    .legal-stack{display:grid;gap:18px}
+    .legal-card{
+      padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
+    }
+    .legal-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .legal-card .label{
+      color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
+      margin-bottom:10px;
+    }
+    .legal-card h2{font-size:1.2rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
+    .legal-card p{color:var(--muted);line-height:1.8;text-wrap:pretty}
+    .hero-split,
+    .hero-identity{
+      display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:28px;align-items:end;
+    }
+    .hero-identity{grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr)}
+    .mini-shot{
+      border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
+      background:#0c0c0c;box-shadow:var(--shadow);
+      transition:transform var(--speed-med) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-med) var(--ease);
+    }
+    .mini-shot:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.14);
+      box-shadow:var(--hover-shadow);
+    }
+    .mini-shot img{
+      width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top center;
+      transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
+    }
+    .mini-shot:hover img{transform:scale(1.02);filter:saturate(1.03)}
+    .identity-panel{display:grid;gap:14px}
+    .signature-card{
+      padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+      transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
+    }
+    .signature-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .signature-card h3{font-size:1.15rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
+    .signature-card p{color:var(--muted);line-height:1.75;text-wrap:pretty}
+    .statements{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .statement{
+      padding:18px;border-radius:22px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+      transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
+    }
+    .statement:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .statement strong{display:block;font-size:1.02rem;letter-spacing:-.03em;margin-bottom:8px}
+    .statement span{display:block;color:var(--muted);line-height:1.7;text-wrap:pretty}
+    .project-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .project-link{
+      display:block;padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      transition:transform var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease)
+    }
+    .project-link:hover{
+      transform:translateY(-4px);
+      background:rgba(255,255,255,.045);
+      border-color:rgba(255,255,255,.12);
+      box-shadow:0 22px 46px rgba(0,0,0,.22);
+    }
+    .project-link .kicker{color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:700;margin-bottom:10px}
+    .project-link h3{font-size:1.24rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
+    .project-link p{color:var(--muted);line-height:1.75;text-wrap:pretty}
+    .quote{
+      padding:28px;border-radius:28px;border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
+      transition:transform var(--speed-med) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-med) var(--ease);
+    }
+    .quote:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.12);
+      box-shadow:0 24px 56px rgba(0,0,0,.20);
+    }
+    .quote p{font-size:1.18rem;line-height:1.85;max-width:840px;color:rgba(255,255,255,.86);text-wrap:pretty}
+    .hidden{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    .reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity var(--speed-slow) var(--ease), transform var(--speed-slow) var(--ease);
+      will-change:opacity, transform;
+    }
+    .reveal.is-visible{
+      opacity:1;
+      transform:none;
+    }
+    .delay-1{transition-delay:50ms}
+    .delay-2{transition-delay:110ms}
+    .delay-3{transition-delay:170ms}
+    .delay-4{transition-delay:230ms}
+    @keyframes statusIn{
+      from{opacity:0;transform:translateY(6px)}
+      to{opacity:1;transform:none}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{
+        animation-duration:0.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important;
+        scroll-behavior:auto !important;
+      }
+      .reveal{opacity:1;transform:none}
+    }
+    @media (max-width: 980px){
+      .product-grid,.hero-split,.hero-identity,.project-links,.statements{grid-template-columns:1fr}
+      .kpis{grid-template-columns:1fr}
+      .hero-identity,
+      .hero-split{align-items:start}
+      .mini-shot{max-width:640px}
+      .device{max-width:640px}
+    }
+    @media (max-width: 760px){
+      .container{width:min(100% - 24px, var(--max))}
+      body::before{opacity:.06;background-size:84px 84px}
+      .topbar{backdrop-filter:blur(14px)}
+      .topbar-inner{
+        flex-direction:column;
+        justify-content:center;
+        align-items:stretch;
+        gap:14px;
+        padding:14px 0;
+        min-height:unset;
+      }
+      .brand{
+        min-width:0;
+        justify-content:center;
+        font-size:.96rem;
+      }
+      .nav{
+        width:100%;
+        justify-content:flex-start;
+        overflow-x:auto;
+        padding-bottom:4px;
+        scroll-snap-type:x proximity;
+        scrollbar-width:none;
+      }
+      .nav::-webkit-scrollbar{display:none}
+      .nav a{
+        width:auto;
+        min-width:92px;
+        flex:0 0 auto;
+        scroll-snap-align:start;
+        padding:12px 14px;
+      }
+      .page{padding-top:18px;padding-bottom:72px}
+      .hero{padding-top:22px;padding-bottom:18px}
+      .hero h1{
+        margin-top:16px;
+        font-size:clamp(2.35rem, 11vw, 3.35rem);
+        line-height:.98;
+        letter-spacing:-.075em;
+      }
+      .hero p{
+        margin-top:18px;
+        font-size:1rem;
+        line-height:1.78;
+      }
+      .eyebrow{
+        font-size:.82rem;
+        padding:9px 12px;
+        gap:8px;
+      }
+      .hero-actions{
+        gap:12px;
+        margin-top:24px;
+      }
+      .btn{
+        width:100%;
+        min-height:52px;
+        padding:0 18px;
+      }
+      .section{padding:18px 0}
+      .section + .section{margin-top:8px}
+      .section-head{margin-bottom:18px}
+      .section-head .label{font-size:.76rem}
+      .section-head h2{
+        font-size:clamp(1.6rem, 8vw, 2.2rem);
+        line-height:1.04;
+      }
+      .section-head p{
+        margin-top:12px;
+        font-size:.98rem;
+        line-height:1.75;
+      }
+      .panel,
+      .quote,
+      .mini-shot{border-radius:24px}
+      .panel:hover,
+      .quote:hover,
+      .mini-shot:hover,
+      .signature-card:hover,
+      .statement:hover,
+      .project-link:hover,
+      .feature:hover,
+      .legal-card:hover,
+      .kpi:hover{transform:none}
+      .panel-content{padding:18px}
+      .product-grid{gap:18px}
+      .device{
+        padding:14px;
+        border-radius:26px;
+        width:100%;
+        max-width:none;
+      }
+      .device-top{
+        font-size:.84rem;
+        margin-bottom:12px;
+        padding:0 2px;
+      }
+      .device-screen{border-radius:20px}
+      .feature-stack,
+      .legal-stack,
+      .identity-panel,
+      .project-links,
+      .statements,
+      .kpis{gap:12px}
+      .feature,
+      .statement,
+      .kpi,
+      .project-link,
+      .signature-card,
+      .legal-card{padding:16px}
+      .feature h3,
+      .project-link h3,
+      .signature-card h3,
+      .legal-card h2{font-size:1.05rem}
+      .quote{padding:20px}
+      .quote p{
+        font-size:1.03rem;
+        line-height:1.8;
+      }
+      .form-grid{grid-template-columns:1fr;gap:14px}
+      .field{gap:8px}
+      label{font-size:.92rem}
+      input, textarea{
+        padding:15px 16px;
+        min-height:54px;
+        border-radius:16px;
+      }
+      textarea{min-height:150px}
+      .helper{
+        margin-top:8px;
+        font-size:.9rem;
+      }
+      .footer{padding:18px 0 10px}
+      .footer-inner{
+        justify-content:flex-start;
+        gap:16px;
+        flex-wrap:wrap;
+        padding-top:16px;
+      }
+      .footer-inner a{font-size:.93rem}
+    }
+    @media (max-width: 430px){
+      .container{width:min(100% - 20px, var(--max))}
+      .topbar-inner{padding:12px 0}
+      .brand{font-size:.92rem}
+      .brand-mark{width:34px;height:34px;border-radius:11px}
+      .nav{gap:6px}
+      .nav a{
+        min-width:86px;
+        font-size:.9rem;
+        padding:11px 12px;
+      }
+      .page{padding-top:14px;padding-bottom:64px}
+      .hero h1{
+        font-size:clamp(2.1rem, 12vw, 3rem);
+        letter-spacing:-.07em;
+      }
+      .hero p,
+      .section-head p,
+      .feature p,
+      .project-link p,
+      .statement span,
+      .legal-card p,
+      .helper{font-size:.96rem}
+      .panel-content{padding:16px}
+      .feature,
+      .statement,
+      .kpi,
+      .project-link,
+      .signature-card,
+      .legal-card{padding:15px}
+      .quote{padding:18px}
+      .quote p{font-size:1rem}
+      .btn{min-height:50px}
+      input, textarea{padding:14px 15px}
+    }
+
+  </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Mainsches",
+  "url": "https://mainsches.com",
+  "description": "Mainsches builds AI apps and focused software with clean UI, fast performance, and modern product design."
+}
+  </script>
 </head>
 <body>
 
-<div class="container">
-  <div class="hero">
-    AI-powered apps.<br>
-    Built for speed, clarity and real use.
-  </div>
-
-  <div class="sub">
-    Clean interfaces. Fast performance. Focused tools.
-  </div>
-
-  <div class="section grid">
-    <div class="card">
-      <h2>sketchIT</h2>
-      <p>Turn sketches into realistic visuals using AI.</p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/index.html" aria-label="Mainsches home">
+        <span class="brand-mark">M</span>
+        <span>Mainsches</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/index.html" aria-current="page">Home</a>
+        <a href="/contact.html" >Contact</a>
+        <a href="/sketchit.html" >sketchIT</a>
+        <a href="/swipesort.html" >SwipeSort</a>
+      </nav>
     </div>
-    <div class="card">
-      <h2>SwipeSort</h2>
-      <p>Clean up your photos with a fast swipe-based workflow.</p>
-    </div>
-  </div>
+  </header>
 
-  <div class="footer">
-    <a href="/impressum.html">Impressum</a> • 
-    <a href="/privacy.html">Privacy</a>
-  </div>
-</div>
+
+  <main class="page">
+    <section class="container hero reveal">
+      <span class="eyebrow">AI, apps, UI and performance</span>
+      <div class="hero-identity">
+        <div class="delay-1 reveal">
+          <h1>AI apps with clean UI and fast performance.</h1>
+          <p>
+            Mainsches builds focused software with modern design, clear interaction, and practical AI-driven workflows.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/contact.html">Get in touch</a>
+            <a class="btn" href="#projects">View projects</a>
+          </div>
+        </div>
+        <div class="identity-panel delay-2 reveal">
+          <div class="signature-card">
+            <h3>UI first</h3>
+            <p>
+              Clean interfaces, less friction, and a sharper product feel from the first screen.
+            </p>
+          </div>
+          <div class="signature-card">
+            <h3>Built to perform</h3>
+            <p>
+              Fast flows, focused features, and software that stays efficient and easy to use.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section reveal delay-1">
+      <div class="quote">
+        <p>
+          Mainsches focuses on AI, apps, UI quality, and software performance — with less noise and more product clarity.
+        </p>
+      </div>
+    </section>
+
+    <section class="container section reveal delay-2">
+      <div class="section-head">
+        <div class="label">Focus</div>
+        <h2>Apps, AI workflows, and strong product execution.</h2>
+        <p>
+          The focus is simple: useful apps, modern AI features, clean UX, and performance that supports the experience.
+        </p>
+      </div>
+      <div class="statements">
+        <div class="statement">
+          <strong>Apps</strong>
+          <span>Focused digital products built for real use, with less complexity and faster interaction.</span>
+        </div>
+        <div class="statement">
+          <strong>AI</strong>
+          <span>Workflows that turn rough input into clearer output and make ideas easier to use.</span>
+        </div>
+        <div class="statement">
+          <strong>UI / Performance</strong>
+          <span>Clear interfaces and smooth execution, designed to feel fast, calm, and reliable.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section reveal delay-3" id="projects">
+      <div class="section-head">
+        <div class="label">Projects</div>
+        <h2>Current products.</h2>
+        <p>
+          Two focused products, each built around clarity, speed, and a distinct use case.
+        </p>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="/swipesort.html">
+          <div class="kicker">Photo cleanup app</div>
+          <h3>SwipeSort</h3>
+          <p>Fast swipe-based photo cleanup designed to reduce clutter with less friction.</p>
+        </a>
+        <a class="project-link" href="/sketchit.html">
+          <div class="kicker">AI visual tool</div>
+          <h3>sketchIT</h3>
+          <p>Turn rough sketches into clearer visual concepts with an AI-driven workflow.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="container section reveal delay-4">
+      <div class="panel">
+        <div class="panel-content">
+          <div class="section-head" style="margin-bottom:0">
+            <div class="label">Contact</div>
+            <h2>Open to product and software conversations.</h2>
+            <p>
+              For apps, AI concepts, UI-focused products, or collaboration inquiries, get in touch through the contact page.
+            </p>
+            <div class="hero-actions" style="margin-top:24px">
+              <a class="btn btn-primary" href="/contact.html">Contact Mainsches</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/impressum.html">Impressum</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+
+  <script>
+    (function () {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const items = document.querySelectorAll('.reveal');
+
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        items.forEach((item) => item.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.14,
+        rootMargin: '0px 0px -6% 0px'
+      });
+
+      items.forEach((item) => observer.observe(item));
+    }());
+  </script>
 
 </body>
 </html>
