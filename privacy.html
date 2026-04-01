@@ -1,360 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy — Mainsches</title>
-  <meta name="description" content="Privacy notice for mainsches.com, its contact form and analytics setup.">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <title>Privacy Policy — Mainsches</title>
+  <meta name="description" content="Privacy policy for mainsches.com." />
   <style>
 
-:root {
-  --bg: #030303;
-  --bg-soft: #0b0b0b;
-  --panel: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-  --panel-soft: rgba(255,255,255,0.04);
-  --line: rgba(255,255,255,0.10);
-  --line-strong: rgba(255,255,255,0.16);
-  --text: #ffffff;
-  --muted: rgba(255,255,255,0.68);
-  --muted-2: rgba(255,255,255,0.46);
-  --shadow: 0 24px 90px rgba(0,0,0,0.52);
-  --radius: 30px;
-  --radius-sm: 20px;
-  --max: 1180px;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--text);
-  background:
-    radial-gradient(circle at 15% 14%, rgba(255,255,255,0.10), transparent 28%),
-    radial-gradient(circle at 88% 6%, rgba(255,255,255,0.06), transparent 22%),
-    radial-gradient(circle at 50% -12%, rgba(255,255,255,0.05), transparent 30%),
-    linear-gradient(180deg, #090909 0%, #040404 48%, #020202 100%);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.14;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 120px 120px;
-  mask-image: radial-gradient(circle at center, black 35%, transparent 88%);
-}
-a { color: inherit; }
-.container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
+    :root{
+      --bg:#040404;
+      --bg-2:#090909;
+      --panel:rgba(255,255,255,.045);
+      --panel-2:rgba(255,255,255,.03);
+      --line:rgba(255,255,255,.10);
+      --line-2:rgba(255,255,255,.07);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.70);
+      --muted-2:rgba(255,255,255,.48);
+      --max:1180px;
+      --radius:28px;
+      --shadow:0 24px 90px rgba(0,0,0,.50);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.11), transparent 24%),
+        radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 18%),
+        linear-gradient(180deg, #0a0a0a 0%, #050505 42%, #030303 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.10;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size:120px 120px;
+      mask-image:radial-gradient(circle at center, black 28%, transparent 82%);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(100% - 32px, var(--max));margin:0 auto}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(18px);
+      background:rgba(7,7,7,.70);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{
+      min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+    }
+    .brand{
+      display:inline-flex;align-items:center;gap:12px;min-width:152px;font-weight:700;letter-spacing:-.03em;
+    }
+    .brand-mark{
+      width:38px;height:38px;border-radius:12px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+      font-weight:800;
+    }
+    .nav{display:flex;gap:8px;flex-wrap:nowrap}
+    .nav a{
+      width:96px;min-width:96px;padding:12px 10px;text-align:center;
+      border-radius:999px;border:1px solid transparent;
+      color:var(--muted);font-size:.95rem;font-weight:600;
+      transition:color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .nav a:hover,.nav a[aria-current="page"]{
+      color:#fff;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.10);
+      transform:translateY(-1px);
+    }
+    .page{padding:42px 0 96px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:999px;
+      background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+      color:rgba(255,255,255,.84);font-size:.90rem;font-weight:600;
+      backdrop-filter:blur(12px);
+    }
+    .eyebrow::before{
+      content:"";width:8px;height:8px;border-radius:50%;background:#fff;
+      box-shadow:0 0 18px rgba(255,255,255,.75);
+    }
+    h1,h2,h3,p{margin:0}
+    .hero{padding:44px 0 28px}
+    .hero h1{
+      margin-top:18px;
+      font-size:clamp(3rem,6vw,5.7rem);
+      line-height:.95;
+      letter-spacing:-.085em;
+      max-width:850px;
+    }
+    .hero p{
+      margin-top:22px;max-width:760px;
+      font-size:1.08rem;line-height:1.85;color:var(--muted);
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:54px;padding:0 22px;border-radius:999px;font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16)}
+    .btn-primary{background:#fff;color:#050505;border-color:#fff}
+    .btn-primary:hover{background:#f2f2f2}
+    .section{padding:24px 0}
+    .section + .section{margin-top:18px}
+    .section-head{margin-bottom:22px}
+    .section-head .label{
+      color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
+      margin-bottom:10px;
+    }
+    .section-head h2{
+      font-size:clamp(2rem,3.5vw,3rem);
+      letter-spacing:-.055em;line-height:1.02;max-width:760px;
+    }
+    .section-head p{
+      margin-top:14px;color:var(--muted);max-width:760px;line-height:1.8;
+    }
+    .panel{
+      position:relative;overflow:hidden;border-radius:32px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .panel::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(135deg, rgba(255,255,255,.05), transparent 36%, transparent 60%, rgba(255,255,255,.025));
+    }
+    .panel-content{position:relative;padding:28px}
+    .product-grid{
+      display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:28px;align-items:center;
+    }
+    .device{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:34px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .device-top{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:16px;padding:0 6px;color:rgba(255,255,255,.86);font-size:.9rem;font-weight:600;
+    }
+    .device-screen{
+      border-radius:26px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
+      background:#0b0b0b;aspect-ratio:10/17;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .device-screen img{width:100%;height:100%;object-fit:cover;object-position:top center}
+    .feature-stack{display:grid;gap:14px}
+    .feature{
+      padding:18px 18px 16px;border-radius:22px;
+      background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
+      min-width:0;
+    }
+    .feature h3{
+      font-size:1.12rem;letter-spacing:-.04em;line-height:1.15;
+      margin-bottom:8px;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+    }
+    .feature p{color:var(--muted);line-height:1.75}
+    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+    .kpi{
+      border-radius:22px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);padding:18px;
+    }
+    .kpi strong{display:block;font-size:1.3rem;letter-spacing:-.04em}
+    .kpi span{display:block;margin-top:6px;color:var(--muted);line-height:1.55}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .field{display:grid;gap:10px}
+    .field.full{grid-column:1/-1}
+    label{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.92)}
+    input, textarea{
+      width:100%;padding:16px 18px;
+      color:#fff;background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.10);border-radius:18px;
+      outline:none;font:inherit;transition:border-color .2s ease, background .2s ease, transform .2s ease;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    input:focus, textarea:focus{
+      border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.05)
+    }
+    textarea{min-height:170px;resize:vertical}
+    .helper{margin-top:10px;color:var(--muted-2);font-size:.92rem;line-height:1.6}
+    .status{
+      display:none;margin-top:18px;padding:16px 18px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045)
+    }
+    .status.show{display:block}
+    .status.success{border-color:rgba(90,255,150,.24);background:rgba(90,255,150,.08)}
+    .status.error{border-color:rgba(255,120,120,.24);background:rgba(255,120,120,.08)}
+    .footer{padding:28px 0 16px}
+    .footer-inner{
+      display:flex;justify-content:flex-end;gap:18px;
+      padding-top:18px;border-top:1px solid rgba(255,255,255,.08)
+    }
+    .footer-inner a{
+      color:var(--muted);font-size:.95rem;font-weight:600;
+      transition:color .2s ease, transform .2s ease;
+    }
+    .footer-inner a:hover{color:#fff;transform:translateY(-1px)}
+    .legal-stack{display:grid;gap:18px}
+    .legal-card{
+      padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03)
+    }
+    .legal-card .label{
+      color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
+      margin-bottom:10px;
+    }
+    .legal-card h2{font-size:1.2rem;letter-spacing:-.04em;margin-bottom:8px}
+    .legal-card p{color:var(--muted);line-height:1.8}
+    .hero-split{
+      display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:28px;align-items:end;
+    }
+    .mini-shot{
+      border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
+      background:#0c0c0c;box-shadow:var(--shadow);
+    }
+    .mini-shot img{width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top center}
+    .hidden{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    @media (max-width: 980px){
+      .product-grid,.hero-split{grid-template-columns:1fr}
+      .kpis{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      .topbar-inner{flex-direction:column;justify-content:center;padding:16px 0}
+      .nav{width:100%;justify-content:center;overflow-x:auto;padding-bottom:2px}
+      .nav a{width:92px;min-width:92px}
+      .page{padding-top:26px}
+      .hero{padding-top:28px}
+      .panel-content{padding:22px}
+      .form-grid{grid-template-columns:1fr}
+      .feature-stack{grid-template-columns:1fr}
+      .hero-actions{gap:12px}
+      .btn{width:100%}
+      .footer-inner{justify-content:flex-start}
+    }
 
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(18px);
-  background: rgba(6,6,6,0.68);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.topbar-inner {
-  min-height: 78px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-}
-.brand {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 152px;
-  color: inherit;
-}
-.brand-mark {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-  display: grid;
-  place-items: center;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-.brand-text {
-  font-size: 0.98rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: rgba(255,255,255,0.96);
-}
-.nav {
-  display: flex;
-  gap: 8px;
-  flex-wrap: nowrap;
-}
-.nav a {
-  width: 96px;
-  min-width: 96px;
-  text-align: center;
-  text-decoration: none;
-  padding: 12px 10px;
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  border: 1px solid transparent;
-}
-.nav a:hover,
-.nav a[aria-current="page"] {
-  color: #fff;
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.10);
-}
-.page { padding: 66px 0 34px; }
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.045);
-  border: 1px solid rgba(255,255,255,0.09);
-  color: rgba(255,255,255,0.82);
-  font-size: 0.9rem;
-  font-weight: 600;
-  backdrop-filter: blur(12px);
-}
-.eyebrow::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 18px rgba(255,255,255,0.7);
-}
-h1 {
-  margin: 18px 0 0;
-  font-size: clamp(3rem, 6vw, 5.6rem);
-  line-height: 0.95;
-  letter-spacing: -0.08em;
-  font-weight: 800;
-}
-h2 {
-  margin: 0;
-  font-size: clamp(1.9rem, 3vw, 2.8rem);
-  line-height: 1.02;
-  letter-spacing: -0.06em;
-}
-h3 {
-  margin: 0;
-  font-size: 1.18rem;
-  letter-spacing: -0.04em;
-}
-.lead {
-  margin: 22px 0 0;
-  color: var(--muted);
-  font-size: 1.08rem;
-  line-height: 1.82;
-  max-width: 760px;
-}
-.section {
-  padding: 24px 0;
-}
-.section-head {
-  margin-bottom: 24px;
-}
-.kicker {
-  display: inline-block;
-  margin-bottom: 12px;
-  color: var(--muted-2);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.panel {
-  position: relative;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: var(--panel);
-  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04);
-  overflow: hidden;
-}
-.panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 45%, transparent 58%, rgba(255,255,255,0.03));
-  pointer-events: none;
-}
-.panel-content {
-  position: relative;
-  padding: 30px;
-}
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-.card {
-  position: relative;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.035);
-  padding: 22px;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-.card:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: rgba(255,255,255,0.16);
-  background: rgba(255,255,255,0.05);
-}
-.card p,
-.copy,
-.list {
-  color: var(--muted);
-  line-height: 1.8;
-}
-.metric {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  letter-spacing: -0.07em;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-.actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 28px;
-}
-.btn {
-  text-decoration: none;
-  min-height: 54px;
-  padding: 0 22px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
-}
-.btn:hover { transform: translateY(-2px); }
-.btn-primary {
-  background: #fff;
-  color: #000;
-  box-shadow: 0 12px 40px rgba(255,255,255,0.14);
-}
-.btn-secondary {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: #fff;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
-  gap: 24px;
-  align-items: stretch;
-}
-.subtle {
-  color: var(--muted-2);
-}
-.footer-shell {
-  padding: 8px 0 34px;
-}
-.site-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 18px 20px;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-}
-.footer-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.04);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
-.footer-link:hover {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(255,255,255,0.18);
-}
-@media (max-width: 980px) {
-  .hero-grid, .grid-2, .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 760px) {
-  .topbar-inner {
-    flex-direction: column;
-    justify-content: center;
-    padding: 14px 0;
-  }
-  .nav {
-    width: 100%;
-    justify-content: center;
-    overflow-x: auto;
-    padding-bottom: 2px;
-  }
-  .nav a {
-    width: 92px;
-    min-width: 92px;
-  }
-  .panel-content, .card { padding: 22px; }
-  .page { padding-top: 50px; }
-}
-
-.legal-card + .legal-card {
-  margin-top: 22px;
-  padding-top: 22px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.section-label {
-  margin: 0 0 10px;
-  color: var(--muted-2);
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-}
-.legal-card p {
-  margin: 0;
-  color: rgba(255,255,255,0.88);
-  line-height: 1.85;
-}
-.legal-card ul {
-  margin: 12px 0 0 18px;
-  color: rgba(255,255,255,0.88);
-  line-height: 1.85;
-}
-.legal-card li + li { margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -363,99 +264,116 @@ h3 {
     <div class="container topbar-inner">
       <a class="brand" href="/index.html" aria-label="Mainsches home">
         <span class="brand-mark">M</span>
-        <span class="brand-text">Mainsches</span>
+        <span>Mainsches</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
-        <a href="/index.html">Home</a><a href="/contact.html">Contact</a><a href="/sketchit.html">sketchIT</a><a href="/swipesort.html">SwipeSort</a>
+        <a href="/index.html" >Home</a>
+        <a href="/contact.html" >Contact</a>
+        <a href="/sketchit.html" >sketchIT</a>
+        <a href="/swipesort.html" >SwipeSort</a>
       </nav>
     </div>
   </header>
 
+
   <main class="page">
-    <section class="container section">
-      <span class="eyebrow">Privacy notice</span>
-      <h1>Privacy</h1>
-      <p class="lead">This privacy notice explains how mainsches.com handles personal data when you visit the website or use the contact form.</p>
+    <section class="container hero">
+      <span class="eyebrow">Privacy</span>
+      <h1>Privacy Policy</h1>
+      <p>
+        This privacy policy explains how mainsches.com handles personal data when you visit the website or use the contact form.
+      </p>
     </section>
 
     <section class="container section">
       <div class="panel">
         <div class="panel-content">
-          <div class="legal-card">
-            <p class="section-label">Controller</p>
-            <h3>Who is responsible</h3>
-            <p>Mainsches<br>Contact: contact@mainsches.com<br>Country of operation: Switzerland</p>
-          </div>
+          <div class="legal-stack">
+            <div class="legal-card">
+              <div class="label">Controller</div>
+              <h2>Responsible party</h2>
+              <p>Mainsches<br>Switzerland<br>Contact: contact@mainsches.com</p>
+            </div>
 
-          <div class="legal-card">
-            <p class="section-label">Website visits</p>
-            <h3>Technical data</h3>
-            <p>When you visit the website, technical information may be processed to deliver the website securely and reliably. This can include IP address, browser information, device type, operating system, referral information, access time and requested pages.</p>
-          </div>
+            <div class="legal-card">
+              <div class="label">Website visits</div>
+              <h2>Technical processing</h2>
+              <p>
+                When you visit this website, technical connection data may be processed to deliver the site securely and reliably.
+                This can include IP-related request data, browser information, device information, and server logs that are technically necessary for operation and security.
+              </p>
+            </div>
 
-          <div class="legal-card">
-            <p class="section-label">Contact form</p>
-            <h3>Inquiry processing</h3>
-            <p>If you use the contact form, the submitted details are processed to handle your inquiry and send a reply. This may include your name, email address, subject line, message content and technical metadata needed for abuse prevention and delivery.</p>
-          </div>
+            <div class="legal-card">
+              <div class="label">Contact form</div>
+              <h2>Messages you send voluntarily</h2>
+              <p>
+                If you use the contact form, the data you submit may include your name, email address, subject, and message content.
+                This data is processed to handle your inquiry, reply to your message, and protect the form against spam and abuse.
+              </p>
+            </div>
 
-          <div class="legal-card">
-            <p class="section-label">Spam protection</p>
-            <h3>Fraud and abuse prevention</h3>
-            <p>The contact flow includes anti-spam checks such as hidden honeypot fields, form timing validation, request-rate limitation and technical request evaluation. This helps protect the website and communication channel from abuse.</p>
-          </div>
+            <div class="legal-card">
+              <div class="label">Anti-spam and security</div>
+              <h2>Protection of the contact form</h2>
+              <p>
+                The contact form uses anti-spam measures such as hidden fields, timing checks, and request limitation to detect abuse and maintain service security.
+              </p>
+            </div>
 
-          <div class="legal-card">
-            <p class="section-label">Hosting and backend</p>
-            <h3>Vercel and server processing</h3>
-            <p>The website is hosted on Vercel. Contact requests are processed through server-side functions. Technical request data may therefore be processed by hosting and infrastructure providers to operate, secure and improve the service.</p>
-          </div>
+            <div class="legal-card">
+              <div class="label">Analytics</div>
+              <h2>Website analytics</h2>
+              <p>
+                This website uses Vercel Analytics to understand general website usage and improve performance and content.
+                Analytics information is used in aggregated form to evaluate visits, page views, and overall usage patterns.
+              </p>
+            </div>
 
-          <div class="legal-card">
-            <p class="section-label">Analytics</p>
-            <h3>Vercel Analytics</h3>
-            <p>The website uses Vercel Analytics to understand general website usage and performance. The analytics setup is intended to provide aggregated insight into page views and site interaction patterns without unnecessary complexity.</p>
-          </div>
+            <div class="legal-card">
+              <div class="label">Service providers</div>
+              <h2>Hosting and infrastructure</h2>
+              <p>
+                The website is hosted on Vercel. Contact form processing may also involve supporting infrastructure required to deliver the website and send messages.
+              </p>
+            </div>
 
-          <div class="legal-card">
-            <p class="section-label">Purpose and legal basis</p>
-            <h3>Why data is processed</h3>
-            <ul>
-              <li>to provide and secure the website,</li>
-              <li>to respond to inquiries,</li>
-              <li>to prevent spam and misuse,</li>
-              <li>to understand overall website performance and usage.</li>
-            </ul>
-          </div>
+            <div class="legal-card">
+              <div class="label">Retention</div>
+              <h2>Storage duration</h2>
+              <p>
+                Personal data is retained only for as long as necessary for the relevant purpose, such as responding to inquiries, maintaining security, and meeting legal or operational obligations.
+              </p>
+            </div>
 
-          <div class="legal-card">
-            <p class="section-label">Retention</p>
-            <h3>How long data may be kept</h3>
-            <p>Personal data is stored only as long as necessary for the relevant purpose, legal obligations, security needs or communication follow-up. Exact retention periods can vary depending on the type of inquiry and the technical context.</p>
-          </div>
+            <div class="legal-card">
+              <div class="label">Your rights</div>
+              <h2>Questions and requests</h2>
+              <p>
+                You may contact Mainsches if you have questions about personal data processing or would like to make a privacy-related request.
+              </p>
+            </div>
 
-          <div class="legal-card">
-            <p class="section-label">Your rights</p>
-            <h3>Access and requests</h3>
-            <p>You may request information about personal data relating to you, and you may ask for correction or deletion where applicable. For privacy-related requests, please contact: contact@mainsches.com</p>
-          </div>
-
-          <div class="legal-card">
-            <p class="section-label">Updates</p>
-            <h3>Changes to this notice</h3>
-            <p>This privacy notice may be updated if the website, its features or legal requirements change.</p>
+            <div class="legal-card">
+              <div class="label">Updates</div>
+              <h2>Changes to this policy</h2>
+              <p>
+                This privacy policy may be updated if the website, services, or data processing activities change.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
-    <section class="container footer-shell">
-      <div class="site-footer">
-        <a class="footer-link" href="/impressum.html">Impressum</a>
-        <a class="footer-link" href="/privacy.html">Privacy</a>
-      </div>
-    </section>
-
   </main>
+
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/impressum.html">Impressum</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
 </body>
 </html>
