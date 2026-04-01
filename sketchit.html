@@ -465,6 +465,99 @@
       box-shadow:0 24px 56px rgba(0,0,0,.20);
     }
     .quote p{font-size:1.18rem;line-height:1.85;max-width:840px;color:rgba(255,255,255,.86);text-wrap:pretty}
+
+    .compare-wrap{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+      gap:20px;
+      align-items:center;
+    }
+    .compare-card{
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      box-shadow:0 24px 70px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.05);
+      transition:transform var(--speed-med) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-med) var(--ease);
+      will-change:transform;
+    }
+    .compare-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 24%);
+      z-index:1;
+    }
+    .compare-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.14);
+      box-shadow:0 28px 82px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .compare-label{
+      position:absolute;
+      top:16px;
+      left:16px;
+      z-index:2;
+      display:inline-flex;
+      align-items:center;
+      min-height:36px;
+      padding:0 14px;
+      border-radius:999px;
+      background:rgba(8,8,8,.72);
+      border:1px solid rgba(255,255,255,.10);
+      backdrop-filter:blur(10px);
+      color:#fff;
+      font-size:.84rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .compare-card img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
+    }
+    .compare-card:hover img{
+      transform:scale(1.03);
+      filter:saturate(1.04) contrast(1.01);
+    }
+    .compare-arrow{
+      position:relative;
+      display:grid;
+      place-items:center;
+      width:74px;
+      height:74px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.11);
+      background:radial-gradient(circle at center, rgba(255,255,255,.12), rgba(255,255,255,.03) 62%, rgba(255,255,255,.02) 100%);
+      box-shadow:0 0 34px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.05);
+      color:#fff;
+      font-size:1.85rem;
+      line-height:1;
+      overflow:hidden;
+    }
+    .compare-arrow::before{
+      content:"";
+      position:absolute;
+      inset:-18px;
+      background:radial-gradient(circle at center, rgba(255,255,255,.22), transparent 56%);
+      filter:blur(14px);
+      opacity:.72;
+      z-index:0;
+      animation:softPulse 3.2s ease-in-out infinite;
+    }
+    .compare-arrow span{
+      position:relative;
+      z-index:1;
+      transform:translateX(1px);
+    }
+    @keyframes softPulse{
+      0%,100%{transform:scale(.96); opacity:.55;}
+      50%{transform:scale(1.06); opacity:.9;}
+    }
     .hidden{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .reveal{
       opacity:0;
@@ -675,6 +768,27 @@
       .legal-card{padding:15px}
       .quote{padding:18px}
       .quote p{font-size:1rem}
+
+      .compare-wrap{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+      .compare-arrow{
+        width:58px;
+        height:58px;
+        margin:0 auto;
+        font-size:1.45rem;
+      }
+      .compare-card{
+        border-radius:22px;
+      }
+      .compare-label{
+        top:12px;
+        left:12px;
+        min-height:32px;
+        padding:0 12px;
+        font-size:.76rem;
+      }
       .btn{min-height:50px}
       input, textarea{padding:14px 15px}
     }
@@ -726,41 +840,52 @@
       </div>
     </section>
 
-    <section class="container section reveal delay-1">
+    
+<section class="container section reveal delay-1">
       <div class="panel">
         <div class="panel-content">
-          <div class="product-grid">
-            <div class="device">
-              <div class="device-top">
-                <span>Real app preview</span>
-                <span>Input → Output</span>
-              </div>
-              <div class="device-screen">
-                <img src="/assets/sketchit-screen.jpg" alt="sketchIT screenshot showing a kitchen sketch and AI-generated kitchen concept">
-              </div>
+          <div class="section-head">
+            <div class="label">Before and after</div>
+            <h2>See the transformation in one glance.</h2>
+            <p>
+              sketchIT is easiest to understand when the input and output are shown side by side. A rough furniture sketch becomes a clearer, more polished visual concept that is easier to review, refine, and present.
+            </p>
+          </div>
+
+          <div class="compare-wrap">
+            <div class="compare-card">
+              <span class="compare-label">Before</span>
+              <img src="/assets/sketchit-before.jpg" alt="Rough furniture sketch used as input for sketchIT">
             </div>
-            <div>
-              <div class="feature-stack">
-                <div class="feature">
-                  <h3>Use rough visual input instead of polished assets</h3>
-                  <p>
-                    A quick sketch becomes the starting point. That lowers the barrier to showing an idea early in a sketch-to-image workflow,
-                    before time is spent refining details that may still change.
-                  </p>
-                </div>
-                <div class="feature">
-                  <h3>Add simple guidance in text</h3>
-                  <p>
-                    The prompt layer helps steer color, mood, and material direction without requiring a full design workflow, making the AI image result easier to control.
-                  </p>
-                </div>
-                <div class="feature">
-                  <h3>Generate a concept that is easier to communicate</h3>
-                  <p>
-                    The result is a clearer visual reference for feedback, presentations, and next-step iteration — especially useful when turning rough sketches into presentable image concepts.
-                  </p>
-                </div>
-              </div>
+
+            <div class="compare-arrow" aria-hidden="true">
+              <span>→</span>
+            </div>
+
+            <div class="compare-card">
+              <span class="compare-label">After</span>
+              <img src="/assets/sketchit-after.jpg" alt="AI-generated furniture concept created from the sketchIT input sketch">
+            </div>
+          </div>
+
+          <div class="feature-stack" style="margin-top:22px">
+            <div class="feature">
+              <h3>Start from an early idea</h3>
+              <p>
+                The workflow begins with rough visual input instead of a finished render. That makes it much easier to explore concepts early, before committing time to a full design process.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Turn sketches into clearer visual references</h3>
+              <p>
+                sketchIT helps transform loose sketches into outputs that feel more tangible and presentation-ready, making communication with others faster and more effective.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Built for concept communication</h3>
+              <p>
+                The value is not only image generation. It is the jump from abstract idea to visual direction — a better foundation for feedback, iteration, and next decisions.
+              </p>
             </div>
           </div>
         </div>
