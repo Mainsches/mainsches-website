@@ -47,6 +47,12 @@
       --speed-fast:180ms;
       --speed-med:240ms;
       --speed-slow:700ms;
+
+      --gold:#d4af37;
+      --gold-2:#f1d77b;
+      --gold-line:rgba(212,175,55,.22);
+      --gold-soft:rgba(212,175,55,.10);
+      --gold-glow:0 0 30px rgba(212,175,55,.14);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -57,6 +63,8 @@
       background:
         radial-gradient(circle at 12% 10%, rgba(255,255,255,.11), transparent 24%),
         radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 18%),
+        radial-gradient(circle at 70% 45%, rgba(212,175,55,.055), transparent 24%),
+        radial-gradient(circle at 18% 65%, rgba(212,175,55,.04), transparent 20%),
         linear-gradient(180deg, #0a0a0a 0%, #050505 42%, #030303 100%);
       min-height:100vh;
       overflow-x:hidden;
@@ -112,7 +120,7 @@
     }
     .nav{display:flex;gap:8px;flex-wrap:nowrap}
     .nav a{
-      width:96px;min-width:96px;padding:12px 10px;text-align:center;
+      width:auto;min-width:96px;padding:12px 14px;text-align:center;flex:0 0 auto;
       border-radius:999px;border:1px solid transparent;
       color:var(--muted);font-size:.95rem;font-weight:600;
       transition:
@@ -150,7 +158,7 @@
       flex:0 0 auto;
     }
     h1,h2,h3,p{margin:0}
-    .hero{padding:44px 0 28px}
+    .hero{padding:48px 0 32px}
     .hero h1{
       margin-top:18px;
       font-size:clamp(3.1rem,6vw,5.9rem);
@@ -190,11 +198,18 @@
     .btn:active{
       transform:translateY(0) scale(.985);
     }
-    .btn-primary{background:#fff;color:#050505;border-color:#fff}
-    .btn-primary:hover{background:#f2f2f2}
-    .section{padding:24px 0}
-    .section + .section{margin-top:18px}
-    .section-head{margin-bottom:22px}
+    .btn-primary{
+      background:linear-gradient(180deg, #f5e3a0 0%, var(--gold) 100%);
+      color:#050505;
+      border-color:rgba(255,255,255,0);
+      box-shadow:0 12px 30px rgba(212,175,55,.16);
+    }
+    .btn-primary:hover{
+      background:linear-gradient(180deg, #f7e8b6 0%, #ddb74d 100%);
+    }
+    .section{padding:32px 0}
+    .section + .section{margin-top:22px}
+    .section-head{margin-bottom:26px}
     .section-head .label{
       color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
       margin-bottom:10px;
@@ -222,8 +237,8 @@
     }
     .panel:hover{
       transform:translateY(-4px);
-      border-color:rgba(255,255,255,.13);
-      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05);
+      border-color:var(--gold-line);
+      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
     }
     .panel::before{
@@ -234,6 +249,8 @@
     }
     .panel:hover::before{opacity:1}
     .panel-content{position:relative;padding:28px}
+    .panel-content:has(form){padding:32px 30px}
+    .form-actions{margin-top:26px}
     .product-grid{
       display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:28px;align-items:center;
     }
@@ -312,7 +329,7 @@
     }
     .kpi strong{display:block;font-size:1.3rem;letter-spacing:-.04em}
     .kpi span{display:block;margin-top:6px;color:var(--muted);line-height:1.55;text-wrap:pretty}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .field{display:grid;gap:10px}
     .field.full{grid-column:1/-1}
     label{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.92)}
@@ -333,9 +350,9 @@
       background:rgba(255,255,255,.04);
     }
     input:focus, textarea:focus{
-      border-color:rgba(255,255,255,.24);
-      background:rgba(255,255,255,.05);
-      box-shadow:0 0 0 4px rgba(255,255,255,.04);
+      border-color:rgba(212,175,55,.35);
+      background:rgba(255,255,255,.055);
+      box-shadow:0 0 0 3px rgba(212,175,55,.12), 0 0 0 1px rgba(255,255,255,.06);
       transform:translateY(-1px);
     }
     textarea{min-height:170px;resize:vertical}
@@ -699,7 +716,7 @@
       <nav class="nav" aria-label="Primary navigation">
         <a href="/index.html" >Home</a>
         <a href="/contact.html" aria-current="page">Contact</a>
-        <a href="/sketchit.html" >sketchIT</a>
+        <a href="/sketchit.html" >Mainsches AI</a>
         <a href="/swipesort.html" >SwipeSort</a>
       </nav>
     </div>
@@ -762,7 +779,7 @@
 
             <input type="hidden" id="formStartedAt" name="formStartedAt">
 
-            <div class="hero-actions" style="margin-top:22px">
+            <div class="hero-actions form-actions">
               <button class="btn btn-primary" type="submit" id="submit-button">Send message</button>
             </div>
 

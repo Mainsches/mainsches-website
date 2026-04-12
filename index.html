@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <title>Mainsches — AI Apps, UI & Performance</title>
-  <meta name="description" content="Mainsches builds AI apps and focused software with clean UI, fast performance, and modern product design." />
+  <title>Mainsches — Mainsches AI, SwipeSort & Focused Software</title>
+  <meta name="description" content="Mainsches builds focused software including Mainsches AI for sketch-to-image workflows and SwipeSort for fast photo cleanup — clean UI, fast performance, and modern product design." />
     <link rel="canonical" href="https://mainsches.com/" />
   <meta name="theme-color" content="#050505" />
-  <meta property="og:title" content="Mainsches — AI Apps, UI & Performance" />
-  <meta property="og:description" content="Mainsches builds AI apps and focused software with clean UI, fast performance, and modern product design." />
+  <meta property="og:title" content="Mainsches — Mainsches AI, SwipeSort & Focused Software" />
+  <meta property="og:description" content="Mainsches builds focused software including Mainsches AI for sketch-to-image workflows and SwipeSort for fast photo cleanup — clean UI, fast performance, and modern product design." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mainsches.com/" />
 
@@ -25,8 +25,8 @@
   <meta property="og:site_name" content="Mainsches" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mainsches — AI Apps, UI & Performance" />
-  <meta name="twitter:description" content="Mainsches builds AI apps and focused software with clean UI, fast performance, and modern product design." />
+  <meta name="twitter:title" content="Mainsches — Mainsches AI, SwipeSort & Focused Software" />
+  <meta name="twitter:description" content="Mainsches builds focused software including Mainsches AI for sketch-to-image workflows and SwipeSort for fast photo cleanup — clean UI, fast performance, and modern product design." />
   <meta property="og:image" content="https://mainsches.com/og-cover.jpg" />
   <meta name="twitter:image" content="https://mainsches.com/og-cover.jpg" />
   <style>
@@ -49,6 +49,12 @@
       --speed-fast:180ms;
       --speed-med:240ms;
       --speed-slow:700ms;
+
+      --gold:#d4af37;
+      --gold-2:#f1d77b;
+      --gold-line:rgba(212,175,55,.22);
+      --gold-soft:rgba(212,175,55,.10);
+      --gold-glow:0 0 30px rgba(212,175,55,.14);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -59,6 +65,8 @@
       background:
         radial-gradient(circle at 12% 10%, rgba(255,255,255,.11), transparent 24%),
         radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 18%),
+        radial-gradient(circle at 72% 48%, rgba(212,175,55,.06), transparent 22%),
+        radial-gradient(circle at 22% 72%, rgba(212,175,55,.045), transparent 20%),
         linear-gradient(180deg, #0a0a0a 0%, #050505 42%, #030303 100%);
       min-height:100vh;
       overflow-x:hidden;
@@ -114,7 +122,7 @@
     }
     .nav{display:flex;gap:8px;flex-wrap:nowrap}
     .nav a{
-      width:96px;min-width:96px;padding:12px 10px;text-align:center;
+      width:auto;min-width:96px;padding:12px 14px;text-align:center;flex:0 0 auto;
       border-radius:999px;border:1px solid transparent;
       color:var(--muted);font-size:.95rem;font-weight:600;
       transition:
@@ -152,7 +160,7 @@
       flex:0 0 auto;
     }
     h1,h2,h3,p{margin:0}
-    .hero{padding:44px 0 28px}
+    .hero{padding:48px 0 32px}
     .hero h1{
       margin-top:18px;
       font-size:clamp(3.1rem,6vw,5.9rem);
@@ -192,11 +200,18 @@
     .btn:active{
       transform:translateY(0) scale(.985);
     }
-    .btn-primary{background:#fff;color:#050505;border-color:#fff}
-    .btn-primary:hover{background:#f2f2f2}
-    .section{padding:24px 0}
-    .section + .section{margin-top:18px}
-    .section-head{margin-bottom:22px}
+    .btn-primary{
+      background:linear-gradient(180deg, #f5e3a0 0%, var(--gold) 100%);
+      color:#050505;
+      border-color:rgba(255,255,255,0);
+      box-shadow:0 12px 30px rgba(212,175,55,.16);
+    }
+    .btn-primary:hover{
+      background:linear-gradient(180deg, #f7e8b6 0%, #ddb74d 100%);
+    }
+    .section{padding:32px 0}
+    .section + .section{margin-top:22px}
+    .section-head{margin-bottom:26px}
     .section-head .label{
       color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
       margin-bottom:10px;
@@ -224,8 +239,8 @@
     }
     .panel:hover{
       transform:translateY(-4px);
-      border-color:rgba(255,255,255,.13);
-      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05);
+      border-color:var(--gold-line);
+      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
     }
     .panel::before{
@@ -392,7 +407,7 @@
     .hero-identity{
       display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:28px;align-items:end;
     }
-    .hero-identity{grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr)}
+    .hero-identity{grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);gap:32px;align-items:stretch}
     .mini-shot{
       border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
       background:#0c0c0c;box-shadow:var(--shadow);
@@ -408,56 +423,81 @@
       transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
     }
     .mini-shot:hover img{transform:scale(1.02);filter:saturate(1.03)}
-    .identity-panel{display:grid;gap:14px}
+    .identity-panel{display:grid;gap:16px}
     .signature-card{
-      padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+      padding:24px;border-radius:26px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
       transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
     }
     .signature-card:hover{
       transform:translateY(-3px);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      box-shadow:0 18px 40px rgba(0,0,0,.18);
+      border-color:var(--gold-line);
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.028));
+      box-shadow:0 20px 48px rgba(0,0,0,.22), var(--gold-glow);
     }
     .signature-card h3{font-size:1.15rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
     .signature-card p{color:var(--muted);line-height:1.75;text-wrap:pretty}
-    .statements{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .statements{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
     .statement{
-      padding:18px;border-radius:22px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+      padding:20px;border-radius:24px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
       transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
     }
     .statement:hover{
       transform:translateY(-3px);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      box-shadow:0 18px 40px rgba(0,0,0,.18);
+      border-color:rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      box-shadow:0 18px 42px rgba(0,0,0,.2);
     }
     .statement strong{display:block;font-size:1.02rem;letter-spacing:-.03em;margin-bottom:8px}
     .statement span{display:block;color:var(--muted);line-height:1.7;text-wrap:pretty}
-    .project-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .project-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
     .project-link{
-      display:block;padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
+      display:block;padding:24px;border-radius:28px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.022));
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
       transition:transform var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease)
     }
     .project-link:hover{
       transform:translateY(-4px);
-      background:rgba(255,255,255,.045);
-      border-color:rgba(255,255,255,.12);
-      box-shadow:0 22px 46px rgba(0,0,0,.22);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-color:var(--gold-line);
+      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow);
     }
+    .project-link-row{display:flex;align-items:flex-start;gap:16px}
+    .project-link-mark{
+      flex:0 0 auto;width:48px;height:48px;border-radius:16px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.035);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .project-link[href="/sketchit.html"] .project-link-mark{
+      border-color:var(--gold-line);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), var(--gold-glow);
+    }
+    .project-link-mark img{width:30px;height:30px;object-fit:contain;opacity:.95}
+    .project-link-body{min-width:0;flex:1}
     .project-link .kicker{color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:700;margin-bottom:10px}
     .project-link h3{font-size:1.24rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
     .project-link p{color:var(--muted);line-height:1.75;text-wrap:pretty}
     .quote{
-      padding:28px;border-radius:28px;border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
+      position:relative;
+      padding:32px 30px;border-radius:32px;
+      border:1px solid rgba(255,255,255,.1);
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04), 0 0 48px rgba(212,175,55,.06);
       transition:transform var(--speed-med) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-med) var(--ease);
     }
     .quote:hover{
       transform:translateY(-3px);
-      border-color:rgba(255,255,255,.12);
-      box-shadow:0 24px 56px rgba(0,0,0,.20);
+      border-color:var(--gold-line);
+      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), 0 0 56px rgba(212,175,55,.1);
     }
     .quote p{font-size:1.18rem;line-height:1.85;max-width:840px;color:rgba(255,255,255,.86);text-wrap:pretty}
     .hidden{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -681,7 +721,7 @@
   "@type": "Organization",
   "name": "Mainsches",
   "url": "https://mainsches.com",
-  "description": "Mainsches builds AI apps and focused software with clean UI, fast performance, and modern product design."
+  "description": "Mainsches builds focused software including Mainsches AI for sketch-to-image workflows and SwipeSort for fast photo cleanup, with clean UI, fast performance, and modern product design."
 }
   </script>
 </head>
@@ -696,7 +736,7 @@
       <nav class="nav" aria-label="Primary navigation">
         <a href="/index.html" aria-current="page">Home</a>
         <a href="/contact.html" >Contact</a>
-        <a href="/sketchit.html" >sketchIT</a>
+        <a href="/sketchit.html" >Mainsches AI</a>
         <a href="/swipesort.html" >SwipeSort</a>
       </nav>
     </div>
@@ -774,15 +814,25 @@
         </p>
       </div>
       <div class="project-links">
-        <a class="project-link" href="/swipesort.html">
-          <div class="kicker">Photo cleanup app</div>
-          <h3>SwipeSort</h3>
-          <p>Fast swipe-based photo cleanup designed to reduce clutter with less friction.</p>
-        </a>
         <a class="project-link" href="/sketchit.html">
-          <div class="kicker">AI visual tool</div>
-          <h3>sketchIT</h3>
-          <p>Turn rough sketches into clearer visual concepts with an AI-driven workflow.</p>
+          <div class="project-link-row">
+            <span class="project-link-mark" aria-hidden="true"><img src="/assets/mainsches-ai-logo.png" alt=""></span>
+            <div class="project-link-body">
+              <div class="kicker">AI visual tool</div>
+              <h3>Mainsches AI</h3>
+              <p>Turn rough sketches into clearer visual concepts with an AI-driven workflow.</p>
+            </div>
+          </div>
+        </a>
+        <a class="project-link" href="/swipesort.html">
+          <div class="project-link-row">
+            <span class="project-link-mark" aria-hidden="true"><img src="/assets/swipesort-logo.png" alt=""></span>
+            <div class="project-link-body">
+              <div class="kicker">Photo cleanup app</div>
+              <h3>SwipeSort</h3>
+              <p>Fast swipe-based photo cleanup designed to reduce clutter with less friction.</p>
+            </div>
+          </div>
         </a>
       </div>
     </section>

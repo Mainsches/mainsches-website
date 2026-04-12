@@ -12,11 +12,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <title>Mainsches AI — Sketch to Image App for Visual Concepts</title>
-  <meta name="description" content="Mainsches AI is a premium sketch to image app that turns rough sketches into realistic visuals with a fast, intuitive AI workflow." />
+  <meta name="description" content="Mainsches AI turns sketches into polished images—upload a drawing, prompt in chat, get a realistic visual in seconds." />
   <link rel="canonical" href="https://mainsches.com/sketchit.html" />
   <meta name="theme-color" content="#050505" />
   <meta property="og:title" content="Mainsches AI — Sketch to Image App for Visual Concepts" />
-  <meta property="og:description" content="Turn rough sketches into realistic visuals with a premium AI sketch-to-image workflow." />
+  <meta property="og:description" content="Sketch to image in one flow: upload, prompt, generate—premium AI for visual concepts." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mainsches.com/sketchit.html" />
 
@@ -26,7 +26,7 @@
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Mainsches AI — Sketch to Image App for Visual Concepts" />
-  <meta name="twitter:description" content="Turn rough sketches into realistic visuals with a premium AI sketch-to-image workflow." />
+  <meta name="twitter:description" content="Sketch to image in one flow: upload, prompt, generate—premium AI for visual concepts." />
 
   <style>
 
@@ -54,6 +54,7 @@
       --gold-line:rgba(212,175,55,.22);
       --gold-soft:rgba(212,175,55,.10);
       --gold-glow:0 0 30px rgba(212,175,55,.16);
+      --gold-glow-soft:0 0 48px rgba(212,175,55,.1);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -121,7 +122,7 @@
     }
     .nav{display:flex;gap:8px;flex-wrap:nowrap}
     .nav a{
-      width:96px;min-width:96px;padding:12px 10px;text-align:center;
+      width:auto;min-width:96px;padding:12px 14px;text-align:center;flex:0 0 auto;
       border-radius:999px;border:1px solid transparent;
       color:var(--muted);font-size:.95rem;font-weight:600;
       transition:
@@ -161,32 +162,74 @@
     h1,h2,h3,p{margin:0}
 
     .hero{
-      padding:44px 0 24px;
+      padding:48px 0 44px;
     }
     .hero-grid{
       display:grid;
-      grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);
-      gap:30px;
+      grid-template-columns:minmax(0,1.12fr) minmax(260px,min(340px,34vw));
+      gap:clamp(22px,3.5vw,42px);
       align-items:center;
     }
+    .hero-copy{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+    }
+    .hero-lockup{
+      display:flex;
+      align-items:center;
+      gap:clamp(12px,2vw,16px);
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .hero-mark{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0;
+      padding:0;
+      border:none;
+      border-radius:0;
+      background:none;
+      box-shadow:none;
+      line-height:0;
+    }
+    .hero-mark img{
+      width:clamp(58px,6vw,72px);
+      height:auto;
+      max-height:72px;
+      display:block;
+      object-fit:contain;
+      object-position:left center;
+    }
+    .hero-brand-name{
+      font-size:clamp(1.35rem,2.4vw,1.78rem);
+      font-weight:700;
+      letter-spacing:-.04em;
+      line-height:1.05;
+      color:rgba(255,252,248,.98);
+    }
     .hero h1{
-      margin-top:18px;
-      font-size:clamp(3.1rem,6vw,5.9rem);
-      line-height:.92;
-      letter-spacing:-.09em;
-      max-width:900px;
+      margin-top:16px;
+      font-size:clamp(2.85rem,5.2vw,4.65rem);
+      line-height:.96;
+      letter-spacing:-.085em;
+      font-weight:800;
+      max-width:15ch;
       text-wrap:balance;
     }
     .hero h1 .gold{
       color:var(--gold-2);
-      text-shadow:0 0 24px rgba(212,175,55,.10);
+      text-shadow:0 0 36px rgba(212,175,55,.14), 0 0 80px rgba(212,175,55,.06);
     }
+    .hero h1 .hero-line{display:block}
     .hero p{
-      margin-top:22px;max-width:720px;
-      font-size:1.08rem;line-height:1.9;color:var(--muted);
+      margin-top:20px;max-width:32rem;
+      font-size:1.04rem;line-height:1.7;color:rgba(255,255,255,.66);
       text-wrap:pretty;
     }
-    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       min-height:54px;padding:0 22px;border-radius:999px;font-weight:700;
@@ -216,10 +259,11 @@
       background:linear-gradient(180deg, #f5e3a0 0%, var(--gold) 100%);
       color:#050505;
       border-color:rgba(255,255,255,0);
-      box-shadow:0 12px 30px rgba(212,175,55,.18);
+      box-shadow:0 12px 32px rgba(212,175,55,.2), inset 0 1px 0 rgba(255,255,255,.22);
     }
     .btn-primary:hover{
       background:linear-gradient(180deg, #f7e8b6 0%, #ddb74d 100%);
+      box-shadow:0 16px 38px rgba(212,175,55,.24), inset 0 1px 0 rgba(255,255,255,.26);
     }
     .btn-secondary{
       border-color:var(--gold-line);
@@ -229,15 +273,15 @@
 
     .hero-metrics{
       display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:14px;
-      margin-top:22px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:11px;
+      margin-top:24px;
     }
     .metric{
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      padding:18px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.07);
+      background:linear-gradient(165deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+      padding:16px 16px 17px;
       transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease);
     }
     .metric:hover{
@@ -247,119 +291,70 @@
     }
     .metric strong{
       display:block;
-      font-size:1.02rem;
-      letter-spacing:-.03em;
-      margin-bottom:7px;
+      font-size:.98rem;
+      font-weight:700;
+      letter-spacing:-.025em;
+      margin-bottom:6px;
+      color:rgba(255,252,245,.95);
     }
     .metric span{
       display:block;
-      color:var(--muted);
-      line-height:1.65;
+      color:rgba(255,255,255,.58);
+      font-size:.92rem;
+      line-height:1.55;
       text-wrap:pretty;
     }
 
-    .hero-showcase{
-      position:relative;
-      overflow:hidden;
-      border-radius:32px;
-      border:1px solid var(--gold-line);
-      background:
-        radial-gradient(circle at 40% 50%, rgba(212,175,55,.18), transparent 20%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
-      box-shadow:var(--shadow), var(--gold-glow);
-      padding:22px;
-    }
-    .hero-showcase::before{
-      content:"";
-      position:absolute;
-      inset:auto auto 18% 34%;
-      width:180px;height:180px;border-radius:50%;
-      background:radial-gradient(circle, rgba(212,175,55,.22), transparent 72%);
-      filter:blur(10px);
-      pointer-events:none;
-    }
-    .showcase-grid{
-      position:relative;
-      display:grid;
-      grid-template-columns:minmax(0,.9fr) auto minmax(0,.9fr);
-      gap:18px;
+    .hero-visual{
+      display:flex;
+      justify-content:center;
       align-items:center;
-      z-index:1;
-    }
-    .showcase-card{
-      position:relative;
-      border-radius:26px;
-      overflow:hidden;
-      border:1px solid var(--gold-line);
-      background:#0b0b0b;
-      box-shadow:0 22px 60px rgba(0,0,0,.28);
-    }
-    .showcase-card img{
       width:100%;
-      aspect-ratio:4/5;
-      object-fit:cover;
-      transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
+      padding:6px 0 2px;
     }
-    .hero-showcase:hover .showcase-card img{
-      transform:scale(1.02);
+    .hero-visual .device{
+      width:100%;
+      max-width:min(318px,88vw);
+      margin:0;
+      border-color:rgba(255,255,255,.11);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 22px 58px rgba(0,0,0,.4),
+        0 0 0 1px rgba(212,175,55,.06),
+        0 0 52px rgba(212,175,55,.09);
+    }
+    .hero-visual .device:hover{
+      transform:translateY(-3px);
+      border-color:rgba(212,175,55,.26);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 28px 70px rgba(0,0,0,.45),
+        0 0 0 1px rgba(212,175,55,.1),
+        0 0 64px rgba(212,175,55,.14);
+    }
+    .hero-visual .device-screen{
+      border-color:rgba(212,175,55,.14);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 0 28px rgba(212,175,55,.06);
+    }
+    .hero-visual .device:hover .device-screen{
+      border-color:rgba(212,175,55,.22);
+    }
+    .hero-visual .device:hover .device-screen img{
+      transform:scale(1.018);
       filter:saturate(1.03) contrast(1.01);
     }
-    .showcase-badge{
-      position:absolute;
-      left:14px;
-      bottom:14px;
-      z-index:2;
-      display:inline-flex;
-      align-items:center;
-      min-height:36px;
-      padding:0 14px;
-      border-radius:999px;
-      background:rgba(10,10,10,.80);
-      border:1px solid rgba(255,255,255,.10);
-      font-size:.85rem;
-      font-weight:700;
-      letter-spacing:.03em;
-    }
-    .showcase-arrow{
-      position:relative;
-      display:grid;
-      place-items:center;
-      width:76px;height:76px;
-      border-radius:999px;
-      border:1px solid var(--gold-line);
-      background:radial-gradient(circle at center, rgba(212,175,55,.26), rgba(212,175,55,.08) 62%, rgba(212,175,55,.02) 100%);
-      box-shadow:0 0 40px rgba(212,175,55,.14);
-      color:#fff;
-      font-size:1.9rem;
-      line-height:1;
-      overflow:hidden;
-    }
-    .showcase-arrow::before{
-      content:"";
-      position:absolute;
-      inset:-20px;
-      border-radius:50%;
-      background:radial-gradient(circle at center, rgba(255,220,120,.48), transparent 62%);
-      filter:blur(14px);
-      opacity:.75;
-      animation:softPulse 3.2s ease-in-out infinite;
-    }
-    .showcase-arrow span{
-      position:relative;
-      z-index:1;
-      transform:translateX(1px);
-    }
 
-    .section{padding:24px 0}
-    .section + .section{margin-top:18px}
-    .section-head{margin-bottom:22px}
+    .section{padding:28px 0}
+    .section + .section{margin-top:22px}
+    .section-head{margin-bottom:24px}
     .section-head .label{
       color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
       margin-bottom:10px;
     }
     .section-head h2{
       font-size:clamp(2rem,3.5vw,3rem);
-      letter-spacing:-.055em;line-height:1.02;max-width:760px;
+      font-weight:800;
+      letter-spacing:-.055em;line-height:1.02;max-width:18ch;
       text-wrap:balance;
     }
     .section-head p{
@@ -394,49 +389,38 @@
     .panel:hover::before{opacity:1}
     .panel-content{position:relative;padding:28px}
 
-    .compare-wrap{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
-      gap:20px;
-      align-items:center;
-    }
-    .compare-card{
-      position:relative;
-      border-radius:28px;
-      overflow:hidden;
-      border:1px solid var(--gold-line);
-      background:#0c0c0c;
-      box-shadow:0 24px 70px rgba(0,0,0,.28);
-    }
-    .compare-card img{
+    .device-preview-wrap{
+      display:flex;
+      justify-content:center;
       width:100%;
-      aspect-ratio:1/1;
-      object-fit:cover;
+      margin-top:clamp(16px,3vw,36px);
+      margin-bottom:6px;
+    }
+    .wide-preview{
+      width:100%;
+      max-width:100%;
+      margin:0 auto;
+    }
+    .wide-preview img{
+      width:100%;
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:clamp(18px,2.2vw,26px);
+      object-fit:contain;
+      object-position:center;
+      box-shadow:
+        0 40px 120px rgba(0,0,0,.42),
+        0 0 1px rgba(255,255,255,.06),
+        0 0 72px rgba(212,175,55,.07);
       transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
+      will-change:transform;
     }
-    .panel:hover .compare-card img{
-      transform:scale(1.025);
-      filter:saturate(1.03);
+    .panel:hover .wide-preview img{
+      transform:scale(1.008);
+      filter:saturate(1.02) contrast(1.01);
     }
-    .compare-label{
-      position:absolute;
-      top:16px;
-      left:16px;
-      z-index:2;
-      display:inline-flex;
-      align-items:center;
-      min-height:38px;
-      padding:0 14px;
-      border-radius:999px;
-      background:rgba(8,8,8,.72);
-      border:1px solid rgba(255,255,255,.10);
-      backdrop-filter:blur(10px);
-      color:#fff;
-      font-size:.84rem;
-      font-weight:700;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
+    .device-preview-wrap + .kpis{margin-top:clamp(26px,4vw,40px)}
 
     .feature-grid{
       display:grid;
@@ -531,28 +515,36 @@
     .cta-band{
       display:grid;
       grid-template-columns:1fr auto;
-      gap:18px;
+      gap:22px;
       align-items:center;
-      padding:24px;
+      padding:26px 28px;
       border-radius:28px;
-      border:1px solid var(--gold-line);
+      border:1px solid rgba(212,175,55,.18);
       background:
-        radial-gradient(circle at 16% 50%, rgba(212,175,55,.12), transparent 16%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
-      box-shadow:var(--shadow), var(--gold-glow);
+        radial-gradient(ellipse 70% 80% at 0% 50%, rgba(212,175,55,.1), transparent 50%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.022));
+      box-shadow:var(--shadow), var(--gold-glow-soft), inset 0 1px 0 rgba(255,255,255,.05);
     }
     .cta-band h2{
-      font-size:clamp(1.8rem,3vw,2.6rem);
-      letter-spacing:-.05em;
-      line-height:1.02;
+      font-size:clamp(1.65rem,2.8vw,2.35rem);
+      font-weight:800;
+      letter-spacing:-.048em;
+      line-height:1.06;
+      max-width:20ch;
       text-wrap:balance;
     }
     .cta-band p{
-      margin-top:10px;
-      color:var(--muted);
-      line-height:1.8;
-      max-width:760px;
+      margin-top:12px;
+      color:rgba(255,255,255,.62);
+      font-size:1rem;
+      line-height:1.65;
+      max-width:32rem;
       text-wrap:pretty;
+    }
+    .cta-band .btn-primary{
+      flex:0 0 auto;
+      min-width:min(100%,200px);
+      justify-content:center;
     }
 
     .footer{padding:28px 0 16px}
@@ -593,11 +585,6 @@
     .delay-3{transition-delay:170ms}
     .delay-4{transition-delay:230ms}
 
-    @keyframes softPulse{
-      0%,100%{transform:scale(.96); opacity:.55;}
-      50%{transform:scale(1.06); opacity:.9;}
-    }
-
     @media (prefers-reduced-motion: reduce){
       *, *::before, *::after{
         animation-duration:0.01ms !important;
@@ -614,7 +601,13 @@
       .feature-grid{grid-template-columns:1fr}
       .kpis{grid-template-columns:1fr}
       .cta-band{grid-template-columns:1fr}
-      .hero-showcase{max-width:760px}
+      .hero-grid{gap:clamp(20px,4vw,32px)}
+      .hero-visual{
+        margin-top:10px;
+        padding-top:8px;
+        max-width:min(380px,100%);
+        margin-inline:auto;
+      }
     }
 
     @media (max-width: 760px){
@@ -677,7 +670,7 @@
         min-height:52px;
         padding:0 18px;
       }
-      .hero-metrics{grid-template-columns:1fr}
+      .hero-metrics{grid-template-columns:1fr;gap:10px;margin-top:22px}
       .section{padding:18px 0}
       .section + .section{margin-top:8px}
       .section-head{margin-bottom:18px}
@@ -691,22 +684,16 @@
         font-size:.98rem;
         line-height:1.75;
       }
-      .panel,
-      .hero-showcase,
-      .compare-card{border-radius:24px}
+      .panel{border-radius:24px}
       .panel:hover,
       .feature:hover,
       .metric:hover,
       .kpi:hover{transform:none}
       .panel-content{padding:18px}
-      .hero-showcase{padding:18px}
-      .showcase-grid,
-      .compare-wrap{
-        grid-template-columns:1fr;
-        gap:14px;
-      }
-      .showcase-arrow{
-        width:58px;height:58px;margin:0 auto;font-size:1.45rem;
+      .hero-visual .device:hover{transform:none}
+      .hero-visual .device:hover .device-screen img{
+        transform:none;
+        filter:none;
       }
       .device{
         padding:14px;
@@ -720,6 +707,18 @@
         padding:0 2px;
       }
       .device-screen{border-radius:20px}
+      .device-preview-wrap{margin-top:20px;margin-bottom:4px}
+      .wide-preview img{
+        border-radius:18px;
+        box-shadow:
+          0 28px 80px rgba(0,0,0,.38),
+          0 0 1px rgba(255,255,255,.05),
+          0 0 48px rgba(212,175,55,.06);
+      }
+      .panel:hover .wide-preview img{
+        transform:none;
+        filter:none;
+      }
       .feature,
       .metric,
       .kpi{padding:16px}
@@ -746,6 +745,11 @@
         padding:11px 12px;
       }
       .page{padding-top:14px;padding-bottom:64px}
+      .hero-mark img{
+        width:clamp(52px,14vw,64px);
+        max-height:64px;
+      }
+      .hero-brand-name{font-size:clamp(1.22rem,4.2vw,1.52rem)}
       .hero h1{
         font-size:clamp(2.1rem, 12vw, 3rem);
         letter-spacing:-.07em;
@@ -770,7 +774,7 @@
   "name": "Mainsches AI",
   "applicationCategory": "DesignApplication",
   "operatingSystem": "Android",
-  "description": "A premium AI sketch to image app for turning rough sketches into realistic visuals.",
+  "description": "Sketch-to-image AI: upload a drawing, prompt in chat, get a photoreal visual for concepts and design exploration.",
   "url": "https://mainsches.com/sketchit.html",
   "creator": {
     "@type": "Organization",
@@ -790,7 +794,7 @@
       <nav class="nav" aria-label="Primary navigation">
         <a href="/index.html" >Home</a>
         <a href="/contact.html" >Contact</a>
-        <a href="/sketchit.html" aria-current="page">sketchIT</a>
+        <a href="/sketchit.html" aria-current="page">Mainsches AI</a>
         <a href="/swipesort.html" >SwipeSort</a>
       </nav>
     </div>
@@ -799,51 +803,44 @@
   <main class="page">
     <section class="container hero reveal">
       <div class="hero-grid">
-        <div>
-          <span class="eyebrow">Mainsches AI</span>
-          <h1>Turn sketches into <span class="gold">real images</span>.</h1>
+        <div class="hero-copy">
+          <div class="hero-lockup">
+            <span class="hero-mark" aria-hidden="true"><img src="/assets/mainsches-ai-logo.png" alt=""></span>
+            <span class="hero-brand-name">Sketch to image</span>
+          </div>
+          <h1><span class="hero-line">Sketch in.</span> <span class="gold">Image out.</span></h1>
           <p>
-            Mainsches AI is a premium sketch-to-image workflow that transforms rough ideas into realistic visuals. Upload a sketch, describe the concept in chat, and generate a stronger visual direction in seconds.
+            Upload a line drawing, add a short prompt in chat, get a photoreal render—built for concepts you need to <em>see</em>, not explain.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/contact.html">Contact</a>
-            <a class="btn btn-secondary" href="#workflow">See workflow</a>
+            <a class="btn btn-primary" href="/contact.html">Start a conversation</a>
+            <a class="btn btn-secondary" href="#workflow">See the flow</a>
           </div>
 
           <div class="hero-metrics">
             <div class="metric">
-              <strong>Sketch → Image</strong>
-              <span>Go from rough concept to clean result with a simple AI flow.</span>
+              <strong>One pipeline</strong>
+              <span>Sketch → prompt → image. No detours.</span>
             </div>
             <div class="metric">
-              <strong>Chat-based UI</strong>
-              <span>Describe, refine and generate ideas inside an intuitive interface.</span>
+              <strong>Chat-native</strong>
+              <span>Steer the look in plain language.</span>
             </div>
             <div class="metric">
-              <strong>Fast generation</strong>
-              <span>Built for quick visual exploration and stronger concept communication.</span>
-            </div>
-            <div class="metric">
-              <strong>Premium feel</strong>
-              <span>Clean dark surfaces, strong hierarchy and a modern product aesthetic.</span>
+              <strong>Fast iteration</strong>
+              <span>Try directions in minutes, not meetings.</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-showcase reveal delay-1">
-          <div class="showcase-grid">
-            <div class="showcase-card">
-              <img src="/assets/sketchit-before.jpg" alt="Sketch input for Mainsches AI">
-              <span class="showcase-badge">Sketch</span>
+        <div class="hero-visual reveal delay-1">
+          <div class="device">
+            <div class="device-top">
+              <span>Mainsches AI</span>
+              <span>Sketch to Image</span>
             </div>
-
-            <div class="showcase-arrow" aria-hidden="true">
-              <span>→</span>
-            </div>
-
-            <div class="showcase-card">
-              <img src="/assets/sketchit-after.jpg" alt="AI-generated realistic image created from a sketch in Mainsches AI">
-              <span class="showcase-badge">Real image</span>
+            <div class="device-screen">
+              <img src="/assets/mainsches-ai-1.jpg" alt="Mainsches AI: sketch-to-image workspace">
             </div>
           </div>
         </div>
@@ -855,29 +852,29 @@
         <div class="panel-content">
           <div class="section-head">
             <div class="label">Workflow</div>
-            <h2>A simple premium flow from rough sketch to stronger visual direction.</h2>
+            <h2>Three steps. One outcome.</h2>
             <p>
-              Mainsches AI is designed to shorten the distance between an early concept and something that feels clearer, more tangible and easier to discuss. The workflow stays simple: add a sketch, describe the idea, generate the result.
+              From rough lines to a shareable render—without leaving the thread.
             </p>
           </div>
 
           <div class="feature-grid">
             <div class="feature">
-              <h3>Upload the sketch</h3>
+              <h3>Drop in the sketch</h3>
               <p>
-                Start with a rough drawing, a furniture concept, a product idea or any simple visual draft that captures the shape of the concept.
+                Any clear line drawing—product, furniture, interior, idea on paper.
               </p>
             </div>
             <div class="feature">
-              <h3>Describe it in chat</h3>
+              <h3>Prompt in chat</h3>
               <p>
-                Add a short prompt to guide the output. The chat-based flow makes the process feel natural, direct and easy to iterate.
+                Say what you want changed: materials, lighting, mood—then refine.
               </p>
             </div>
             <div class="feature">
-              <h3>Generate the image</h3>
+              <h3>Generate the render</h3>
               <p>
-                Turn the sketch into a more realistic visual that is stronger for feedback, presentation and next-step decision making.
+                Get a realistic image you can review, compare, and take forward.
               </p>
             </div>
           </div>
@@ -889,41 +886,31 @@
       <div class="panel">
         <div class="panel-content">
           <div class="section-head">
-            <div class="label">Before and after</div>
-            <h2>See the transformation in one glance.</h2>
+            <div class="label">App preview</div>
+            <h2>The product, in one frame.</h2>
             <p>
-              The core value becomes obvious when the input and output sit next to each other. A rough sketch becomes a clearer, more polished AI-generated visual concept.
+              Full-width UI capture—open layout, no device frame, maximum clarity.
             </p>
           </div>
 
-          <div class="compare-wrap">
-            <div class="compare-card">
-              <span class="compare-label">Before</span>
-              <img src="/assets/sketchit-before.jpg" alt="Before image showing a rough chair sketch">
-            </div>
-
-            <div class="showcase-arrow" aria-hidden="true">
-              <span>→</span>
-            </div>
-
-            <div class="compare-card">
-              <span class="compare-label">After</span>
-              <img src="/assets/sketchit-after.jpg" alt="After image showing the realistic AI-generated chair result">
+          <div class="device-preview-wrap">
+            <div class="wide-preview">
+              <img src="/assets/mainsches-ai-2.jpg" alt="Mainsches AI: chat and prompt flow">
             </div>
           </div>
 
           <div class="kpis">
             <div class="kpi">
-              <strong>Clearer concepts</strong>
-              <span>Move from abstract idea to something easier to show and discuss.</span>
+              <strong>Easier to align</strong>
+              <span>Show the room, not a paragraph about the room.</span>
             </div>
             <div class="kpi">
-              <strong>Faster iteration</strong>
-              <span>Explore visual directions without needing a full manual design process.</span>
+              <strong>More directions</strong>
+              <span>Test looks before you commit paint—or pixels.</span>
             </div>
             <div class="kpi">
-              <strong>Stronger communication</strong>
-              <span>Present a more realistic concept earlier in the workflow.</span>
+              <strong>Earlier confidence</strong>
+              <span>Decide faster when the concept already looks real.</span>
             </div>
           </div>
         </div>
@@ -936,30 +923,30 @@
           <div class="product-grid">
             <div>
               <div class="section-head">
-                <div class="label">App experience</div>
-                <h2>Built around a clean chat-based creation flow.</h2>
+                <div class="label">In the app</div>
+                <h2>Dark UI. One job: your sketch.</h2>
                 <p>
-                  The interface is intentionally simple. Instead of visual clutter, the app focuses on a premium dark UI, strong contrast and a direct workflow that keeps the idea at the center.
+                  No busy chrome—just chat, your drawing, and the render.
                 </p>
               </div>
 
               <div class="feature-grid">
                 <div class="feature">
-                  <h3>Intuitive by design</h3>
+                  <h3>Obvious flow</h3>
                   <p>
-                    The flow feels familiar immediately: attach a sketch, describe the idea and generate the image.
+                    Attach, type, generate. The muscle memory sticks on day one.
                   </p>
                 </div>
                 <div class="feature">
-                  <h3>Made for visual ideas</h3>
+                  <h3>Built for objects &amp; spaces</h3>
                   <p>
-                    Especially strong for furniture, product concepts, interiors and early exploration.
+                    Products, furniture, interiors—anything with a clear silhouette.
                   </p>
                 </div>
                 <div class="feature">
-                  <h3>Ready to save and share</h3>
+                  <h3>Share-ready output</h3>
                   <p>
-                    Results are easier to review, compare and show once the concept has a stronger visual form.
+                    Save, compare, and drop the image into the next conversation.
                   </p>
                 </div>
               </div>
@@ -971,7 +958,7 @@
                 <span>Sketch to Image</span>
               </div>
               <div class="device-screen">
-                <img src="/assets/sketchit-screen.jpg" alt="Mainsches AI app screenshot showing the chat-based sketch-to-image interface">
+                <img src="/assets/mainsches-ai-3.jpg" alt="Mainsches AI: sketch to image result view">
               </div>
             </div>
           </div>
@@ -982,12 +969,12 @@
     <section class="container section reveal delay-4">
       <div class="cta-band">
         <div>
-          <h2>Bring rough ideas to life faster with Mainsches AI.</h2>
+          <h2>Put Mainsches AI in your pipeline.</h2>
           <p>
-            A premium sketch-to-image app for stronger concepts, faster visual exploration and better communication around early ideas.
+            Partnerships, access, or product questions—reach out and we’ll respond personally.
           </p>
         </div>
-        <a class="btn btn-primary" href="/contact.html">Contact</a>
+        <a class="btn btn-primary" href="/contact.html">Start a conversation</a>
       </div>
     </section>
   </main>

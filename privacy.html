@@ -47,6 +47,12 @@
       --speed-fast:180ms;
       --speed-med:240ms;
       --speed-slow:700ms;
+
+      --gold:#d4af37;
+      --gold-2:#f1d77b;
+      --gold-line:rgba(212,175,55,.22);
+      --gold-soft:rgba(212,175,55,.10);
+      --gold-glow:0 0 30px rgba(212,175,55,.12);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -57,6 +63,7 @@
       background:
         radial-gradient(circle at 12% 10%, rgba(255,255,255,.11), transparent 24%),
         radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 18%),
+        radial-gradient(circle at 75% 40%, rgba(212,175,55,.045), transparent 26%),
         linear-gradient(180deg, #0a0a0a 0%, #050505 42%, #030303 100%);
       min-height:100vh;
       overflow-x:hidden;
@@ -119,7 +126,7 @@
     }
     .nav{display:flex;gap:8px;flex-wrap:nowrap}
     .nav a{
-      width:96px;min-width:96px;padding:12px 10px;text-align:center;
+      width:auto;min-width:96px;padding:12px 14px;text-align:center;flex:0 0 auto;
       border-radius:999px;border:1px solid transparent;
       color:var(--muted);font-size:.95rem;font-weight:600;
       transition:
@@ -157,7 +164,7 @@
       flex:0 0 auto;
     }
     h1,h2,h3,p{margin:0}
-    .hero{padding:44px 0 28px}
+    .hero{padding:48px 0 32px}
     .hero h1{
       margin-top:18px;
       font-size:clamp(3.1rem,6vw,5.9rem);
@@ -197,10 +204,17 @@
     .btn:active{
       transform:translateY(0) scale(.985);
     }
-    .btn-primary{background:#fff;color:#050505;border-color:#fff}
-    .btn-primary:hover{background:#f2f2f2}
-    .section{padding:24px 0}
-    .section + .section{margin-top:18px}
+    .btn-primary{
+      background:linear-gradient(180deg, #f5e3a0 0%, var(--gold) 100%);
+      color:#050505;
+      border-color:rgba(255,255,255,0);
+      box-shadow:0 12px 30px rgba(212,175,55,.14);
+    }
+    .btn-primary:hover{
+      background:linear-gradient(180deg, #f7e8b6 0%, #ddb74d 100%);
+    }
+    .section{padding:32px 0}
+    .section + .section{margin-top:22px}
     .section-head{margin-bottom:22px}
     .section-head .label{
       color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
@@ -229,8 +243,8 @@
     }
     .panel:hover{
       transform:translateY(-4px);
-      border-color:rgba(255,255,255,.13);
-      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05);
+      border-color:var(--gold-line);
+      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
     }
     .panel::before{
@@ -241,6 +255,7 @@
     }
     .panel:hover::before{opacity:1}
     .panel-content{position:relative;padding:28px}
+    .panel-content:has(.legal-stack){padding:32px 30px}
     .product-grid{
       display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:28px;align-items:center;
     }
@@ -375,24 +390,26 @@
     }
     .footer-inner a:hover{color:#fff;transform:translateY(-1px)}
     .footer-inner a:hover::after{transform:scaleX(1)}
-    .legal-stack{display:grid;gap:18px}
+    .legal-stack{display:grid;gap:20px}
     .legal-card{
-      padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
+      padding:24px 26px;border-radius:26px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.042), rgba(255,255,255,.018));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
       transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
     }
     .legal-card:hover{
-      transform:translateY(-3px);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      box-shadow:0 18px 40px rgba(0,0,0,.18);
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.13);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.024));
+      box-shadow:0 18px 42px rgba(0,0,0,.2);
     }
     .legal-card .label{
       color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
       margin-bottom:10px;
     }
-    .legal-card h2{font-size:1.2rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
-    .legal-card p{color:var(--muted);line-height:1.8;text-wrap:pretty}
+    .legal-card h2{font-size:1.22rem;letter-spacing:-.04em;margin-bottom:10px;text-wrap:balance}
+    .legal-card p{color:var(--muted);line-height:1.82;max-width:72ch;text-wrap:pretty}
     .hero-split,
     .hero-identity{
       display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:28px;align-items:end;
@@ -700,7 +717,7 @@
       <nav class="nav" aria-label="Primary navigation">
         <a href="/index.html" >Home</a>
         <a href="/contact.html" >Contact</a>
-        <a href="/sketchit.html" >sketchIT</a>
+        <a href="/sketchit.html" >Mainsches AI</a>
         <a href="/swipesort.html" >SwipeSort</a>
       </nav>
     </div>
