@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <title>Mainsches — Mainsches AI, SwipeSort & Focused Software</title>
-  <meta name="description" content="Mainsches builds focused software including Mainsches AI for sketch-to-image workflows and SwipeSort for fast photo cleanup — clean UI, fast performance, and modern product design." />
+  <title>Mainsches — Product development, security & applied AI</title>
+  <meta name="description" content="Mainsches is a product company: Android software we build and ship ourselves—with disciplined scope, defensive security, and AI only where it removes real work." />
     <link rel="canonical" href="https://mainsches.com/" />
   <meta name="theme-color" content="#050505" />
-  <meta property="og:title" content="Mainsches — Mainsches AI, SwipeSort & Focused Software" />
-  <meta property="og:description" content="Mainsches builds focused software including Mainsches AI for sketch-to-image workflows and SwipeSort for fast photo cleanup — clean UI, fast performance, and modern product design." />
+  <meta property="og:title" content="Mainsches — Product development, security & applied AI" />
+  <meta property="og:description" content="Mainsches is a product company: Android software we build and ship ourselves—with disciplined scope, defensive security, and AI only where it removes real work." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mainsches.com/" />
 
@@ -25,8 +25,8 @@
   <meta property="og:site_name" content="Mainsches" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mainsches — Mainsches AI, SwipeSort & Focused Software" />
-  <meta name="twitter:description" content="Mainsches builds focused software including Mainsches AI for sketch-to-image workflows and SwipeSort for fast photo cleanup — clean UI, fast performance, and modern product design." />
+  <meta name="twitter:title" content="Mainsches — Product development, security & applied AI" />
+  <meta name="twitter:description" content="Mainsches is a product company: Android software we build and ship ourselves—with disciplined scope, defensive security, and AI only where it removes real work." />
   <meta property="og:image" content="https://mainsches.com/og-cover.jpg" />
   <meta name="twitter:image" content="https://mainsches.com/og-cover.jpg" />
   <style>
@@ -55,9 +55,10 @@
       --gold-line:rgba(212,175,55,.22);
       --gold-soft:rgba(212,175,55,.10);
       --gold-glow:0 0 30px rgba(212,175,55,.14);
+      --gold-glow-soft:0 0 56px rgba(212,175,55,.1);
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;scrollbar-gutter:stable}
     body{
       margin:0;
       font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -100,26 +101,34 @@
       min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px;
     }
     .brand{
-      display:inline-flex;align-items:center;gap:12px;min-width:152px;font-weight:700;letter-spacing:-.03em;
+      display:inline-flex;align-items:center;gap:clamp(8px,1.5vw,12px);min-width:152px;font-weight:700;letter-spacing:-.03em;
       transition:transform var(--speed-fast) var(--ease), opacity var(--speed-fast) var(--ease);
       white-space:nowrap;
     }
     .brand:hover{transform:translateY(-1px)}
     .brand-mark{
-      width:38px;height:38px;border-radius:12px;
-      display:grid;place-items:center;
-      border:1px solid rgba(255,255,255,.14);
-      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
-      font-weight:800;
-      transition:transform var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease);
       flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0;
+      padding:0;
+      border:none;
+      border-radius:0;
+      background:none;
+      box-shadow:none;
+      line-height:0;
     }
-    .brand:hover .brand-mark{
-      transform:translateY(-1px) scale(1.01);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 10px 30px rgba(0,0,0,.35);
-      border-color:rgba(255,255,255,.18);
+    .brand-mark img{
+      width:clamp(24px,2.2vw,28px);
+      height:auto;
+      max-height:28px;
+      display:block;
+      object-fit:contain;
+      object-position:left center;
+      transition:opacity var(--speed-fast) var(--ease);
     }
+    .brand:hover .brand-mark img{opacity:.94}
     .nav{display:flex;gap:8px;flex-wrap:nowrap}
     .nav a{
       width:auto;min-width:96px;padding:12px 14px;text-align:center;flex:0 0 auto;
@@ -160,21 +169,48 @@
       flex:0 0 auto;
     }
     h1,h2,h3,p{margin:0}
-    .hero{padding:48px 0 32px}
+    .hero{
+      padding:48px 0 44px;
+    }
+    .hero-kicker{
+      margin:0 0 14px;
+      padding-left:12px;
+      border-left:2px solid rgba(212,175,55,.45);
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,252,248,.5);
+    }
     .hero h1{
-      margin-top:18px;
+      margin-top:0;
       font-size:clamp(3.1rem,6vw,5.9rem);
-      line-height:.94;
+      line-height:.96;
       letter-spacing:-.09em;
+      font-weight:800;
       max-width:900px;
       text-wrap:balance;
+      color:rgba(255,252,248,.99);
+    }
+    .hero-accent{
+      color:var(--gold-2);
+    }
+    .hero-line2{
+      display:block;
+      margin-top:12px;
+      font-size:clamp(1.28rem,2.6vw,1.72rem);
+      font-weight:600;
+      letter-spacing:-.035em;
+      line-height:1.2;
+      color:rgba(255,252,248,.9);
+      max-width:22ch;
     }
     .hero p{
-      margin-top:22px;max-width:760px;
-      font-size:1.08rem;line-height:1.9;color:var(--muted);
+      margin-top:22px;max-width:34rem;
+      font-size:1.04rem;line-height:1.68;color:rgba(255,255,255,.7);
       text-wrap:pretty;
     }
-    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       min-height:54px;padding:0 22px;border-radius:999px;font-weight:700;
@@ -218,6 +254,7 @@
     }
     .section-head h2{
       font-size:clamp(2rem,3.5vw,3rem);
+      font-weight:800;
       letter-spacing:-.055em;line-height:1.02;max-width:760px;
       text-wrap:balance;
     }
@@ -238,9 +275,9 @@
       will-change:transform;
     }
     .panel:hover{
-      transform:translateY(-4px);
+      transform:translateY(-3px);
       border-color:var(--gold-line);
-      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow);
+      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow-soft);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
     }
     .panel::before{
@@ -407,7 +444,11 @@
     .hero-identity{
       display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:28px;align-items:end;
     }
-    .hero-identity{grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);gap:32px;align-items:stretch}
+    .hero-identity{
+      grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);
+      gap:clamp(28px,4vw,44px);
+      align-items:start;
+    }
     .mini-shot{
       border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
       background:#0c0c0c;box-shadow:var(--shadow);
@@ -423,65 +464,113 @@
       transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
     }
     .mini-shot:hover img{transform:scale(1.02);filter:saturate(1.03)}
-    .identity-panel{display:grid;gap:16px}
+    .identity-panel{
+      display:grid;
+      gap:14px;
+      align-content:start;
+      padding:4px 0 2px 22px;
+      border-left:1px solid rgba(212,175,55,.22);
+    }
+    .pillar-card{
+      padding:20px 20px 19px;border-radius:22px;
+      border:1px solid rgba(255,255,255,.1);
+      background:linear-gradient(180deg, rgba(255,255,255,.042), rgba(255,255,255,.02));
+      box-shadow:0 14px 40px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.04);
+      transition:border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
+    }
+    .pillar-card:hover{
+      border-color:rgba(212,175,55,.24);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.024));
+      box-shadow:0 18px 44px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .pillar-icon{
+      width:40px;height:40px;margin-bottom:12px;
+      display:grid;place-items:center;
+      border-radius:12px;
+      border:1px solid rgba(212,175,55,.22);
+      background:rgba(212,175,55,.055);
+    }
+    .pillar-icon svg{display:block}
+    .pillar-card h3{
+      font-size:1.02rem;font-weight:700;letter-spacing:-.03em;
+      margin-bottom:8px;color:rgba(255,252,248,.95);
+      text-wrap:balance;
+    }
+    .pillar-card p{
+      margin:0;
+      font-size:.93rem;line-height:1.55;color:rgba(255,255,255,.62);
+      text-wrap:pretty;
+    }
     .signature-card{
-      padding:24px;border-radius:26px;
-      border:1px solid rgba(255,255,255,.09);
-      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
-      transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
+      padding:22px 22px 21px;border-radius:22px;
+      border:1px solid rgba(255,255,255,.1);
+      background:linear-gradient(180deg, rgba(255,255,255,.042), rgba(255,255,255,.02));
+      box-shadow:0 14px 40px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.04);
+      transition:border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
     }
     .signature-card:hover{
-      transform:translateY(-3px);
-      border-color:var(--gold-line);
-      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.028));
-      box-shadow:0 20px 48px rgba(0,0,0,.22), var(--gold-glow);
+      transform:none;
+      border-color:rgba(212,175,55,.26);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.024));
+      box-shadow:0 18px 44px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.05);
     }
-    .signature-card h3{font-size:1.15rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
+    .signature-card h3{font-size:1.12rem;font-weight:700;letter-spacing:-.04em;margin-bottom:10px;text-wrap:balance;color:rgba(255,252,248,.96)}
     .signature-card p{color:var(--muted);line-height:1.75;text-wrap:pretty}
     .statements{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
     .statement{
-      padding:20px;border-radius:24px;
+      padding:22px 20px;border-radius:24px;
       border:1px solid rgba(255,255,255,.09);
       background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
       box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
       transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
     }
     .statement:hover{
-      transform:translateY(-3px);
+      transform:translateY(-2px);
       border-color:rgba(255,255,255,.14);
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
       box-shadow:0 18px 42px rgba(0,0,0,.2);
     }
     .statement strong{display:block;font-size:1.02rem;letter-spacing:-.03em;margin-bottom:8px}
     .statement span{display:block;color:var(--muted);line-height:1.7;text-wrap:pretty}
-    .project-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .project-links{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:20px;
+      align-items:stretch;
+    }
+    .project-link-future{
+      min-width:0;
+      border-radius:28px;
+    }
     .project-link{
-      display:block;padding:24px;border-radius:28px;
+      display:block;padding:26px 24px;border-radius:28px;
       border:1px solid rgba(255,255,255,.09);
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.022));
       box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
       transition:transform var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease)
     }
     .project-link:hover{
-      transform:translateY(-4px);
+      transform:translateY(-3px);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border-color:var(--gold-line);
-      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow);
+      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow-soft);
     }
-    .project-link-row{display:flex;align-items:flex-start;gap:16px}
+    .project-link-row{display:flex;align-items:center;gap:28px}
     .project-link-mark{
-      flex:0 0 auto;width:48px;height:48px;border-radius:16px;
-      display:grid;place-items:center;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.035);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+      flex:0 0 auto;
+      display:block;
+      line-height:0;
     }
-    .project-link[href="/sketchit.html"] .project-link-mark{
-      border-color:var(--gold-line);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), var(--gold-glow);
+    .project-link-mark img{
+      width:84px;height:84px;
+      object-fit:contain;
+      display:block;
     }
-    .project-link-mark img{width:30px;height:30px;object-fit:contain;opacity:.95}
+    .project-link-mark svg{
+      width:84px;height:84px;
+      display:block;
+      flex-shrink:0;
+    }
     .project-link-body{min-width:0;flex:1}
     .project-link .kicker{color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:700;margin-bottom:10px}
     .project-link h3{font-size:1.24rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
@@ -503,18 +592,18 @@
     .hidden{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .reveal{
       opacity:0;
-      transform:translateY(18px);
-      transition:opacity var(--speed-slow) var(--ease), transform var(--speed-slow) var(--ease);
+      transform:translateY(14px);
+      transition:opacity 820ms var(--ease), transform 820ms var(--ease);
       will-change:opacity, transform;
     }
     .reveal.is-visible{
       opacity:1;
       transform:none;
     }
-    .delay-1{transition-delay:50ms}
-    .delay-2{transition-delay:110ms}
-    .delay-3{transition-delay:170ms}
-    .delay-4{transition-delay:230ms}
+    .delay-1{transition-delay:70ms}
+    .delay-2{transition-delay:140ms}
+    .delay-3{transition-delay:210ms}
+    .delay-4{transition-delay:280ms}
     @keyframes statusIn{
       from{opacity:0;transform:translateY(6px)}
       to{opacity:1;transform:none}
@@ -530,9 +619,16 @@
     }
     @media (max-width: 980px){
       .product-grid,.hero-split,.hero-identity,.project-links,.statements{grid-template-columns:1fr}
+      .project-link-future{display:none}
       .kpis{grid-template-columns:1fr}
       .hero-identity,
       .hero-split{align-items:start}
+      .identity-panel{
+        padding:20px 0 0;
+        border-left:none;
+        border-top:1px solid rgba(212,175,55,.2);
+        margin-top:4px;
+      }
       .mini-shot{max-width:640px}
       .device{max-width:640px}
     }
@@ -570,9 +666,12 @@
         padding:12px 14px;
       }
       .page{padding-top:18px;padding-bottom:72px}
-      .hero{padding-top:22px;padding-bottom:18px}
+      .project-link-row{gap:24px}
+      .project-link-mark img{width:72px;height:72px}
+      .project-link-mark svg{width:72px;height:72px}
+      .hero{padding-top:22px;padding-bottom:22px}
       .hero h1{
-        margin-top:16px;
+        margin-top:0;
         font-size:clamp(2.35rem, 11vw, 3.35rem);
         line-height:.98;
         letter-spacing:-.075em;
@@ -615,6 +714,7 @@
       .panel:hover,
       .quote:hover,
       .mini-shot:hover,
+      .pillar-card:hover,
       .signature-card:hover,
       .statement:hover,
       .project-link:hover,
@@ -645,10 +745,12 @@
       .statement,
       .kpi,
       .project-link,
+      .pillar-card,
       .signature-card,
       .legal-card{padding:16px}
       .feature h3,
       .project-link h3,
+      .pillar-card h3,
       .signature-card h3,
       .legal-card h2{font-size:1.05rem}
       .quote{padding:20px}
@@ -682,7 +784,7 @@
       .container{width:min(100% - 20px, var(--max))}
       .topbar-inner{padding:12px 0}
       .brand{font-size:.92rem}
-      .brand-mark{width:34px;height:34px;border-radius:11px}
+      .brand-mark img{width:clamp(22px,5.5vw,28px);max-height:28px}
       .nav{gap:6px}
       .nav a{
         min-width:86px;
@@ -690,6 +792,9 @@
         padding:11px 12px;
       }
       .page{padding-top:14px;padding-bottom:64px}
+      .project-link-row{gap:20px}
+      .project-link-mark img{width:56px;height:56px}
+      .project-link-mark svg{width:56px;height:56px}
       .hero h1{
         font-size:clamp(2.1rem, 12vw, 3rem);
         letter-spacing:-.07em;
@@ -706,6 +811,7 @@
       .statement,
       .kpi,
       .project-link,
+      .pillar-card,
       .signature-card,
       .legal-card{padding:15px}
       .quote{padding:18px}
@@ -721,7 +827,7 @@
   "@type": "Organization",
   "name": "Mainsches",
   "url": "https://mainsches.com",
-  "description": "Mainsches builds focused software including Mainsches AI for sketch-to-image workflows and SwipeSort for fast photo cleanup, with clean UI, fast performance, and modern product design."
+  "description": "Mainsches builds and ships Android software with a focus on product development, security, and applied AI—including Mainsches AI and SwipeSort."
 }
   </script>
 </head>
@@ -730,7 +836,7 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="/index.html" aria-label="Mainsches home">
-        <span class="brand-mark">M</span>
+        <span class="brand-mark"><img src="/assets/logo.png" alt=""></span>
         <span>Mainsches</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
@@ -738,6 +844,7 @@
         <a href="/contact.html" >Contact</a>
         <a href="/sketchit.html" >Mainsches AI</a>
         <a href="/swipesort.html" >SwipeSort</a>
+        <a href="/idradar.html" >ID Radar</a>
       </nav>
     </div>
   </header>
@@ -747,70 +854,91 @@
     <section class="container hero reveal">
       <div class="hero-identity">
         <div class="delay-1 reveal">
-          <h1>AI apps with clean UI and fast performance.</h1>
+          <p class="hero-kicker">Product company</p>
+          <h1>
+            <span class="hero-accent">Mainsches</span>
+            <span class="hero-line2">Product development, security, applied AI.</span>
+          </h1>
           <p>
-            Mainsches builds focused software with modern design, clear interaction, and practical AI-driven workflows.
+            Android products we own—tight scope, defensive defaults, AI only where it cuts real work.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/contact.html">Get in touch</a>
-            <a class="btn" href="#projects">View projects</a>
+            <a class="btn btn-primary" href="/contact.html">Contact</a>
+            <a class="btn" href="#projects">View products</a>
           </div>
         </div>
         <div class="identity-panel delay-2 reveal">
-          <div class="signature-card">
-            <h3>UI first</h3>
-            <p>
-              Clean interfaces, less friction, and a sharper product feel from the first screen.
-            </p>
+          <div class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 18V6M10 18V10M16 18v-8M22 18V4" stroke="rgba(212,175,55,.78)" stroke-width="1.35" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Product development</h3>
+            <p>Design through release—one team, one bar for quality.</p>
           </div>
-          <div class="signature-card">
-            <h3>Built to perform</h3>
-            <p>
-              Fast flows, focused features, and software that stays efficient and easy to use.
-            </p>
+          <div class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 3l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4z" stroke="rgba(212,175,55,.78)" stroke-width="1.25" stroke-linejoin="round"/>
+                <path d="M9 12l2 2 4-5" stroke="rgba(212,175,55,.55)" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Security</h3>
+            <p>Explainable paths and conservative defaults before features ship.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="12" r="2.5" fill="rgba(212,175,55,.75)"/>
+                <path d="M12 5v2M12 17v2M5 12h2M17 12h2M7 7l1.5 1.5M15.5 15.5L17 17M7 17l1.5-1.5M15.5 8.5L17 7" stroke="rgba(212,175,55,.5)" stroke-width="1.1" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>AI</h3>
+            <p>Models behind concrete inputs—not a generic assistant layer.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="container section reveal delay-1">
+    <section class="container section reveal delay-1" id="principles">
       <div class="quote">
         <p>
-          Mainsches focuses on AI, apps, UI quality, and software performance — with less noise and more product clarity.
+          <strong>Mainsches</strong> is the house: one standard for how we design, secure, and ship—then the products follow.
         </p>
       </div>
     </section>
 
-    <section class="container section reveal delay-2">
+    <section class="container section reveal delay-2" id="approach">
       <div class="section-head">
-        <div class="label">Focus</div>
-        <h2>Apps, AI workflows, and strong product execution.</h2>
+        <div class="label">Practice</div>
+        <h2>Tight scope, obvious defaults.</h2>
         <p>
-          The focus is simple: useful apps, modern AI features, clean UX, and performance that supports the experience.
+          If a change does not help the core loop, it does not ship.
         </p>
       </div>
       <div class="statements">
         <div class="statement">
-          <strong>Apps</strong>
-          <span>Focused digital products built for real use, with less complexity and faster interaction.</span>
+          <strong>Products</strong>
+          <span>Two store listings, two jobs in the app, no bundle underneath.</span>
         </div>
         <div class="statement">
-          <strong>AI</strong>
-          <span>Workflows that turn rough input into clearer output and make ideas easier to use.</span>
+          <strong>Plain work</strong>
+          <span>Language you can repeat to someone else; screens you reach without training.</span>
         </div>
         <div class="statement">
-          <strong>UI / Performance</strong>
-          <span>Clear interfaces and smooth execution, designed to feel fast, calm, and reliable.</span>
+          <strong>Upkeep</strong>
+          <span>We run the same builds we ship. When something breaks, we fix it here.</span>
         </div>
       </div>
     </section>
 
     <section class="container section reveal delay-3" id="projects">
       <div class="section-head">
-        <div class="label">Projects</div>
-        <h2>Current products.</h2>
+        <div class="label">Tools</div>
+        <h2>Mainsches AI and SwipeSort.</h2>
         <p>
-          Two focused products, each built around clarity, speed, and a distinct use case.
+          Independent installs. Same bar for restraint, polish, and maintenance.
         </p>
       </div>
       <div class="project-links">
@@ -818,9 +946,9 @@
           <div class="project-link-row">
             <span class="project-link-mark" aria-hidden="true"><img src="/assets/mainsches-ai-logo.png" alt=""></span>
             <div class="project-link-body">
-              <div class="kicker">AI visual tool</div>
+              <div class="kicker">Sketch → image</div>
               <h3>Mainsches AI</h3>
-              <p>Turn rough sketches into clearer visual concepts with an AI-driven workflow.</p>
+              <p>Sketch in, say what you want in chat, take the image back out.</p>
             </div>
           </div>
         </a>
@@ -828,12 +956,35 @@
           <div class="project-link-row">
             <span class="project-link-mark" aria-hidden="true"><img src="/assets/swipesort-logo.png" alt=""></span>
             <div class="project-link-body">
-              <div class="kicker">Photo cleanup app</div>
+              <div class="kicker">Camera roll</div>
               <h3>SwipeSort</h3>
-              <p>Fast swipe-based photo cleanup designed to reduce clutter with less friction.</p>
+              <p>Keep, skip, or delete—built for long passes through the library.</p>
             </div>
           </div>
         </a>
+        <a class="project-link" href="/idradar.html">
+          <div class="project-link-row">
+            <span class="project-link-mark" aria-hidden="true">
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="100" cy="100" r="88" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+                <circle cx="100" cy="100" r="64" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+                <circle cx="100" cy="100" r="40" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                <line x1="100" y1="12" x2="100" y2="188" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                <line x1="12" y1="100" x2="188" y2="100" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                <path d="M100 100 L100 24" stroke="rgba(212,175,55,.45)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M100 100 A 52 52 0 0 1 168 132" stroke="rgba(212,175,55,.28)" stroke-width="1.25" stroke-linecap="round" fill="none"/>
+                <circle cx="100" cy="100" r="5" fill="rgba(212,175,55,.55)"/>
+                <circle cx="100" cy="100" r="2.2" fill="rgba(255,252,248,.9)"/>
+              </svg>
+            </span>
+            <div class="project-link-body">
+              <div class="kicker">Identity · Privacy</div>
+              <h3>ID Radar</h3>
+              <p>See how visible your identity is online.</p>
+            </div>
+          </div>
+        </a>
+        <div class="project-link-future" aria-hidden="true"></div>
       </div>
     </section>
 </main>
@@ -865,8 +1016,8 @@
           }
         });
       }, {
-        threshold: 0.14,
-        rootMargin: '0px 0px -6% 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px -5% 0px'
       });
 
       items.forEach((item) => observer.observe(item));

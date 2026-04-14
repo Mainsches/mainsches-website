@@ -55,7 +55,7 @@
       --gold-glow:0 0 30px rgba(212,175,55,.12);
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;scrollbar-gutter:stable}
     body{
       margin:0;
       font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -97,33 +97,34 @@
       min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px;
     }
     .brand{
-      display:inline-flex;align-items:center;gap:12px;min-width:152px;font-weight:700;letter-spacing:-.03em;
+      display:inline-flex;align-items:center;gap:clamp(8px,1.5vw,12px);min-width:152px;font-weight:700;letter-spacing:-.03em;
       transition:transform var(--speed-fast) var(--ease), opacity var(--speed-fast) var(--ease);
       white-space:nowrap;
     }
     .brand:hover{transform:translateY(-1px)}
     .brand-mark{
-      width:38px;height:38px;border-radius:12px;
-      display:grid;place-items:center;
-      border:1px solid rgba(255,255,255,.14);
-      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
-      transition:transform var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease);
       flex:0 0 auto;
-      overflow:hidden;
-      padding:6px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0;
+      padding:0;
+      border:none;
+      border-radius:0;
+      background:none;
+      box-shadow:none;
+      line-height:0;
     }
     .brand-mark img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
+      width:clamp(24px,2.2vw,28px);
+      height:auto;
+      max-height:28px;
       display:block;
+      object-fit:contain;
+      object-position:left center;
+      transition:opacity var(--speed-fast) var(--ease);
     }
-    .brand:hover .brand-mark{
-      transform:translateY(-1px) scale(1.01);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 10px 30px rgba(0,0,0,.35);
-      border-color:rgba(255,255,255,.18);
-    }
+    .brand:hover .brand-mark img{opacity:.94}
     .nav{display:flex;gap:8px;flex-wrap:nowrap}
     .nav a{
       width:auto;min-width:96px;padding:12px 14px;text-align:center;flex:0 0 auto;
@@ -664,7 +665,7 @@
       .container{width:min(100% - 20px, var(--max))}
       .topbar-inner{padding:12px 0}
       .brand{font-size:.92rem}
-      .brand-mark{width:34px;height:34px;border-radius:11px}
+      .brand-mark img{width:clamp(22px,5.5vw,28px);max-height:28px}
       .nav{gap:6px}
       .nav a{
         min-width:86px;
@@ -711,7 +712,7 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="/index.html" aria-label="Mainsches home">
-        <span class="brand-mark"><img src="/assets/logo.png" alt="Mainsches logo"></span>
+        <span class="brand-mark"><img src="/assets/logo.png" alt=""></span>
         <span>Mainsches</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
@@ -719,6 +720,7 @@
         <a href="/contact.html" >Contact</a>
         <a href="/sketchit.html" >Mainsches AI</a>
         <a href="/swipesort.html" >SwipeSort</a>
+        <a href="/idradar.html" >ID Radar</a>
       </nav>
     </div>
   </header>

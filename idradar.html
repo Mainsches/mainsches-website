@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <title>ID Radar — Mainsches</title>
+  <meta name="description" content="ID Radar: map your identity across public data. Exposure and traceability across public signals. Mainsches, Switzerland." />
+  <link rel="canonical" href="https://mainsches.com/idradar.html" />
+  <meta name="theme-color" content="#050505" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.70);
+      --muted-2:rgba(255,255,255,.48);
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+      --speed-fast:180ms;
+      --gold:#d4af37;
+      --gold-2:#f1d77b;
+      --gold-soft:rgba(212,175,55,.14);
+      --gold-glow:0 0 64px rgba(212,175,55,.22);
+      --line:rgba(255,255,255,.10);
+      --speed-med:240ms;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scrollbar-gutter:stable}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,175,55,.06), transparent 50%),
+        radial-gradient(circle at 88% 22%, rgba(255,255,255,.05), transparent 38%),
+        radial-gradient(circle at 8% 60%, rgba(255,255,255,.04), transparent 32%),
+        linear-gradient(180deg, #080808 0%, #050505 45%, #030303 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(100% - 32px, var(--max));margin:0 auto}
+    #idr-hero.container{
+      width:min(100% - 32px, 1280px);
+    }
+    .idr-hero-focus{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      width:100%;
+      max-width:min(100%, 1160px);
+      margin:0 auto;
+    }
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(18px);
+      background:rgba(7,7,7,.70);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:background var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease);
+    }
+    .topbar-inner{
+      min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+    }
+    .brand{
+      display:inline-flex;align-items:center;gap:clamp(8px,1.5vw,12px);min-width:152px;font-weight:700;letter-spacing:-.03em;
+      transition:transform var(--speed-fast) var(--ease), opacity var(--speed-fast) var(--ease);
+      white-space:nowrap;
+    }
+    .brand:hover{transform:translateY(-1px)}
+    .brand-mark{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0;
+      padding:0;
+      border:none;
+      border-radius:0;
+      background:none;
+      box-shadow:none;
+      line-height:0;
+    }
+    .brand-mark img{
+      width:clamp(24px,2.2vw,28px);
+      height:auto;
+      max-height:28px;
+      display:block;
+      object-fit:contain;
+      object-position:left center;
+      transition:opacity var(--speed-fast) var(--ease);
+    }
+    .brand:hover .brand-mark img{opacity:.94}
+    .nav{display:flex;gap:8px;flex-wrap:nowrap}
+    .nav a{
+      width:auto;min-width:96px;padding:12px 14px;text-align:center;flex:0 0 auto;
+      border-radius:999px;border:1px solid transparent;
+      color:var(--muted);font-size:.95rem;font-weight:600;
+      transition:
+        color var(--speed-fast) var(--ease),
+        background var(--speed-fast) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        transform var(--speed-fast) var(--ease),
+        box-shadow var(--speed-fast) var(--ease);
+      -webkit-tap-highlight-color:transparent;
+    }
+    .nav a:hover,.nav a[aria-current="page"]{
+      color:#fff;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.10);
+      transform:translateY(-1px);
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
+    }
+    .nav a:active{transform:translateY(0) scale(.985)}
+    h1,h2,h3,p{margin:0}
+    .page{padding:42px 0 96px}
+    .hero{padding:56px 0 56px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.06fr) minmax(272px,.94fr);
+      gap:clamp(36px,5vw,56px);
+      align-items:center;
+    }
+    #idr-hero .hero-grid{
+      position:relative;
+      display:flex;
+      flex-direction:row;
+      flex-wrap:nowrap;
+      justify-content:center;
+      align-items:center;
+      gap:clamp(24px,3vw,40px);
+      width:100%;
+      max-width:100%;
+      box-sizing:border-box;
+    }
+    #idr-hero .hero-copy{
+      position:relative;
+      z-index:1;
+      flex:0 1 auto;
+      min-width:0;
+      max-width:min(36rem,calc(100% - 380px));
+      margin-right:0;
+      padding-right:clamp(0px,1vw,8px);
+    }
+    #idr-hero .hero-copy::after{
+      content:"";
+      position:absolute;
+      top:8%;
+      bottom:12%;
+      right:0;
+      width:1px;
+      background:linear-gradient(180deg, transparent 0%, rgba(212,175,55,.14) 35%, rgba(212,175,55,.22) 50%, rgba(212,175,55,.12) 65%, transparent 100%);
+      pointer-events:none;
+      opacity:.85;
+    }
+    #idr-hero .hero-copy::before{
+      content:"";
+      position:absolute;
+      right:0;
+      top:38%;
+      width:clamp(24px,3vw,48px);
+      height:1px;
+      background:linear-gradient(90deg, rgba(212,175,55,.18), transparent);
+      pointer-events:none;
+      transform-origin:right center;
+      transform:rotate(-4deg);
+      opacity:.7;
+    }
+    .hero-copy{min-width:0}
+    .hero-lockup{
+      display:flex;
+      align-items:center;
+      gap:clamp(12px,2vw,16px);
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .hero-mark{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0;
+      padding:0;
+      border:none;
+      border-radius:0;
+      background:none;
+      box-shadow:none;
+      line-height:0;
+    }
+    .hero-mark img{
+      width:clamp(64px,5vw,72px);
+      height:auto;
+      max-height:72px;
+      display:block;
+      object-fit:contain;
+      object-position:left center;
+    }
+    .hero-mark svg{
+      width:clamp(64px,5vw,72px);
+      height:auto;
+      max-height:72px;
+      display:block;
+      flex-shrink:0;
+    }
+    .hero-brand-name{
+      font-size:clamp(1.4rem,2.5vw,1.75rem);
+      font-weight:700;
+      letter-spacing:-.04em;
+      line-height:1.05;
+      color:rgba(255,252,248,.98);
+      text-shadow:0 0 48px rgba(212,175,55,.06);
+    }
+    #idr-hero a.hero-brand-name{
+      display:inline;
+      text-decoration:none;
+      transition:color var(--speed-fast) var(--ease), filter var(--speed-fast) var(--ease), text-shadow var(--speed-fast) var(--ease);
+      -webkit-tap-highlight-color:transparent;
+    }
+    #idr-hero a.hero-brand-name:hover{
+      color:rgba(252,244,228,.99);
+      filter:brightness(1.06);
+      text-shadow:0 0 40px rgba(212,175,55,.1);
+    }
+    #idr-hero a.hero-brand-name:focus-visible{
+      outline:1px solid rgba(212,175,55,.38);
+      outline-offset:3px;
+      border-radius:3px;
+    }
+    .hero-preview-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+    }
+    #idr-hero .hero-preview-wrap{
+      position:relative;
+      z-index:0;
+      flex:0 0 auto;
+      flex-shrink:0;
+      width:340px;
+      max-width:340px;
+      min-width:340px;
+      margin-left:0;
+      justify-content:center;
+      min-height:560px;
+    }
+    .hero-preview-booth{
+      width:100%;
+      max-width:min(300px,100%);
+      margin:0 auto;
+      padding:0;
+      border:none;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      filter:drop-shadow(0 0 32px rgba(212,175,55,.12));
+    }
+    #idr-hero .hero-preview-booth{
+      max-width:min(340px,100%);
+    }
+    .hero-preview-booth .idr-radar-wrap{
+      max-width:min(300px,100%);
+      margin:0 auto;
+    }
+    #idr-hero .hero-preview-booth .idr-radar-wrap{
+      max-width:min(340px,100%);
+    }
+    .hero h1{
+      margin-top:22px;
+      font-size:clamp(2.75rem,5.1vw,4.35rem);
+      line-height:.94;
+      letter-spacing:-.088em;
+      font-weight:800;
+      max-width:15ch;
+      text-wrap:balance;
+    }
+    #idr-hero .hero h1{
+      max-width:min(100%,42.5rem);
+      line-height:1.02;
+    }
+    .hero h1 .hero-em{
+      color:var(--gold-2);
+      text-shadow:0 0 40px rgba(212,175,55,.28), 0 0 80px rgba(212,175,55,.1);
+      animation:idr-em-scan 24s ease-in-out infinite;
+    }
+    @keyframes idr-em-scan{
+      0%, 100%{opacity:1;filter:brightness(1)}
+      50%{opacity:.94;filter:brightness(1.05)}
+    }
+    .hero .idr-hero-lead{
+      margin-top:20px;
+      max-width:32rem;
+      font-size:1.02rem;
+      line-height:1.55;
+      color:rgba(255,248,238,.72);
+      text-wrap:balance;
+    }
+    .idr-hero-icons{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:18px 26px;
+      margin:22px 0 0;
+      padding:0;
+      list-style:none;
+    }
+    .idr-hero-icons li{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:.78rem;
+      font-weight:600;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.48);
+    }
+    .idr-hero-icons li.idr-hero-icons-item--emphasis{
+      color:rgba(255,252,248,.58);
+    }
+    .idr-hero-icons-mark{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      line-height:0;
+    }
+    .idr-hero-icons-mark svg{
+      width:20px;
+      height:20px;
+      display:block;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-top:28px;
+      align-items:center;
+    }
+    .idr-hero-ch-note{
+      margin:14px 0 0;
+      max-width:38rem;
+      font-size:.8rem;
+      line-height:1.5;
+      letter-spacing:.02em;
+      color:rgba(255,255,255,.36);
+    }
+    .idr-hero-ch-note .idr-domain{
+      font-weight:600;
+      color:rgba(255,252,248,.66);
+      letter-spacing:.01em;
+    }
+    #idr-hero .hero-actions{
+      justify-content:flex-start;
+      margin-top:30px;
+    }
+    #idr-hero .btn-idr-primary{
+      min-height:58px;
+      padding:0 30px;
+      font-size:1.02rem;
+      letter-spacing:-.01em;
+      color:rgba(255,252,248,.94);
+      border:1px solid rgba(212,175,55,.28);
+      background:rgba(255,255,255,.055);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 0 0 1px rgba(212,175,55,.07),
+        0 14px 42px rgba(0,0,0,.3),
+        0 0 52px rgba(212,175,55,.07);
+      transition:
+        transform .25s ease-out,
+        color .22s ease-out,
+        background .26s ease-out,
+        border-color .26s ease-out,
+        box-shadow .28s ease-out;
+    }
+    #idr-hero .btn-idr-primary:hover{
+      transform:translateY(-1px);
+      color:#fffefb;
+      border-color:rgba(212,175,55,.46);
+      background:rgba(255,255,255,.095);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.11),
+        0 0 0 1px rgba(212,175,55,.11),
+        0 16px 46px rgba(0,0,0,.34),
+        0 0 56px rgba(212,175,55,.1),
+        0 0 72px rgba(212,175,55,.07);
+    }
+    #idr-hero .btn-idr-primary:active{
+      transform:translateY(0);
+      transition-duration:.14s;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:54px;
+      padding:0 22px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.95rem;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,252,248,.96);
+      transition:
+        transform var(--speed-fast) var(--ease),
+        background var(--speed-fast) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        box-shadow var(--speed-fast) var(--ease),
+        opacity var(--speed-fast) var(--ease);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+      will-change:transform;
+      -webkit-tap-highlight-color:transparent;
+      touch-action:manipulation;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.16);
+      box-shadow:0 14px 34px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .btn:active{transform:translateY(0) scale(.985)}
+    .btn.btn-neutral{
+      color:rgba(255,252,248,.96);
+      background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.045));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 14px 34px rgba(0,0,0,.32);
+    }
+    .btn.btn-neutral:hover{
+      color:#fff;
+      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07));
+      border-color:rgba(255,255,255,.22);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 18px 40px rgba(0,0,0,.38);
+    }
+    .idr-strip-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.95rem;
+      border:1px solid transparent;
+      background:linear-gradient(180deg,#f5e3a0,var(--gold));
+      color:#050505;
+      transition:transform var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
+      -webkit-tap-highlight-color:transparent;
+    }
+    .idr-strip-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 32px rgba(212,175,55,.14);
+    }
+    .idr-strip-btn:active{transform:translateY(0) scale(.985)}
+    .idr-radar-wrap{
+      position:relative;
+      width:100%;
+      max-width:min(300px,100%);
+      margin-inline:auto;
+    }
+    .idr-radar-disk{
+      position:relative;
+      width:100%;
+      aspect-ratio:1;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at 42% 48%, rgba(212,175,55,.07) 0%, transparent 52%),
+        radial-gradient(circle at 50% 50%, rgba(212,175,55,.035) 0%, transparent 55%),
+        radial-gradient(circle at 50% 50%, #0d0d0d 0%, #060606 72%, #030303 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        inset 0 2px 24px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.05),
+        inset 8px 0 36px -8px rgba(212,175,55,.07),
+        0 24px 80px rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+    .idr-radar-base,
+    .idr-radar-blips{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      pointer-events:none;
+    }
+    .idr-radar-sweep-layer{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .idr-radar-sweep{
+      width:100%;
+      height:100%;
+      transform-origin:50% 50%;
+      animation:idr-sweep-rotate 24s linear infinite;
+    }
+    @keyframes idr-sweep-rotate{
+      to{transform:rotate(360deg)}
+    }
+    .idr-radar-sweep svg{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+    .idr-blip{
+      transform-origin:center;
+      animation:idr-blip-scan 24s linear infinite;
+      animation-delay:var(--t, 0s);
+    }
+    @keyframes idr-blip-scan{
+      0%, 100%{opacity:.28;filter:none}
+      1.5%{opacity:.88;filter:drop-shadow(0 0 5px rgba(212,175,55,.4))}
+      4%{opacity:.32;filter:none}
+      24%{opacity:.26;filter:none}
+      25.5%{opacity:.82;filter:drop-shadow(0 0 4px rgba(212,175,55,.32))}
+      28%{opacity:.3;filter:none}
+      49%{opacity:.26;filter:none}
+      50.5%{opacity:.8;filter:drop-shadow(0 0 4px rgba(212,175,55,.3))}
+      53%{opacity:.32;filter:none}
+      74%{opacity:.28;filter:none}
+      75.5%{opacity:.78;filter:drop-shadow(0 0 4px rgba(212,175,55,.28))}
+      78%{opacity:.3;filter:none}
+    }
+    .footer{padding:28px 0 16px}
+    .footer-inner{
+      display:flex;justify-content:flex-end;gap:18px;padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .footer-inner a{color:var(--muted-2);font-size:.95rem;font-weight:600}
+    .footer-inner a:hover{color:#fff}
+    .idr-demo-wrap{
+      padding:16px 0 10px;
+    }
+    .idr-demo-shell{
+      max-width:min(100%,680px);
+      margin:0 auto;
+    }
+    .idr-demo-panel{
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.1);
+      background:linear-gradient(165deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 0 0 1px rgba(212,175,55,.06),
+        0 18px 56px rgba(0,0,0,.28);
+      padding:18px 20px 16px;
+    }
+    .idr-demo-title{
+      margin:0 0 6px;
+      font-size:clamp(1.08rem,2vw,1.32rem);
+      font-weight:800;
+      letter-spacing:-.038em;
+      line-height:1.12;
+    }
+    .idr-demo-meta{
+      margin:0 0 14px;
+      max-width:38rem;
+      font-size:.72rem;
+      line-height:1.45;
+      font-weight:500;
+      color:rgba(255,255,255,.44);
+      letter-spacing:.01em;
+    }
+    .idr-demo-form{
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      gap:0;
+    }
+    .idr-demo-fields{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px 12px;
+    }
+    .idr-demo-field span{
+      display:block;
+      margin-bottom:5px;
+      font-size:.6rem;
+      font-weight:600;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.38);
+    }
+    .idr-demo-field--optional span{color:rgba(255,255,255,.32)}
+    .idr-demo-field input{
+      width:100%;
+      box-sizing:border-box;
+      min-height:42px;
+      padding:9px 12px;
+      border-radius:11px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,252,248,.94);
+      font-size:.86rem;
+      font-family:inherit;
+      transition:border-color var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease);
+    }
+    .idr-demo-field input::placeholder{color:rgba(255,255,255,.28)}
+    .idr-demo-field input:hover{
+      background:rgba(255,255,255,.055);
+      border-color:rgba(255,255,255,.11);
+    }
+    .idr-demo-field input:focus{
+      outline:none;
+      border-color:rgba(212,175,55,.32);
+      box-shadow:0 0 0 2px rgba(212,175,55,.09);
+      background:rgba(255,255,255,.06);
+    }
+    .idr-demo-submit{
+      align-self:flex-start;
+      margin-top:12px;
+      min-height:46px;
+      padding:0 22px;
+      font-size:.92rem;
+      font-weight:700;
+      letter-spacing:-.015em;
+      border-radius:999px;
+      border:1px solid rgba(212,175,55,.26);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,252,248,.96);
+      cursor:pointer;
+      font-family:inherit;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 0 0 1px rgba(212,175,55,.06),
+        0 10px 32px rgba(0,0,0,.26),
+        0 0 36px rgba(212,175,55,.05);
+      transition:
+        transform var(--speed-fast) var(--ease),
+        border-color var(--speed-fast) var(--ease),
+        background var(--speed-fast) var(--ease),
+        box-shadow var(--speed-fast) var(--ease),
+        opacity var(--speed-fast) var(--ease);
+      -webkit-tap-highlight-color:transparent;
+    }
+    .idr-demo-submit:hover:not(:disabled){
+      transform:translateY(-1px);
+      border-color:rgba(212,175,55,.38);
+      background:rgba(255,255,255,.075);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 0 0 1px rgba(212,175,55,.09),
+        0 14px 38px rgba(0,0,0,.3),
+        0 0 44px rgba(212,175,55,.08);
+    }
+    .idr-demo-submit:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      transform:none;
+    }
+    .idr-demo-stage:not([hidden]){
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .idr-demo-result[hidden]{
+      display:none !important;
+    }
+    .idr-demo-result:not([hidden]){
+      display:block;
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity .44s cubic-bezier(.22,1,.36,1), transform .44s cubic-bezier(.22,1,.36,1);
+    }
+    .idr-demo-result.idr-demo-result--open:not([hidden]){
+      opacity:1;
+      transform:translateY(0);
+    }
+    .idr-demo-scanning{
+      padding:6px 0 4px;
+      font-size:.7rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(212,175,55,.48);
+      animation:idr-demo-scan-pulse .9s ease-in-out 1;
+    }
+    @keyframes idr-demo-scan-pulse{
+      0%,100%{opacity:.45}
+      50%{opacity:1}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .idr-demo-scanning{animation:none;opacity:.75}
+      .idr-demo-result:not([hidden]){
+        opacity:1;
+        transform:none;
+        transition:none;
+      }
+    }
+    .idr-demo-result-tag{
+      margin:0 0 6px;
+      font-size:.58rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(212,175,55,.42);
+    }
+    .idr-demo-result-card{
+      margin:0;
+      padding:0;
+      border:none;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+    }
+    .idr-demo-dash{
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(0,.82fr) minmax(0,1.2fr) minmax(0,.95fr);
+      gap:7px 10px;
+      align-items:stretch;
+    }
+    .idr-demo-block{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:3px;
+      min-width:0;
+      padding:7px 8px;
+      border-radius:12px;
+      background:rgba(0,0,0,.2);
+      border:1px solid rgba(255,255,255,.07);
+    }
+    .idr-demo-block--risk{
+      border-color:rgba(212,175,55,.12);
+      background:linear-gradient(155deg, rgba(212,175,55,.07), rgba(255,255,255,.02));
+    }
+    .idr-demo-block-label{
+      font-size:.58rem;
+      font-weight:600;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.36);
+      line-height:1.2;
+    }
+    .idr-demo-risk-badge{
+      display:inline-block;
+      align-self:flex-start;
+      margin-top:1px;
+      padding:4px 10px 5px;
+      border-radius:999px;
+      font-size:1.02rem;
+      font-weight:800;
+      letter-spacing:-.03em;
+      line-height:1;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .idr-demo-risk--low{
+      color:rgba(130,200,150,.92);
+      border-color:rgba(130,200,150,.25);
+      background:rgba(130,200,150,.08);
+    }
+    .idr-demo-risk--med{
+      color:rgba(236,168,104,.96);
+      border-color:rgba(224,154,92,.32);
+      background:rgba(224,154,92,.09);
+    }
+    .idr-demo-risk--high{
+      color:rgba(232,120,110,.95);
+      border-color:rgba(232,120,110,.3);
+      background:rgba(232,120,110,.08);
+    }
+    .idr-demo-stat{
+      font-size:1.48rem;
+      font-weight:800;
+      letter-spacing:-.04em;
+      line-height:1;
+      color:rgba(241,215,123,.95);
+      font-variant-numeric:tabular-nums;
+    }
+    .idr-demo-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:4px;
+    }
+    .idr-demo-pill{
+      font-size:.62rem;
+      font-weight:600;
+      letter-spacing:.02em;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.035);
+      color:rgba(255,248,238,.68);
+    }
+    .idr-demo-improv{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-top:1px;
+      font-size:.82rem;
+      font-weight:700;
+      color:rgba(255,252,248,.82);
+    }
+    .idr-demo-warn{
+      flex:0 0 auto;
+      width:14px;
+      height:14px;
+      display:block;
+      opacity:.88;
+    }
+    .idr-demo-result-foot{
+      margin:8px 0 0;
+      font-size:.6rem;
+      color:rgba(255,255,255,.26);
+      letter-spacing:.02em;
+    }
+    @media (max-width:720px){
+      .idr-demo-panel{padding:16px 16px 14px}
+      .idr-demo-fields{grid-template-columns:1fr}
+      .idr-demo-dash{grid-template-columns:1fr}
+      .idr-demo-submit{
+        align-self:stretch;
+        width:100%;
+      }
+    }
+    .idr-section{padding:36px 0}
+    .idr-section-head{margin-bottom:28px}
+    .idr-section-head .label{
+      color:var(--muted-2);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.78rem;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    .idr-section-head h2{
+      margin:0;
+      font-size:clamp(1.45rem,2.8vw,1.85rem);
+      font-weight:800;
+      letter-spacing:-.04em;
+      line-height:1.12;
+      text-wrap:balance;
+      max-width:36rem;
+    }
+    .idr-trust-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+    }
+    .idr-trust-card{
+      padding:26px 22px 24px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 16px 48px rgba(0,0,0,.25);
+      transition:border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease);
+    }
+    .idr-trust-card:hover{
+      border-color:rgba(212,175,55,.2);
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+    }
+    .idr-trust-card-top{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      margin-bottom:12px;
+    }
+    .idr-trust-icon{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      line-height:0;
+    }
+    .idr-trust-icon svg{
+      width:18px;
+      height:18px;
+      display:block;
+    }
+    .idr-trust-card h3{
+      margin:0;
+      font-size:.98rem;
+      font-weight:700;
+      letter-spacing:-.02em;
+      color:rgba(255,252,248,.96);
+    }
+    .idr-trust-card p{
+      margin:0;
+      font-size:.88rem;
+      line-height:1.5;
+      color:rgba(255,255,255,.58);
+    }
+    .idr-panel{
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.022));
+      box-shadow:0 20px 70px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+      padding:32px 30px 30px;
+    }
+    .idr-panel h2{
+      margin:0 0 22px;
+      font-size:1.12rem;
+      font-weight:700;
+      letter-spacing:-.03em;
+    }
+    .idr-list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:18px;
+    }
+    .idr-list li{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      font-size:.92rem;
+      line-height:1.45;
+      color:rgba(255,255,255,.66);
+    }
+    .idr-list li::before{
+      content:"";
+      flex:0 0 auto;
+      width:6px;height:6px;
+      margin-top:.55em;
+      border-radius:50%;
+      background:rgba(212,175,55,.45);
+    }
+    .idr-list li strong{
+      font-weight:600;
+      color:rgba(255,248,238,.88);
+    }
+    .idr-list--icons li::before{display:none}
+    .idr-list--icons li{
+      align-items:center;
+      gap:12px;
+    }
+    .idr-list-icon{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      line-height:0;
+    }
+    .idr-list-icon svg{
+      width:18px;
+      height:18px;
+      display:block;
+    }
+    .idr-list--icons li.idr-list-item--emphasis{
+      color:rgba(255,252,248,.72);
+    }
+    .idr-list--deny{
+      gap:12px;
+    }
+    .idr-list--deny li{
+      font-size:.9rem;
+      color:rgba(255,255,255,.62);
+    }
+    .idr-list--deny li::before{
+      background:rgba(200,96,96,.34);
+    }
+    .idr-panel-foot{
+      margin:18px 0 0;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.07);
+      font-size:.78rem;
+      line-height:1.5;
+      color:rgba(255,255,255,.46);
+    }
+    .idr-cta-strip{
+      margin-top:16px;
+      padding:28px 30px;
+      border-radius:22px;
+      border:1px solid rgba(212,175,55,.18);
+      background:rgba(212,175,55,.04);
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .idr-cta-strip p{
+      margin:0;
+      max-width:32rem;
+      font-size:.95rem;
+      line-height:1.5;
+      color:rgba(255,255,255,.62);
+    }
+    @media (max-width: 980px){
+      #idr-hero .hero-grid{
+        display:flex;
+        flex-direction:column;
+        flex-wrap:nowrap;
+        align-items:center;
+        width:100%;
+        max-width:100%;
+        gap:clamp(14px,3vw,22px);
+      }
+      .hero-grid{grid-template-columns:1fr}
+      .hero-preview-wrap{max-width:300px;margin:0 auto}
+      .hero-preview-booth{max-width:min(300px,100%)}
+      #idr-hero .hero-preview-wrap{min-height:0}
+      #idr-hero .hero-copy::before,
+      #idr-hero .hero-copy::after{display:none}
+      #idr-hero .hero-copy{
+        margin-right:0;
+        padding-right:0;
+        max-width:none;
+      }
+      #idr-hero .hero-preview-wrap{
+        margin-left:0;
+        width:100%;
+        min-width:0;
+        max-width:min(300px,100%);
+        justify-content:center;
+      }
+      #idr-hero .hero-preview-booth,
+      #idr-hero .hero-preview-booth .idr-radar-wrap{
+        max-width:min(300px,100%);
+      }
+      #idr-hero .hero h1 .idr-h1-br{display:none}
+    }
+    @media (max-width: 760px){
+      .container{width:min(100% - 24px, var(--max))}
+      #idr-hero.container{width:min(100% - 24px, var(--max))}
+      .topbar{backdrop-filter:blur(14px)}
+      .topbar-inner{
+        flex-direction:column;
+        justify-content:center;
+        align-items:stretch;
+        gap:14px;
+        padding:14px 0;
+        min-height:unset;
+      }
+      .brand{
+        min-width:0;
+        justify-content:center;
+        font-size:.96rem;
+      }
+      .nav{
+        width:100%;
+        justify-content:flex-start;
+        overflow-x:auto;
+        padding-bottom:4px;
+        scroll-snap-type:x proximity;
+        scrollbar-width:none;
+      }
+      .nav::-webkit-scrollbar{display:none}
+      .nav a{
+        width:auto;
+        min-width:92px;
+        flex:0 0 auto;
+        scroll-snap-align:start;
+        padding:12px 14px;
+      }
+      .page{padding-top:18px;padding-bottom:72px}
+      .hero{padding-top:22px;padding-bottom:24px}
+      .hero-grid{gap:22px}
+      .hero h1{
+        margin-top:16px;
+        font-size:clamp(2.35rem,11vw,3.35rem);
+        line-height:.98;
+        letter-spacing:-.075em;
+      }
+      .hero .idr-hero-lead{
+        margin-top:18px;
+        font-size:1rem;
+        line-height:1.65;
+      }
+      .idr-hero-icons{
+        gap:14px 20px;
+        margin-top:18px;
+      }
+      .hero-actions{
+        gap:12px;
+        margin-top:22px;
+      }
+      #idr-hero .hero-actions{
+        margin-top:24px;
+      }
+      .btn{
+        width:100%;
+        min-height:52px;
+        padding:0 18px;
+      }
+      #idr-hero .btn-idr-primary{
+        min-height:56px;
+        padding:0 24px;
+        font-size:1rem;
+      }
+      .idr-strip-btn{
+        width:100%;
+        min-height:52px;
+        padding:0 18px;
+      }
+      .idr-trust-grid{grid-template-columns:1fr}
+      .idr-cta-strip{flex-direction:column;text-align:center}
+    }
+    @media (max-width: 430px){
+      .container{width:min(100% - 20px, var(--max))}
+      #idr-hero.container{width:min(100% - 20px, var(--max))}
+      .topbar-inner{padding:12px 0}
+      .brand{font-size:.92rem}
+      .brand-mark img{width:clamp(22px,5.5vw,28px);max-height:28px}
+      .nav{gap:6px}
+      .nav a{
+        min-width:86px;
+        font-size:.9rem;
+        padding:11px 12px;
+      }
+      .page{padding-top:14px;padding-bottom:64px}
+      .hero h1{
+        font-size:clamp(2.1rem,12vw,3rem);
+        letter-spacing:-.07em;
+        max-width:none;
+      }
+      .hero .idr-hero-lead{font-size:.96rem}
+      .idr-hero-icons{gap:12px 16px}
+      .idr-radar-wrap{max-width:min(280px,88vw)}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .idr-radar-sweep{animation:none}
+      .idr-blip{animation:none;opacity:.55}
+      .hero h1 .hero-em{animation:none}
+      #idr-hero .btn-idr-primary,
+      #idr-hero .btn-idr-primary:hover,
+      #idr-hero .btn-idr-primary:active{
+        transform:none;
+      }
+    }
+    @media (max-width: 600px){
+      .idr-radar-sweep{animation-duration:36s}
+      .idr-blip{animation-duration:36s}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/index.html" aria-label="Mainsches home">
+        <span class="brand-mark"><img src="/assets/logo.png" alt=""></span>
+        <span>Mainsches</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/index.html" >Home</a>
+        <a href="/contact.html" >Contact</a>
+        <a href="/sketchit.html" >Mainsches AI</a>
+        <a href="/swipesort.html" >SwipeSort</a>
+        <a href="/idradar.html" aria-current="page">ID Radar</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page">
+    <section class="container hero" id="idr-hero" aria-labelledby="idr-title">
+      <div class="idr-hero-focus">
+        <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-lockup">
+            <span class="hero-mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,.14)" stroke-width="1.2"/>
+                <circle cx="32" cy="32" r="18" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+                <circle cx="32" cy="32" r="8" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                <line x1="32" y1="4" x2="32" y2="60" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                <line x1="4" y1="32" x2="60" y2="32" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                <line x1="32" y1="32" x2="32" y2="8" stroke="rgba(212,175,55,.55)" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="32" cy="32" r="2.2" fill="rgba(212,175,55,.65)"/>
+                <circle cx="32" cy="32" r="1" fill="rgba(255,252,248,.9)"/>
+              </svg>
+            </span>
+            <a class="hero-brand-name" href="https://idradar.ch" target="_blank" rel="noopener noreferrer" aria-label="Open idradar.ch in a new tab">IDradar.ch</a>
+          </div>
+          <h1 id="idr-title">Map your <span class="hero-em">identity</span><br class="idr-h1-br" /> across public data.</h1>
+          <p class="idr-hero-lead">How easily can you be found online?</p>
+          <ul class="idr-hero-icons" role="list">
+            <li>
+              <span class="idr-hero-icons-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="7.5" fill="none" stroke="rgba(212,175,55,.55)" stroke-width="1.2"/>
+                  <path d="M4.5 12h15M12 4.5c2.2 2.8 2.2 12.2 0 15" fill="none" stroke="rgba(212,175,55,.45)" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Public signals
+            </li>
+            <li>
+              <span class="idr-hero-icons-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="10.5" cy="10.5" r="5.5" fill="none" stroke="rgba(212,175,55,.55)" stroke-width="1.2"/>
+                  <line x1="14.5" y1="14.5" x2="20" y2="20" stroke="rgba(212,175,55,.45)" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Deep search
+            </li>
+            <li>
+              <span class="idr-hero-icons-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="7" cy="12" r="2.5" fill="none" stroke="rgba(212,175,55,.55)" stroke-width="1.2"/>
+                  <line x1="9.5" y1="12" x2="14.5" y2="12" stroke="rgba(212,175,55,.45)" stroke-width="1.2" stroke-linecap="round"/>
+                  <circle cx="17" cy="12" r="2.5" fill="none" stroke="rgba(212,175,55,.55)" stroke-width="1.2"/>
+                </svg>
+              </span>
+              Traceability
+            </li>
+            <li>
+              <span class="idr-hero-icons-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 5v3M12 16v3M5 12h3M16 12h3" fill="none" stroke="rgba(212,175,55,.45)" stroke-width="1.1" stroke-linecap="round"/>
+                  <circle cx="12" cy="12" r="4" fill="none" stroke="rgba(212,175,55,.55)" stroke-width="1.2"/>
+                </svg>
+              </span>
+              Exposure
+            </li>
+            <li class="idr-hero-icons-item--emphasis">
+              <span class="idr-hero-icons-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M4.5 10.5c0-2 3.6-3.5 7.5-3.5s7.5 1.5 7.5 3.5v2.4c0 2.6-3.4 5-7.5 5s-7.5-2.4-7.5-5v-2.4z" stroke="rgba(212,175,55,.55)" stroke-width="1.2" stroke-linejoin="round"/>
+                  <circle cx="9.2" cy="11.2" r="1.35" stroke="rgba(212,175,55,.42)" stroke-width="1"/>
+                  <circle cx="14.8" cy="11.2" r="1.35" stroke="rgba(212,175,55,.42)" stroke-width="1"/>
+                </svg>
+              </span>
+              Impersonation
+            </li>
+          </ul>
+          <div class="hero-actions">
+            <a class="btn btn-idr-primary" href="https://idradar.ch" target="_blank" rel="noopener noreferrer" aria-label="Open IDradar.ch in a new tab">Open IDradar.ch</a>
+          </div>
+          <p class="idr-hero-ch-note">Runs in your browser · No login · No storage · <span class="idr-domain">idradar.ch</span></p>
+        </div>
+        <div class="hero-preview-wrap" aria-hidden="true">
+          <div class="hero-preview-booth">
+            <div class="idr-radar-wrap">
+          <div class="idr-radar-disk">
+            <svg class="idr-radar-base" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="100" cy="100" r="88" stroke="rgba(255,255,255,.09)" stroke-width="1"/>
+              <circle cx="100" cy="100" r="66" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+              <circle cx="100" cy="100" r="44" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <circle cx="100" cy="100" r="22" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+              <line x1="100" y1="12" x2="100" y2="188" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="12" y1="100" x2="188" y2="100" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="38" y1="38" x2="162" y2="162" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+              <line x1="162" y1="38" x2="38" y2="162" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+            </svg>
+            <div class="idr-radar-sweep-layer">
+              <div class="idr-radar-sweep">
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="idrSweepGrad" x1="100" y1="100" x2="100" y2="12" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="rgba(212,175,55,0)"/>
+                      <stop offset="35%" stop-color="rgba(212,175,55,.14)"/>
+                      <stop offset="100%" stop-color="rgba(212,175,55,.02)"/>
+                    </linearGradient>
+                    <linearGradient id="idrArmGrad" x1="100" y1="100" x2="100" y2="18" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="rgba(212,175,55,.5)"/>
+                      <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M100 100 L100 14 A86 86 0 0 1 171.2 65.5 Z" fill="url(#idrSweepGrad)" opacity=".85"/>
+                  <line x1="100" y1="100" x2="100" y2="16" stroke="url(#idrArmGrad)" stroke-width="1.35" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <svg class="idr-radar-blips" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle class="idr-blip" cx="148" cy="62" r="3.2" fill="rgba(212,175,55,.75)" style="--t:0s"/>
+              <circle class="idr-blip" cx="58" cy="118" r="2.6" fill="rgba(241,215,123,.65)" style="--t:6s"/>
+              <circle class="idr-blip" cx="124" cy="142" r="2.8" fill="rgba(212,175,55,.55)" style="--t:12s"/>
+              <circle class="idr-blip" cx="72" cy="52" r="2.4" fill="rgba(255,252,248,.35)" style="--t:18s"/>
+              <circle cx="100" cy="100" r="4" fill="rgba(212,175,55,.35)"/>
+              <circle cx="100" cy="100" r="1.8" fill="rgba(255,252,248,.85)"/>
+            </svg>
+          </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container idr-demo-wrap">
+      <section class="idr-demo" id="idr-demo" aria-labelledby="idr-demo-heading">
+        <div class="idr-demo-shell">
+          <div class="idr-demo-panel">
+            <h2 class="idr-demo-title" id="idr-demo-heading">Try a demo scan</h2>
+            <p class="idr-demo-meta">Demo only — nothing is stored. Edit the fields or keep the sample, then run the scan.</p>
+            <form class="idr-demo-form" id="idr-demo-form" novalidate>
+              <div class="idr-demo-fields">
+                <label class="idr-demo-field">
+                  <span>Full name</span>
+                  <input type="text" name="fullname" id="idr-demo-name" autocomplete="name" placeholder="Max Muster" value="Max Muster" />
+                </label>
+                <label class="idr-demo-field">
+                  <span>Username</span>
+                  <input type="text" name="username" id="idr-demo-user" autocomplete="username" placeholder="max.muster" value="max.muster" />
+                </label>
+                <label class="idr-demo-field idr-demo-field--optional">
+                  <span>City (optional)</span>
+                  <input type="text" name="city" id="idr-demo-city" autocomplete="address-level2" placeholder="Zurich" value="Zurich" />
+                </label>
+              </div>
+              <button type="submit" class="idr-demo-submit" id="idr-demo-submit">Run demo scan</button>
+            </form>
+            <div class="idr-demo-stage" id="idr-demo-stage" hidden>
+              <div class="idr-demo-scanning" id="idr-demo-scanning" hidden>Scanning…</div>
+              <div class="idr-demo-result" id="idr-demo-result" hidden tabindex="-1">
+                <p class="idr-demo-result-tag">Demo result</p>
+                <div class="idr-demo-result-card">
+                  <div class="idr-demo-dash">
+                    <div class="idr-demo-block idr-demo-block--risk">
+                      <span class="idr-demo-block-label">Risk score</span>
+                      <span class="idr-demo-risk-badge idr-demo-risk--med" id="idr-demo-out-risk">Medium</span>
+                    </div>
+                    <div class="idr-demo-block">
+                      <span class="idr-demo-block-label">Signals found</span>
+                      <span class="idr-demo-stat" id="idr-demo-out-signals">12</span>
+                    </div>
+                    <div class="idr-demo-block">
+                      <span class="idr-demo-block-label">Platforms</span>
+                      <div class="idr-demo-pills" id="idr-demo-out-pills"></div>
+                    </div>
+                    <div class="idr-demo-block">
+                      <span class="idr-demo-block-label">Impersonation</span>
+                      <div class="idr-demo-improv">
+                        <svg class="idr-demo-warn" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                          <path d="M12 5.2L19.8 19H4.2L12 5.2z" stroke="rgba(224,154,92,.5)" stroke-width="1.25" stroke-linejoin="round"/>
+                          <line x1="12" y1="10" x2="12" y2="13.2" stroke="rgba(224,154,92,.48)" stroke-width="1.2" stroke-linecap="round"/>
+                          <circle cx="12" cy="16.2" r="0.8" fill="rgba(224,154,92,.5)"/>
+                        </svg>
+                        <span id="idr-demo-out-improv">1 match</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p class="idr-demo-result-foot">Simulated output for preview.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="idr-section" aria-labelledby="idr-for-you-heading">
+        <div class="idr-section-head">
+          <div class="label">For you</div>
+          <h2 id="idr-for-you-heading">What ID Radar does for you</h2>
+        </div>
+        <div class="idr-trust-grid">
+          <div class="idr-trust-card">
+            <div class="idr-trust-card-top">
+              <span class="idr-trust-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="9" stroke="rgba(212,175,55,.52)" stroke-width="1.2"/>
+                  <path d="M3 12h18M12 3c2.2 3.6 2.2 14.4 0 18M12 3c-2.2 3.6-2.2 14.4 0 18" stroke="rgba(212,175,55,.4)" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <h3>Scan the open web</h3>
+            </div>
+            <p>Models run the wide pass; you decide what is really you.</p>
+          </div>
+          <div class="idr-trust-card">
+            <div class="idr-trust-card-top">
+              <span class="idr-trust-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10.5" cy="10.5" r="5.5" stroke="rgba(212,175,55,.52)" stroke-width="1.2"/>
+                  <line x1="14.5" y1="14.5" x2="20" y2="20" stroke="rgba(212,175,55,.45)" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <h3>Connect the signals</h3>
+            </div>
+            <p>Fragments from profiles and listings read as one clear trail.</p>
+          </div>
+          <div class="idr-trust-card">
+            <div class="idr-trust-card-top">
+              <span class="idr-trust-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="rgba(212,175,55,.52)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <h3>See your exposure</h3>
+            </div>
+            <p>Know where you look easy to reach—and where you go quiet.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="idr-section" aria-labelledby="idr-read-heading">
+        <div class="idr-panel">
+          <h2 id="idr-read-heading">What ID Radar shows</h2>
+          <ul class="idr-list idr-list--icons" role="list">
+            <li>
+              <span class="idr-list-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="8.5" r="2.8" stroke="rgba(212,175,55,.52)" stroke-width="1.2"/>
+                  <path d="M4.5 19c0-2.8 2-4.5 4.5-4.5s4.5 1.7 4.5 4.5" stroke="rgba(212,175,55,.45)" stroke-width="1.2" stroke-linecap="round"/>
+                  <circle cx="16.5" cy="8" r="2.2" stroke="rgba(212,175,55,.48)" stroke-width="1.1"/>
+                  <path d="M12.5 19c0-2 1.6-3.2 4-3.2" stroke="rgba(212,175,55,.4)" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Social media profiles
+            </li>
+            <li>
+              <span class="idr-list-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="9" stroke="rgba(212,175,55,.52)" stroke-width="1.2"/>
+                  <path d="M3 12h18M12 3c2.2 3.6 2.2 14.4 0 18M12 3c-2.2 3.6-2.2 14.4 0 18" stroke="rgba(212,175,55,.4)" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Public web pages
+            </li>
+            <li>
+              <span class="idr-list-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="7" cy="8" r="1.2" fill="rgba(212,175,55,.42)"/>
+                  <line x1="10" y1="8" x2="18" y2="8" stroke="rgba(212,175,55,.5)" stroke-width="1.2" stroke-linecap="round"/>
+                  <circle cx="7" cy="12" r="1.2" fill="rgba(212,175,55,.42)"/>
+                  <line x1="10" y1="12" x2="18" y2="12" stroke="rgba(212,175,55,.5)" stroke-width="1.2" stroke-linecap="round"/>
+                  <circle cx="7" cy="16" r="1.2" fill="rgba(212,175,55,.42)"/>
+                  <line x1="10" y1="16" x2="15" y2="16" stroke="rgba(212,175,55,.5)" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Open directories & listings
+            </li>
+            <li>
+              <span class="idr-list-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="2" stroke="rgba(212,175,55,.52)" stroke-width="1.2"/>
+                  <circle cx="16" cy="8" r="2" stroke="rgba(212,175,55,.52)" stroke-width="1.2"/>
+                  <circle cx="12" cy="16" r="2" stroke="rgba(212,175,55,.52)" stroke-width="1.2"/>
+                  <line x1="9.3" y1="9.3" x2="11.2" y2="14.5" stroke="rgba(212,175,55,.42)" stroke-width="1" stroke-linecap="round"/>
+                  <line x1="14.7" y1="9.3" x2="12.8" y2="14.5" stroke="rgba(212,175,55,.42)" stroke-width="1" stroke-linecap="round"/>
+                  <line x1="8" y1="10" x2="16" y2="10" stroke="rgba(212,175,55,.32)" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Linked identity signals
+            </li>
+            <li class="idr-list-item--emphasis">
+              <span class="idr-list-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 5.2L19.8 19H4.2L12 5.2z" stroke="rgba(212,175,55,.52)" stroke-width="1.2" stroke-linejoin="round"/>
+                  <line x1="12" y1="10" x2="12" y2="13.2" stroke="rgba(212,175,55,.48)" stroke-width="1.35" stroke-linecap="round"/>
+                  <circle cx="12" cy="16.2" r="0.85" fill="rgba(212,175,55,.5)"/>
+                </svg>
+              </span>
+              Identity risk
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="idr-section" aria-labelledby="idr-noaccess-heading">
+        <div class="idr-panel">
+          <h2 id="idr-noaccess-heading">What ID Radar does not access</h2>
+          <ul class="idr-list idr-list--deny" role="list">
+            <li>Private messages</li>
+            <li>Emails</li>
+            <li>Passwords</li>
+            <li>Logged-in accounts</li>
+            <li>Personal devices</li>
+          </ul>
+          <p class="idr-panel-foot">Only publicly accessible data is used.</p>
+        </div>
+      </section>
+
+      <section class="idr-section">
+        <div class="idr-cta-strip">
+          <p>Need access or answers? Write Mainsches—we reply from Switzerland.</p>
+          <a class="idr-strip-btn" href="/contact.html">Contact Mainsches</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/impressum.html">Impressum</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </footer>
+  <script>
+  (function(){
+    var form=document.getElementById('idr-demo-form');
+    var stage=document.getElementById('idr-demo-stage');
+    var scanning=document.getElementById('idr-demo-scanning');
+    var result=document.getElementById('idr-demo-result');
+    var btn=document.getElementById('idr-demo-submit');
+    var elRisk=document.getElementById('idr-demo-out-risk');
+    var elSig=document.getElementById('idr-demo-out-signals');
+    var elPills=document.getElementById('idr-demo-out-pills');
+    var elImp=document.getElementById('idr-demo-out-improv');
+    if(!form||!stage||!scanning||!result||!btn||!elRisk||!elSig||!elPills||!elImp)return;
+
+    var demoPresets=[
+      {name:'Max Muster',user:'max.muster',city:'Zurich'},
+      {name:'Sara Meier',user:'sara.meier',city:'Basel'},
+      {name:'Jonas Koch',user:'jonas.k',city:'Geneva'}
+    ];
+    var nameI=document.getElementById('idr-demo-name');
+    var userI=document.getElementById('idr-demo-user');
+    var cityI=document.getElementById('idr-demo-city');
+    if(nameI&&userI&&cityI){
+      var sk='idrDemoPresetIx';
+      var ix=parseInt(sessionStorage.getItem(sk)||'0',10);
+      if(!isFinite(ix)||ix<0)ix=0;
+      var pr=demoPresets[ix%demoPresets.length];
+      nameI.value=pr.name;
+      userI.value=pr.user;
+      cityI.value=pr.city;
+      nameI.setAttribute('placeholder','Max Muster');
+      userI.setAttribute('placeholder','max.muster');
+      cityI.setAttribute('placeholder','Zurich');
+      sessionStorage.setItem(sk,String((ix+1)%demoPresets.length));
+    }
+
+    var poolLow=['Directories','Forums','Web'];
+    var poolMed=['Instagram','LinkedIn','Directories','X','Forums'];
+    var poolHigh=['Instagram','LinkedIn','X','Directories','Forums','Web'];
+
+    function hashSeed(s){
+      var h=0,i;
+      for(i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i)|0;
+      return Math.abs(h);
+    }
+
+    function uniquePicks(arr,h,count){
+      var sh=arr.slice().sort(function(a,b){
+        return (((h+hashSeed(a))%1001)-((h+hashSeed(b))%1001));
+      });
+      return sh.slice(0,Math.min(count,sh.length));
+    }
+
+    function tierFromInputs(len,hasUser,hIn){
+      var noise=(hIn%5)-2;
+      var score=noise;
+      score+=Math.min(3,Math.floor(len/22));
+      if(len<8)score-=2;
+      if(!hasUser)score-=1;
+      if(len>52)score+=2;
+      if(score<=-1)return 0;
+      if(score>=3)return 2;
+      return 1;
+    }
+
+    function renderDemo(hRun,tier){
+      var risk=tier===0?'Low':(tier===2?'High':'Medium');
+      elRisk.textContent=risk;
+      elRisk.classList.remove('idr-demo-risk--low','idr-demo-risk--med','idr-demo-risk--high');
+      if(tier===0)elRisk.classList.add('idr-demo-risk--low');
+      else if(tier===2)elRisk.classList.add('idr-demo-risk--high');
+      else elRisk.classList.add('idr-demo-risk--med');
+
+      var sig,imp,pills;
+      if(tier===0){
+        sig=3+(hRun%6);
+        imp=0;
+        pills=uniquePicks(poolLow,hRun,2);
+      }else if(tier===1){
+        sig=8+(hRun%7);
+        imp=(hRun%5)===0?0:1;
+        pills=uniquePicks(poolMed,hRun,3);
+      }else{
+        sig=13+(hRun%6);
+        if(sig>18)sig=18;
+        imp=1+(hRun%2);
+        pills=uniquePicks(poolHigh,hRun,3+((hRun>>3)%2));
+      }
+
+      elSig.textContent=String(sig);
+      elPills.textContent='';
+      pills.forEach(function(p){
+        var sp=document.createElement('span');
+        sp.className='idr-demo-pill';
+        sp.textContent=p;
+        elPills.appendChild(sp);
+      });
+      elImp.textContent=imp===0?'0 matches':(imp===1?'1 match':'2 matches');
+    }
+
+    function hideDemoResult(){
+      result.classList.remove('idr-demo-result--open');
+      result.setAttribute('hidden','');
+    }
+
+    function revealDemoResult(){
+      result.removeAttribute('hidden');
+      if(reduceMotion){
+        result.classList.add('idr-demo-result--open');
+        return;
+      }
+      void result.offsetWidth;
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          result.classList.add('idr-demo-result--open');
+        });
+      });
+    }
+
+    var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var scanBusy=false;
+
+    function runDemoFromForm(opts){
+      opts=opts||{};
+      var isAuto=!!opts.auto;
+      if(scanBusy)return;
+      scanBusy=true;
+
+      var fd=new FormData(form);
+      var name=(fd.get('fullname')||'').toString().trim();
+      var user=(fd.get('username')||'').toString().trim();
+      var city=(fd.get('city')||'').toString().trim();
+      var raw=name+'|'+user+'|'+city;
+      var base=raw.length?raw:'demo';
+      var len=base.length;
+      var hasUser=user.length>0;
+      var hIn=hashSeed(base);
+      var salt=String(Math.random()).slice(2,11)+String(performance.now());
+      var hRun=hashSeed(base+'|'+salt);
+      var tier=tierFromInputs(len,hasUser,hIn);
+
+      scanning.textContent=isAuto?'Analyzing public identity signals…':'Scanning public signals…';
+
+      btn.disabled=true;
+      stage.removeAttribute('hidden');
+      scanning.removeAttribute('hidden');
+      hideDemoResult();
+      form.setAttribute('aria-busy','true');
+
+      var wait=reduceMotion?0:(400+(Math.abs(hashSeed(salt+hIn))%401));
+      window.setTimeout(function(){
+        scanning.setAttribute('hidden','');
+        renderDemo(hRun,tier);
+        revealDemoResult();
+        btn.disabled=false;
+        form.removeAttribute('aria-busy');
+        scanBusy=false;
+        if(!isAuto){
+          try{result.focus({preventScroll:true});}catch(e){result.focus();}
+        }
+      },wait);
+    }
+
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      runDemoFromForm({auto:false});
+    });
+
+    function scheduleAutoDemo(){
+      if(reduceMotion||window.__idrDemoAutoOnce)return;
+      window.__idrDemoAutoOnce=1;
+      var tries=0;
+      function attempt(){
+        if(scanBusy&&tries<35){
+          tries++;
+          window.setTimeout(attempt,180);
+          return;
+        }
+        runDemoFromForm({auto:true});
+      }
+      window.setTimeout(attempt,280);
+    }
+    if(document.readyState==='loading'){
+      document.addEventListener('DOMContentLoaded',scheduleAutoDemo);
+    }else{
+      scheduleAutoDemo();
+    }
+  })();
+  </script>
+</body>
+</html>

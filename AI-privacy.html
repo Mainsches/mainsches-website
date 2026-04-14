@@ -67,9 +67,44 @@
     }
 
     .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(8px, 1.5vw, 12px);
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.02em;
+    }
+
+    .brand:hover {
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      line-height: 0;
+    }
+
+    .brand-mark img {
+      width: clamp(24px, 2.2vw, 28px);
+      height: auto;
+      max-height: 28px;
+      display: block;
+      object-fit: contain;
+      object-position: left center;
+      transition: opacity 0.18s ease;
+    }
+
+    .brand:hover .brand-mark img {
+      opacity: 0.94;
     }
 
     .nav {
@@ -160,6 +195,11 @@
         min-height: 62px;
       }
 
+      .brand-mark img {
+        width: clamp(22px, 5.5vw, 28px);
+        max-height: 28px;
+      }
+
       .nav {
         gap: 12px;
         font-size: 0.95rem;
@@ -170,7 +210,10 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <div class="brand">Mainsches AI</div>
+      <a class="brand" href="/index.html" aria-label="Mainsches home">
+        <span class="brand-mark"><img src="/assets/logo.png" alt="" /></span>
+        <span>Mainsches AI</span>
+      </a>
       <nav class="nav">
         <a href="/index.html">Home</a>
         <a href="/contact.html">Contact</a>
