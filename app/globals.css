@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Mainsches Hub design tokens
+   Documented in docs/design-system.md. Dark, precise, warm gold as a scarce
+   accent. Heritage gold (#D4AF37) is kept from the existing Mainsches brand.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Surfaces */
+  --color-bg: #0b0b0c;
+  --color-bg-deep: #060607;
+  --color-raised: #121214;
+  --color-surface: #17171a;
+  --color-surface-hover: #1c1c21;
+  --color-inset: #0e0e10;
+
+  /* Lines */
+  --color-line: #232329;
+  --color-line-soft: #1c1c21;
+  --color-line-strong: #33333b;
+
+  /* Ink */
+  --color-ink: #f4f3ef;
+  --color-ink-soft: #a7a6a0;
+  --color-ink-faint: #7c7b73;
+
+  /* Gold accent family */
+  --color-gold: #d4af37;
+  --color-gold-soft: #e2c878;
+  --color-gold-deep: #9d8228;
+  --color-gold-line: rgba(212, 175, 55, 0.28);
+  --color-gold-tint: rgba(212, 175, 55, 0.08);
+
+  /* Semantic */
+  --color-danger: #e2695e;
+  --color-danger-tint: rgba(226, 105, 94, 0.1);
+
+  /* Typography */
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "Cascadia Mono",
+    monospace;
+
+  /* Radii */
+  --radius-control: 0.625rem; /* buttons, inputs */
+  --radius-card: 1rem; /* cards */
+  --radius-panel: 1.5rem; /* large panels */
+
+  /* Shadows */
+  --shadow-panel: 0 24px 80px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.3);
+
+  /* Motion */
+  --ease-hub: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-up: fade-up 0.5s var(--ease-hub) both;
+  --animate-console-in: console-in 0.4s var(--ease-hub) both;
+  --animate-pulse-dot: pulse-dot 1.4s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes console-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scrollbar-gutter: stable;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: rgba(212, 175, 55, 0.3);
+    color: var(--color-ink);
+  }
+
+  /* One consistent, visible focus treatment across the site. */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Reduced motion: neutralize the local CSS animations. Motion (Framer)
+     components handle this in JS via useReducedMotion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Shared max-width shell */
+  .shell {
+    margin-inline: auto;
+    width: min(100% - 2.5rem, 74rem);
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      width: min(100% - 4rem, 74rem);
+    }
+  }
+
+  /* Uppercase mono section label */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  /* Thin gold rule used next to section labels */
+  .label-rule {
+    display: inline-block;
+    height: 1px;
+    width: 2rem;
+    background: var(--color-gold-line);
+    vertical-align: middle;
+  }
+}
