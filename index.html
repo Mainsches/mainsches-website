@@ -1,1028 +1,676 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/assets/logo.png" />
   <link rel="shortcut icon" href="/assets/logo.png" />
   <link rel="apple-touch-icon" href="/assets/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <title>Mainsches — Product development, security & applied AI</title>
-  <meta name="description" content="Mainsches is a product company: Android software we build and ship ourselves—with disciplined scope, defensive security, and AI only where it removes real work." />
-    <link rel="canonical" href="https://mainsches.com/" />
-  <meta name="theme-color" content="#050505" />
-  <meta property="og:title" content="Mainsches — Product development, security & applied AI" />
-  <meta property="og:description" content="Mainsches is a product company: Android software we build and ship ourselves—with disciplined scope, defensive security, and AI only where it removes real work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Mainsches AI — KI-Brain</title>
+  <meta id="meta-desc" name="description" content="Zentraler Denk- und Ausführungsraum. Entwicklung, Führung, Automatisierung — Mainsches AI." />
+  <link rel="canonical" href="https://mainsches.com/" />
+  <meta name="theme-color" content="#080808" />
+  <meta id="og-title" property="og:title" content="Mainsches AI" />
+  <meta id="og-desc" property="og:description" content="Zentraler Denk- und Ausführungsraum. Entwicklung, Führung, Automatisierung — Mainsches AI." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mainsches.com/" />
-
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Mainsches" />
-  <meta property="og:site_name" content="Mainsches" />
-  <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mainsches — Product development, security & applied AI" />
-  <meta name="twitter:description" content="Mainsches is a product company: Android software we build and ship ourselves—with disciplined scope, defensive security, and AI only where it removes real work." />
+  <meta name="twitter:title" content="Mainsches AI" />
+  <meta name="twitter:description" content="Mainsches AI" />
   <meta property="og:image" content="https://mainsches.com/og-cover.jpg" />
   <meta name="twitter:image" content="https://mainsches.com/og-cover.jpg" />
   <style>
-
-    :root{
-      --bg:#040404;
-      --bg-2:#090909;
-      --panel:rgba(255,255,255,.045);
-      --panel-2:rgba(255,255,255,.03);
-      --line:rgba(255,255,255,.10);
-      --line-2:rgba(255,255,255,.07);
-      --text:#ffffff;
-      --muted:rgba(255,255,255,.70);
-      --muted-2:rgba(255,255,255,.48);
-      --max:1180px;
-      --radius:28px;
-      --shadow:0 24px 90px rgba(0,0,0,.50);
-      --hover-shadow:0 30px 110px rgba(0,0,0,.58);
-      --ease:cubic-bezier(.22,1,.36,1);
-      --speed-fast:180ms;
-      --speed-med:240ms;
-      --speed-slow:700ms;
-
-      --gold:#d4af37;
-      --gold-2:#f1d77b;
-      --gold-line:rgba(212,175,55,.22);
-      --gold-soft:rgba(212,175,55,.10);
-      --gold-glow:0 0 30px rgba(212,175,55,.14);
-      --gold-glow-soft:0 0 56px rgba(212,175,55,.1);
+    :root {
+      --bg: #080808;
+      --bg-elev: #0e0e0e;
+      --text: #f2ede5;
+      --text-muted: rgba(224, 218, 208, 0.62);
+      --text-dim: rgba(170, 164, 150, 0.45);
+      --line: rgba(255, 255, 255, 0.055);
+      --line-soft: rgba(255, 255, 255, 0.04);
+      --gold: #c4a64a;
+      --gold-bright: #e8d18a;
+      --gold-dim: rgba(196, 166, 74, 0.4);
+      --max: 1120px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --t: 0.2s;
+      --sec-pad: clamp(2.4rem, 4.5vw, 3.75rem);
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scrollbar-gutter:stable}
-    body{
-      margin:0;
-      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--text);
+    *, *::before, *::after { box-sizing: border-box; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    @media (max-width: 720px) { :root { --sec-pad: 2.25rem; } html { scroll-padding-top: 80px; } }
+    body {
+      margin: 0; font-family: "Inter", system-ui, sans-serif; color: var(--text-muted);
+      background: var(--bg); min-height: 100vh; -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background:
-        radial-gradient(circle at 12% 10%, rgba(255,255,255,.11), transparent 24%),
-        radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 18%),
-        radial-gradient(circle at 72% 48%, rgba(212,175,55,.06), transparent 22%),
-        radial-gradient(circle at 22% 72%, rgba(212,175,55,.045), transparent 20%),
-        linear-gradient(180deg, #0a0a0a 0%, #050505 42%, #030303 100%);
-      min-height:100vh;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.10;
-      background-image:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size:120px 120px;
-      mask-image:radial-gradient(circle at center, black 28%, transparent 82%);
-    }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    button,input,textarea{font:inherit}
-    .container{width:min(100% - 32px, var(--max));margin:0 auto}
-    .topbar{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter:blur(18px);
-      background:rgba(7,7,7,.70);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      transition:background var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease);
-    }
-    .topbar-inner{
-      min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px;
-    }
-    .brand{
-      display:inline-flex;align-items:center;gap:clamp(8px,1.5vw,12px);min-width:152px;font-weight:700;letter-spacing:-.03em;
-      transition:transform var(--speed-fast) var(--ease), opacity var(--speed-fast) var(--ease);
-      white-space:nowrap;
-    }
-    .brand:hover{transform:translateY(-1px)}
-    .brand-mark{
-      flex:0 0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:0;
-      padding:0;
-      border:none;
-      border-radius:0;
-      background:none;
-      box-shadow:none;
-      line-height:0;
-    }
-    .brand-mark img{
-      width:clamp(24px,2.2vw,28px);
-      height:auto;
-      max-height:28px;
-      display:block;
-      object-fit:contain;
-      object-position:left center;
-      transition:opacity var(--speed-fast) var(--ease);
-    }
-    .brand:hover .brand-mark img{opacity:.94}
-    .nav{display:flex;gap:8px;flex-wrap:nowrap}
-    .nav a{
-      width:auto;min-width:96px;padding:12px 14px;text-align:center;flex:0 0 auto;
-      border-radius:999px;border:1px solid transparent;
-      color:var(--muted);font-size:.95rem;font-weight:600;
-      transition:
-        color var(--speed-fast) var(--ease),
-        background var(--speed-fast) var(--ease),
-        border-color var(--speed-fast) var(--ease),
-        transform var(--speed-fast) var(--ease),
-        box-shadow var(--speed-fast) var(--ease);
-      -webkit-tap-highlight-color:transparent;
-    }
-    .nav a:hover,.nav a[aria-current="page"]{
-      color:#fff;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.10);
-      transform:translateY(-1px);
-      box-shadow:0 12px 28px rgba(0,0,0,.18);
-    }
-    .nav a:active{transform:translateY(0) scale(.985)}
-    .page{padding:42px 0 96px}
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:10px 14px;border-radius:999px;
-      background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
-      color:rgba(255,255,255,.84);font-size:.90rem;font-weight:600;
-      backdrop-filter:blur(12px);
-      transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease);
-      max-width:100%;
-    }
-    .eyebrow:hover{
-      transform:translateY(-1px);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.055);
-    }
-    .eyebrow::before{
-      content:"";width:8px;height:8px;border-radius:50%;background:#fff;
-      box-shadow:0 0 18px rgba(255,255,255,.75);
-      flex:0 0 auto;
-    }
-    h1,h2,h3,p{margin:0}
-    .hero{
-      padding:48px 0 44px;
-    }
-    .hero-kicker{
-      margin:0 0 14px;
-      padding-left:12px;
-      border-left:2px solid rgba(212,175,55,.45);
-      font-size:.76rem;
-      font-weight:700;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:rgba(255,252,248,.5);
-    }
-    .hero h1{
-      margin-top:0;
-      font-size:clamp(3.1rem,6vw,5.9rem);
-      line-height:.96;
-      letter-spacing:-.09em;
-      font-weight:800;
-      max-width:900px;
-      text-wrap:balance;
-      color:rgba(255,252,248,.99);
-    }
-    .hero-accent{
-      color:var(--gold-2);
-    }
-    .hero-line2{
-      display:block;
-      margin-top:12px;
-      font-size:clamp(1.28rem,2.6vw,1.72rem);
-      font-weight:600;
-      letter-spacing:-.035em;
-      line-height:1.2;
-      color:rgba(255,252,248,.9);
-      max-width:22ch;
-    }
-    .hero p{
-      margin-top:22px;max-width:34rem;
-      font-size:1.04rem;line-height:1.68;color:rgba(255,255,255,.7);
-      text-wrap:pretty;
-    }
-    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      min-height:54px;padding:0 22px;border-radius:999px;font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      transition:
-        transform var(--speed-fast) var(--ease),
-        background var(--speed-fast) var(--ease),
-        border-color var(--speed-fast) var(--ease),
-        box-shadow var(--speed-fast) var(--ease),
-        opacity var(--speed-fast) var(--ease);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
-      will-change:transform;
-      -webkit-tap-highlight-color:transparent;
-      touch-action:manipulation;
-    }
-    .btn:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.16);
-      box-shadow:0 14px 34px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.08);
-    }
-    .btn:active{
-      transform:translateY(0) scale(.985);
-    }
-    .btn-primary{
-      background:linear-gradient(180deg, #f5e3a0 0%, var(--gold) 100%);
-      color:#050505;
-      border-color:rgba(255,255,255,0);
-      box-shadow:0 12px 30px rgba(212,175,55,.16);
-    }
-    .btn-primary:hover{
-      background:linear-gradient(180deg, #f7e8b6 0%, #ddb74d 100%);
-    }
-    .section{padding:32px 0}
-    .section + .section{margin-top:22px}
-    .section-head{margin-bottom:26px}
-    .section-head .label{
-      color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
-      margin-bottom:10px;
-    }
-    .section-head h2{
-      font-size:clamp(2rem,3.5vw,3rem);
-      font-weight:800;
-      letter-spacing:-.055em;line-height:1.02;max-width:760px;
-      text-wrap:balance;
-    }
-    .section-head p{
-      margin-top:14px;color:var(--muted);max-width:760px;line-height:1.8;
-      text-wrap:pretty;
-    }
-    .panel{
-      position:relative;overflow:hidden;border-radius:32px;
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
-      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
-      transition:
-        transform var(--speed-med) var(--ease),
-        border-color var(--speed-fast) var(--ease),
-        box-shadow var(--speed-med) var(--ease),
-        background var(--speed-med) var(--ease);
-      will-change:transform;
-    }
-    .panel:hover{
-      transform:translateY(-3px);
-      border-color:var(--gold-line);
-      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow-soft);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-    }
-    .panel::before{
-      content:"";position:absolute;inset:0;pointer-events:none;
-      background:linear-gradient(135deg, rgba(255,255,255,.05), transparent 36%, transparent 60%, rgba(255,255,255,.025));
-      opacity:.9;
-      transition:opacity var(--speed-med) var(--ease);
-    }
-    .panel:hover::before{opacity:1}
-    .panel-content{position:relative;padding:28px}
-    .product-grid{
-      display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:28px;align-items:center;
-    }
-    .device{
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:34px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
-      transition:
-        transform var(--speed-med) var(--ease),
-        border-color var(--speed-fast) var(--ease),
-        box-shadow var(--speed-med) var(--ease);
-    }
-    .panel:hover .device{
-      transform:translateY(-2px);
-      border-color:rgba(255,255,255,.14);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 18px 45px rgba(0,0,0,.24);
-    }
-    .device-top{
-      display:flex;align-items:center;justify-content:space-between;
-      margin-bottom:16px;padding:0 6px;color:rgba(255,255,255,.86);font-size:.9rem;font-weight:600;
-      gap:12px;
-    }
-    .device-top span:last-child{color:var(--muted)}
-    .device-screen{
-      border-radius:26px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
-      background:#0b0b0b;aspect-ratio:10/17;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
-    }
-    .device-screen img{
-      width:100%;height:100%;object-fit:cover;object-position:top center;
-      transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
-      will-change:transform;
-    }
-    .panel:hover .device-screen img{
-      transform:scale(1.018);
-      filter:saturate(1.03) contrast(1.01);
-    }
-    .feature-stack{display:grid;gap:14px}
-    .feature{
-      padding:18px 18px 16px;border-radius:22px;
-      background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
-      min-width:0;
-      transition:
-        transform var(--speed-fast) var(--ease),
-        border-color var(--speed-fast) var(--ease),
-        background var(--speed-fast) var(--ease),
-        box-shadow var(--speed-fast) var(--ease);
-    }
-    .feature:hover{
-      transform:translateY(-3px);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.045);
-      box-shadow:0 18px 40px rgba(0,0,0,.20);
-    }
-    .feature h3{
-      font-size:1.12rem;letter-spacing:-.04em;line-height:1.15;
-      margin-bottom:8px;
-      word-break:break-word;
-      overflow-wrap:anywhere;
-      text-wrap:balance;
-    }
-    .feature p{color:var(--muted);line-height:1.75;text-wrap:pretty}
-    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
-    .kpi{
-      border-radius:22px;border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);padding:18px;
-      transition:
-        transform var(--speed-fast) var(--ease),
-        border-color var(--speed-fast) var(--ease),
-        background var(--speed-fast) var(--ease);
-    }
-    .kpi:hover{
-      transform:translateY(-3px);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-    }
-    .kpi strong{display:block;font-size:1.3rem;letter-spacing:-.04em}
-    .kpi span{display:block;margin-top:6px;color:var(--muted);line-height:1.55;text-wrap:pretty}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .field{display:grid;gap:10px}
-    .field.full{grid-column:1/-1}
-    label{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.92)}
-    input, textarea{
-      width:100%;padding:16px 18px;
-      color:#fff;background:rgba(255,255,255,.035);
-      border:1px solid rgba(255,255,255,.10);border-radius:18px;
-      outline:none;transition:
-        border-color var(--speed-fast) var(--ease),
-        background var(--speed-fast) var(--ease),
-        transform var(--speed-fast) var(--ease),
-        box-shadow var(--speed-fast) var(--ease);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
-      min-height:56px;
-    }
-    input:hover, textarea:hover{
-      border-color:rgba(255,255,255,.15);
-      background:rgba(255,255,255,.04);
-    }
-    input:focus, textarea:focus{
-      border-color:rgba(255,255,255,.24);
-      background:rgba(255,255,255,.05);
-      box-shadow:0 0 0 4px rgba(255,255,255,.04);
-      transform:translateY(-1px);
-    }
-    textarea{min-height:170px;resize:vertical}
-    .helper{margin-top:10px;color:var(--muted-2);font-size:.92rem;line-height:1.6;text-wrap:pretty}
-    .status{
-      display:none;margin-top:18px;padding:16px 18px;border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045)
-    }
-    .status.show{display:block;animation:statusIn 280ms var(--ease)}
-    .status.success{border-color:rgba(90,255,150,.24);background:rgba(90,255,150,.08)}
-    .status.error{border-color:rgba(255,120,120,.24);background:rgba(255,120,120,.08)}
-    .footer{padding:28px 0 16px}
-    .footer-inner{
-      display:flex;justify-content:flex-end;gap:18px;
-      padding-top:18px;border-top:1px solid rgba(255,255,255,.08)
-    }
-    .footer-inner a{
-      color:var(--muted);font-size:.95rem;font-weight:600;
-      transition:color var(--speed-fast) var(--ease), transform var(--speed-fast) var(--ease), opacity var(--speed-fast) var(--ease);
-      position:relative;
-      -webkit-tap-highlight-color:transparent;
-    }
-    .footer-inner a::after{
-      content:"";
-      position:absolute;left:0;bottom:-4px;width:100%;height:1px;
-      background:rgba(255,255,255,.8);
-      transform:scaleX(0);transform-origin:left;
-      transition:transform var(--speed-fast) var(--ease);
-      opacity:.9;
-    }
-    .footer-inner a:hover{color:#fff;transform:translateY(-1px)}
-    .footer-inner a:hover::after{transform:scaleX(1)}
-    .legal-stack{display:grid;gap:18px}
-    .legal-card{
-      padding:22px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
-    }
-    .legal-card:hover{
-      transform:translateY(-3px);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      box-shadow:0 18px 40px rgba(0,0,0,.18);
-    }
-    .legal-card .label{
-      color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.80rem;font-weight:700;
-      margin-bottom:10px;
-    }
-    .legal-card h2{font-size:1.2rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
-    .legal-card p{color:var(--muted);line-height:1.8;text-wrap:pretty}
-    .hero-split,
-    .hero-identity{
-      display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:28px;align-items:end;
-    }
-    .hero-identity{
-      grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);
-      gap:clamp(28px,4vw,44px);
-      align-items:start;
-    }
-    .mini-shot{
-      border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
-      background:#0c0c0c;box-shadow:var(--shadow);
-      transition:transform var(--speed-med) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-med) var(--ease);
-    }
-    .mini-shot:hover{
-      transform:translateY(-4px);
-      border-color:rgba(255,255,255,.14);
-      box-shadow:var(--hover-shadow);
-    }
-    .mini-shot img{
-      width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top center;
-      transition:transform 900ms var(--ease), filter var(--speed-med) var(--ease);
-    }
-    .mini-shot:hover img{transform:scale(1.02);filter:saturate(1.03)}
-    .identity-panel{
-      display:grid;
-      gap:14px;
-      align-content:start;
-      padding:4px 0 2px 22px;
-      border-left:1px solid rgba(212,175,55,.22);
-    }
-    .pillar-card{
-      padding:20px 20px 19px;border-radius:22px;
-      border:1px solid rgba(255,255,255,.1);
-      background:linear-gradient(180deg, rgba(255,255,255,.042), rgba(255,255,255,.02));
-      box-shadow:0 14px 40px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.04);
-      transition:border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
-    }
-    .pillar-card:hover{
-      border-color:rgba(212,175,55,.24);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.024));
-      box-shadow:0 18px 44px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.05);
-    }
-    .pillar-icon{
-      width:40px;height:40px;margin-bottom:12px;
-      display:grid;place-items:center;
-      border-radius:12px;
-      border:1px solid rgba(212,175,55,.22);
-      background:rgba(212,175,55,.055);
-    }
-    .pillar-icon svg{display:block}
-    .pillar-card h3{
-      font-size:1.02rem;font-weight:700;letter-spacing:-.03em;
-      margin-bottom:8px;color:rgba(255,252,248,.95);
-      text-wrap:balance;
-    }
-    .pillar-card p{
-      margin:0;
-      font-size:.93rem;line-height:1.55;color:rgba(255,255,255,.62);
-      text-wrap:pretty;
-    }
-    .signature-card{
-      padding:22px 22px 21px;border-radius:22px;
-      border:1px solid rgba(255,255,255,.1);
-      background:linear-gradient(180deg, rgba(255,255,255,.042), rgba(255,255,255,.02));
-      box-shadow:0 14px 40px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.04);
-      transition:border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
-    }
-    .signature-card:hover{
-      transform:none;
-      border-color:rgba(212,175,55,.26);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.024));
-      box-shadow:0 18px 44px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.05);
-    }
-    .signature-card h3{font-size:1.12rem;font-weight:700;letter-spacing:-.04em;margin-bottom:10px;text-wrap:balance;color:rgba(255,252,248,.96)}
-    .signature-card p{color:var(--muted);line-height:1.75;text-wrap:pretty}
-    .statements{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .statement{
-      padding:22px 20px;border-radius:24px;
-      border:1px solid rgba(255,255,255,.09);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
-      transition:transform var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease);
-    }
-    .statement:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,255,255,.14);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
-      box-shadow:0 18px 42px rgba(0,0,0,.2);
-    }
-    .statement strong{display:block;font-size:1.02rem;letter-spacing:-.03em;margin-bottom:8px}
-    .statement span{display:block;color:var(--muted);line-height:1.7;text-wrap:pretty}
-    .project-links{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:20px;
-      align-items:stretch;
-    }
-    .project-link-future{
-      min-width:0;
-      border-radius:28px;
-    }
-    .project-link{
-      display:block;padding:26px 24px;border-radius:28px;
-      border:1px solid rgba(255,255,255,.09);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.022));
-      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
-      transition:transform var(--speed-fast) var(--ease), background var(--speed-fast) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-fast) var(--ease)
-    }
-    .project-link:hover{
-      transform:translateY(-3px);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-color:var(--gold-line);
-      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), var(--gold-glow-soft);
-    }
-    .project-link-row{display:flex;align-items:center;gap:28px}
-    .project-link-mark{
-      flex:0 0 auto;
-      display:block;
-      line-height:0;
-    }
-    .project-link-mark img{
-      width:84px;height:84px;
-      object-fit:contain;
-      display:block;
-    }
-    .project-link-mark svg{
-      width:84px;height:84px;
-      display:block;
-      flex-shrink:0;
-    }
-    .project-link-body{min-width:0;flex:1}
-    .project-link .kicker{color:var(--muted-2);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:700;margin-bottom:10px}
-    .project-link h3{font-size:1.24rem;letter-spacing:-.04em;margin-bottom:8px;text-wrap:balance}
-    .project-link p{color:var(--muted);line-height:1.75;text-wrap:pretty}
-    .quote{
-      position:relative;
-      padding:32px 30px;border-radius:32px;
-      border:1px solid rgba(255,255,255,.1);
-      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
-      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04), 0 0 48px rgba(212,175,55,.06);
-      transition:transform var(--speed-med) var(--ease), border-color var(--speed-fast) var(--ease), box-shadow var(--speed-med) var(--ease);
-    }
-    .quote:hover{
-      transform:translateY(-3px);
-      border-color:var(--gold-line);
-      box-shadow:var(--hover-shadow), inset 0 1px 0 rgba(255,255,255,.05), 0 0 56px rgba(212,175,55,.1);
-    }
-    .quote p{font-size:1.18rem;line-height:1.85;max-width:840px;color:rgba(255,255,255,.86);text-wrap:pretty}
-    .hidden{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-    .reveal{
-      opacity:0;
-      transform:translateY(14px);
-      transition:opacity 820ms var(--ease), transform 820ms var(--ease);
-      will-change:opacity, transform;
-    }
-    .reveal.is-visible{
-      opacity:1;
-      transform:none;
-    }
-    .delay-1{transition-delay:70ms}
-    .delay-2{transition-delay:140ms}
-    .delay-3{transition-delay:210ms}
-    .delay-4{transition-delay:280ms}
-    @keyframes statusIn{
-      from{opacity:0;transform:translateY(6px)}
-      to{opacity:1;transform:none}
-    }
-    @media (prefers-reduced-motion: reduce){
-      *, *::before, *::after{
-        animation-duration:0.01ms !important;
-        animation-iteration-count:1 !important;
-        transition-duration:0.01ms !important;
-        scroll-behavior:auto !important;
-      }
-      .reveal{opacity:1;transform:none}
-    }
-    @media (max-width: 980px){
-      .product-grid,.hero-split,.hero-identity,.project-links,.statements{grid-template-columns:1fr}
-      .project-link-future{display:none}
-      .kpis{grid-template-columns:1fr}
-      .hero-identity,
-      .hero-split{align-items:start}
-      .identity-panel{
-        padding:20px 0 0;
-        border-left:none;
-        border-top:1px solid rgba(212,175,55,.2);
-        margin-top:4px;
-      }
-      .mini-shot{max-width:640px}
-      .device{max-width:640px}
-    }
-    @media (max-width: 760px){
-      .container{width:min(100% - 24px, var(--max))}
-      body::before{opacity:.06;background-size:84px 84px}
-      .topbar{backdrop-filter:blur(14px)}
-      .topbar-inner{
-        flex-direction:column;
-        justify-content:center;
-        align-items:stretch;
-        gap:14px;
-        padding:14px 0;
-        min-height:unset;
-      }
-      .brand{
-        min-width:0;
-        justify-content:center;
-        font-size:.96rem;
-      }
-      .nav{
-        width:100%;
-        justify-content:flex-start;
-        overflow-x:auto;
-        padding-bottom:4px;
-        scroll-snap-type:x proximity;
-        scrollbar-width:none;
-      }
-      .nav::-webkit-scrollbar{display:none}
-      .nav a{
-        width:auto;
-        min-width:92px;
-        flex:0 0 auto;
-        scroll-snap-align:start;
-        padding:12px 14px;
-      }
-      .page{padding-top:18px;padding-bottom:72px}
-      .project-link-row{gap:24px}
-      .project-link-mark img{width:72px;height:72px}
-      .project-link-mark svg{width:72px;height:72px}
-      .hero{padding-top:22px;padding-bottom:22px}
-      .hero h1{
-        margin-top:0;
-        font-size:clamp(2.35rem, 11vw, 3.35rem);
-        line-height:.98;
-        letter-spacing:-.075em;
-      }
-      .hero p{
-        margin-top:18px;
-        font-size:1rem;
-        line-height:1.78;
-      }
-      .eyebrow{
-        font-size:.82rem;
-        padding:9px 12px;
-        gap:8px;
-      }
-      .hero-actions{
-        gap:12px;
-        margin-top:24px;
-      }
-      .btn{
-        width:100%;
-        min-height:52px;
-        padding:0 18px;
-      }
-      .section{padding:18px 0}
-      .section + .section{margin-top:8px}
-      .section-head{margin-bottom:18px}
-      .section-head .label{font-size:.76rem}
-      .section-head h2{
-        font-size:clamp(1.6rem, 8vw, 2.2rem);
-        line-height:1.04;
-      }
-      .section-head p{
-        margin-top:12px;
-        font-size:.98rem;
-        line-height:1.75;
-      }
-      .panel,
-      .quote,
-      .mini-shot{border-radius:24px}
-      .panel:hover,
-      .quote:hover,
-      .mini-shot:hover,
-      .pillar-card:hover,
-      .signature-card:hover,
-      .statement:hover,
-      .project-link:hover,
-      .feature:hover,
-      .legal-card:hover,
-      .kpi:hover{transform:none}
-      .panel-content{padding:18px}
-      .product-grid{gap:18px}
-      .device{
-        padding:14px;
-        border-radius:26px;
-        width:100%;
-        max-width:none;
-      }
-      .device-top{
-        font-size:.84rem;
-        margin-bottom:12px;
-        padding:0 2px;
-      }
-      .device-screen{border-radius:20px}
-      .feature-stack,
-      .legal-stack,
-      .identity-panel,
-      .project-links,
-      .statements,
-      .kpis{gap:12px}
-      .feature,
-      .statement,
-      .kpi,
-      .project-link,
-      .pillar-card,
-      .signature-card,
-      .legal-card{padding:16px}
-      .feature h3,
-      .project-link h3,
-      .pillar-card h3,
-      .signature-card h3,
-      .legal-card h2{font-size:1.05rem}
-      .quote{padding:20px}
-      .quote p{
-        font-size:1.03rem;
-        line-height:1.8;
-      }
-      .form-grid{grid-template-columns:1fr;gap:14px}
-      .field{gap:8px}
-      label{font-size:.92rem}
-      input, textarea{
-        padding:15px 16px;
-        min-height:54px;
-        border-radius:16px;
-      }
-      textarea{min-height:150px}
-      .helper{
-        margin-top:8px;
-        font-size:.9rem;
-      }
-      .footer{padding:18px 0 10px}
-      .footer-inner{
-        justify-content:flex-start;
-        gap:16px;
-        flex-wrap:wrap;
-        padding-top:16px;
-      }
-      .footer-inner a{font-size:.93rem}
-    }
-    @media (max-width: 430px){
-      .container{width:min(100% - 20px, var(--max))}
-      .topbar-inner{padding:12px 0}
-      .brand{font-size:.92rem}
-      .brand-mark img{width:clamp(22px,5.5vw,28px);max-height:28px}
-      .nav{gap:6px}
-      .nav a{
-        min-width:86px;
-        font-size:.9rem;
-        padding:11px 12px;
-      }
-      .page{padding-top:14px;padding-bottom:64px}
-      .project-link-row{gap:20px}
-      .project-link-mark img{width:56px;height:56px}
-      .project-link-mark svg{width:56px;height:56px}
-      .hero h1{
-        font-size:clamp(2.1rem, 12vw, 3rem);
-        letter-spacing:-.07em;
-      }
-      .hero p,
-      .section-head p,
-      .feature p,
-      .project-link p,
-      .statement span,
-      .legal-card p,
-      .helper{font-size:.96rem}
-      .panel-content{padding:16px}
-      .feature,
-      .statement,
-      .kpi,
-      .project-link,
-      .pillar-card,
-      .signature-card,
-      .legal-card{padding:15px}
-      .quote{padding:18px}
-      .quote p{font-size:1rem}
-      .btn{min-height:50px}
-      input, textarea{padding:14px 15px}
-    }
+        radial-gradient(ellipse 90% 55% at 70% 15%, rgba(196, 166, 74, 0.11), transparent 50%),
+        radial-gradient(ellipse 60% 50% at 15% 30%, rgba(40, 38, 32, 0.6), transparent 50%),
+        linear-gradient(180deg, #0a0a0a 0%, #060606 40%, #050505 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, p, ul { margin: 0; }
+    .container { width: min(100% - 40px, var(--max)); margin: 0 auto; position: relative; z-index: 1; }
+    @media (max-width: 600px) { .container { width: min(100% - 28px, var(--max)); } }
 
+    /* —— Header —— */
+    .header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(6, 6, 6, 0.5);
+      backdrop-filter: blur(12px) saturate(1.1);
+      -webkit-backdrop-filter: blur(12px) saturate(1.1);
+      border-bottom: 1px solid var(--line);
+    }
+    .header__inner { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: 1rem; flex-wrap: wrap; }
+    @media (max-width: 900px) { .header__inner { min-height: auto; padding: 0.5rem 0; } }
+    .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .brand__mark {
+      width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid var(--gold); border-radius: 6px; color: var(--gold);
+      font-size: 1.05rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; background: rgba(196, 166, 74, 0.04);
+    }
+    .brand__name { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+    .header__nav { display: flex; align-items: center; justify-content: center; gap: 4px; flex: 1; min-width: 0; }
+    @media (max-width: 900px) { .header__nav { order: 3; width: 100%; justify-content: flex-start; overflow-x: auto; padding-bottom: 2px; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; } }
+    .header__nav a { padding: 8px 16px; font-size: 0.82rem; font-weight: 600; color: var(--text-dim); border-radius: 6px; transition: color var(--t) var(--ease), background var(--t) var(--ease); white-space: nowrap; }
+    .header__nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.04); }
+    .header__lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; background: rgba(0,0,0,0.4); padding: 2px; }
+    .header__lang button { min-width: 40px; padding: 5px 11px; border: 0; border-radius: 999px; background: none; color: var(--text-dim); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; cursor: pointer; }
+    .header__lang button[aria-pressed="true"] { color: #fff; background: linear-gradient(180deg, rgba(196, 166, 74, 0.22), rgba(196, 166, 74, 0.1)); box-shadow: 0 0 0 1px rgba(196, 166, 74, 0.25); }
+
+    /* —— Hero (cinematic stage) —— */
+    .hero { min-height: 0; display: flex; flex-direction: column; padding-top: clamp(2.75rem, 6.5vh, 4.25rem); padding-bottom: 0.35rem; }
+    @media (min-width: 1025px) {
+      .hero { min-height: min(100vh - 64px, 800px); justify-content: center; }
+    }
+    .hero__col--copy { min-width: 0; }
+    @media (min-width: 1025px) {
+      .hero__col--copy { display: flex; flex-direction: column; justify-content: center; }
+    }
+    .hero__grid { display: grid; grid-template-columns: 44% 56%; gap: clamp(0.6rem, 1.5vw, 1.4rem); align-items: center; }
+    @media (min-width: 1200px) { .hero__grid { max-width: 100%; } }
+    @media (max-width: 1024px) { .hero__grid { grid-template-columns: 1fr; align-items: start; gap: 1.25rem; } }
+    .hero__eyebrow { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(212, 190, 130, 0.8); margin: 0 0 0.65rem; }
+    .hero__h1 { font-size: clamp(1.4rem, 2.4vw, 2.2rem); font-weight: 600; line-height: 1.12; letter-spacing: -0.03em; color: var(--text); max-width: 17em; }
+    @media (max-width: 1024px) { .hero__h1 { max-width: 20em; } }
+    @media (max-width: 500px) { .hero__h1 { font-size: clamp(1.28rem, 5.2vw, 1.72rem); } }
+    .hero__h1 .is-gold { color: #d4b76a; font-weight: 600; }
+    .hero__h1 .line { display: block; }
+    .hero__h1 .line + .line { margin-top: 0.1em; }
+    .hero__p { margin-top: 0.95rem; font-size: 0.97rem; line-height: 1.68; letter-spacing: -0.01em; color: rgba(200, 192, 178, 0.7); max-width: 30rem; }
+    .hero__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.25rem; margin-top: 1.2rem; }
+    .hero__trust { margin: 0.55rem 0 0; font-size: 0.63rem; font-weight: 400; letter-spacing: 0.02em; text-transform: none; color: rgba(125, 120, 110, 0.42); }
+    .btn-prim, .link-sec { display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.86rem; transition: opacity var(--t), transform var(--t) var(--ease), box-shadow var(--t) var(--ease), border-color var(--t) var(--ease), background var(--t) var(--ease), color var(--t) var(--ease); }
+    .btn-prim {
+      min-height: 48px; padding: 0 1.2rem; border-radius: 10px; border: none; cursor: pointer; color: #0c0a06;
+      background: linear-gradient(180deg, #e8d9a0 0%, #b08d32 100%);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 4px 24px rgba(0,0,0,0.4), 0 0 32px rgba(196, 166, 74, 0.15);
+    }
+    a.btn-prim, button.btn-prim { text-decoration: none; }
+    .btn-prim:hover { transform: translateY(-1px); box-shadow: 0 6px 32px rgba(0,0,0,0.5), 0 0 40px rgba(196, 166, 74, 0.2); }
+    .hero__ctas .btn-prim--hero {
+      min-height: 44px; padding: 0 1.1rem; font-size: 0.81rem; font-weight: 600; letter-spacing: 0.01em; text-transform: none; border-radius: 7px;
+      color: #15130e;
+      background: linear-gradient(180deg, rgba(215, 198, 145, 0.95) 0%, rgba(155, 128, 64, 0.98) 100%);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 2px 0 rgba(255,255,255,0.06) inset, 0 3px 14px rgba(0,0,0,0.35);
+    }
+    .hero__ctas .btn-prim--hero:hover { transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 2px 0 rgba(255,255,255,0.04) inset, 0 5px 20px rgba(0,0,0,0.4); }
+    @media (prefers-reduced-motion: reduce) { .hero__ctas .btn-prim--hero:hover, .btn-prim:hover { transform: none; } }
+    .link-sec { min-height: 48px; padding: 0 0.2rem; color: var(--text-dim); border: none; background: none; cursor: pointer; font: inherit; border-bottom: 1px solid rgba(196, 166, 74, 0.25); border-radius: 0; }
+    a.link-sec { display: inline-flex; }
+    .link-sec:hover { color: var(--gold-bright); border-color: var(--gold-dim); }
+    .hero__link-sec { min-height: auto; padding: 0; color: rgba(160, 154, 140, 0.75); font-size: 0.82rem; font-weight: 500; text-decoration: underline; text-decoration-color: rgba(150, 135, 100, 0.4); text-underline-offset: 0.2em; border: none; background: none; }
+    .hero__link-sec:hover { color: #dccba8; text-decoration-color: rgba(196, 170, 120, 0.5); }
+    @media (max-width: 480px) { .hero__ctas .btn-prim--hero { width: 100%; } }
+
+    /* —— Hero visual: brain + stage + callouts —— */
+    .hero-brain { position: relative; width: 100%; min-height: 320px; display: flex; align-items: center; justify-content: center; opacity: 0; }
+    @media (min-width: 1025px) { .hero-brain { min-height: min(58vh, 560px); justify-content: center; margin-left: -0.25rem; } }
+    @media (max-width: 1024px) { .hero-brain { min-height: 0; } }
+    .hero-brain__inner { position: relative; width: 100%; max-width: 560px; min-height: 0; margin: 0; isolation: isolate; }
+    @media (min-width: 1025px) and (max-width: 1200px) { .hero-brain__inner { max-width: min(100%, 520px); } }
+    @media (max-width: 1024px) { .hero-brain__inner { max-width: min(100%, 440px); } }
+    .hero-brain__parallax { position: relative; z-index: 1; width: 100%; will-change: transform; transition: transform 0.35s var(--ease); }
+    .hero-brain__grid-radar {
+      position: absolute; left: 50%; top: 50%; width: 140%; height: 140%; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; opacity: 0.5;
+      background:
+        repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 19px, rgba(255,255,255,0.045) 20px, transparent 21px),
+        radial-gradient(ellipse 60% 58% at 50% 50%, rgba(0,0,0,0.1) 0%, transparent 62%);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes heroRadar { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.5; } }
+      .hero-brain__grid-radar { animation: heroRadar 8s ease-in-out infinite; }
+    }
+    @media (prefers-reduced-motion: reduce) { .hero-brain__grid-radar { animation: none; opacity: 0.4; } }
+    .hero-brain__parallax .hero-brain__ambient, .hero-brain__parallax .hero-brain__glow { z-index: 0; }
+    .hero-brain__ambient {
+      position: absolute; left: 50%; top: 50%; width: 210%; height: 200%; max-width: none; transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse 55% 50% at 48% 46%, rgba(185, 150, 75, 0.2) 0%, rgba(120, 100, 45, 0.04) 48%, transparent 72%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero-brain__glow {
+      position: absolute; left: 50%; top: 48%; width: 160%; height: 155%; max-width: none; transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse 62% 55% at 50% 50%, rgba(195, 165, 90, 0.28) 0%, rgba(100, 85, 50, 0.08) 40%, rgba(0,0,0,0.1) 68%, transparent 80%);
+      pointer-events: none; z-index: 0;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes heroGlowPulse { 0%, 100% { opacity: 0.9; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); } }
+      .hero-brain__glow--pulse { animation: heroGlowPulse 7.5s ease-in-out infinite; will-change: opacity, transform; }
+    }
+    @media (prefers-reduced-motion: reduce) { .hero-brain__parallax { transition: none; } }
+    .hero-brain__parallax-edge {
+      position: absolute; inset: 0; z-index: 3; pointer-events: none;
+      background: radial-gradient(ellipse 80% 75% at 58% 45%, transparent 30%, rgba(0,0,0,0.4) 100%),
+        linear-gradient(100deg, transparent 48%, rgba(0,0,0,0.3) 100%);
+      border-radius: 50%;
+    }
+    @media (max-width: 1024px) { .hero-brain__parallax-edge { opacity: 0.65; } }
+    @keyframes heroFloat { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -3px, 0); } }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-brain__float { animation: heroFloat 10s ease-in-out infinite; will-change: transform; }
+    }
+    .hero-brain__float { position: relative; z-index: 2; }
+    .hero-brain__parallax .hero-brain__img { display: block; }
+    .hero-brain__parallax::after {
+      content: ""; position: absolute; left: 5%; right: 5%; bottom: -2%; height: 24%;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.65) 100%);
+      border-radius: 0 0 50% 50% / 0 0 28% 28%;
+      filter: blur(16px); opacity: 0.4; z-index: 0; pointer-events: none; transform: translateZ(0);
+    }
+    .hero-brain__img {
+      display: block; width: 100%; height: auto; max-width: 530px; margin-left: auto; margin-right: 0;
+      filter: drop-shadow(0 3px 2px rgba(0,0,0,0.2)) drop-shadow(0 14px 28px rgba(0,0,0,0.4)) drop-shadow(0 0 1px rgba(0,0,0,0.25));
+    }
+    @media (max-width: 1024px) { .hero-brain__img { margin-left: auto; margin-right: auto; max-width: min(100%, 420px); } }
+    .hero-brain__particles { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+    .hero-brain__pt { position: absolute; border-radius: 50%; background: rgba(232, 209, 150, 0.2); box-shadow: 0 0 4px rgba(232, 209, 150, 0.12); }
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes heroPt { 0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.2; } 50% { transform: translate3d(0, -10px, 0); opacity: 0.55; } }
+      .hero-brain__pt--a { animation: heroPt 7s ease-in-out infinite; }
+      .hero-brain__pt--b { animation: heroPt 5.5s ease-in-out infinite; animation-delay: 1s; }
+    }
+    .hero-brain__links { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; }
+    .hero-brain__link { fill: none; stroke: rgba(120, 100, 75, 0.1); stroke-width: 0.2; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.25s, stroke-opacity 0.25s, opacity 0.25s, filter 0.25s; }
+    @media (max-width: 1024px) { .hero-brain__links { display: none; } }
+    .hero-brain--in { animation: heroBrainIn 1.1s var(--ease) forwards; }
+    @keyframes heroBrainIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero-brain { opacity: 1; } .hero-brain--in { animation: none; } }
+    .brain-callouts { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+    @media (max-width: 1024px) { .hero-brain__glow { opacity: 0.9; } }
+    @media (max-width: 1024px) {
+      .brain-callouts {
+        position: static; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.4rem; margin-top: 0.6rem; padding: 0 0.1rem; pointer-events: auto;
+        -webkit-overflow-scrolling: touch; max-width: 100%;
+      }
+    }
+    @media (max-width: 360px) { .brain-callouts { display: none; } }
+    .callout-card { position: absolute; pointer-events: auto; display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem;
+      width: auto; min-width: 0; max-width: 118px; padding: 0.32rem 0.4rem; border-radius: 6px;
+      background: rgba(8, 7, 8, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: none;
+      -webkit-backdrop-filter: blur(6px) saturate(1.02);
+      backdrop-filter: blur(6px) saturate(1.02);
+      transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+    }
+    @media (min-width: 1025px) and (prefers-reduced-motion: no-preference) {
+      .bc1, .bc2, .bc3 { animation: nbCalloutDrift 7s ease-in-out infinite; }
+      .bc1 { animation-delay: 0s; } .bc2 { animation-delay: 1.5s; } .bc3 { animation-delay: 0.8s; }
+    }
+    @keyframes nbCalloutDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.5px); } }
+    @media (min-width: 1025px) {
+      .callout-card__s, .brain-card__s { display: none; }
+    }
+    .callout-card.is-active { border-color: rgba(160, 140, 95, 0.3); background: rgba(12, 10, 8, 0.55); }
+    .callout-card.is-active .callout-card__t, .callout-card.is-active .brain-card__t { color: #ebe4d8; }
+    @media (min-width: 1025px) {
+      .bc1 { top: 6%; left: 2%; }
+      .bc2 { top: 5%; right: 2%; }
+      .bc3 { bottom: 2%; right: 4%; left: auto; }
+    }
+    @media (max-width: 1024px) {
+      .callout-card { position: relative !important; top: auto !important; left: auto !important; right: auto !important; width: auto; max-width: none; min-width: 0; margin: 0; animation: none !important; transform: none !important; padding: 0.3rem 0.55rem; flex-direction: row; align-items: center; gap: 0; }
+      .callout-card__s, .brain-card__s { display: none; }
+    }
+    .callout-card__ic { width: 16px; height: 16px; border-radius: 3px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; color: #b89a5c; margin: 0 0 0.2rem; background: none; flex-shrink: 0; }
+    @media (max-width: 1024px) { .callout-card__ic { display: none; } }
+    @media (min-width: 1025px) { .callout-card__ic { margin: 0 0 0.15rem; } }
+    .callout-card__ic svg { width: 10px; height: 10px; }
+    .callout-card__t, .brain-card__t { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(213, 205, 190, 0.72); margin: 0; line-height: 1.15; }
+    .callout-card__s, .brain-card__s { font-size: 0.52rem; line-height: 1.3; letter-spacing: 0.01em; color: rgba(145, 138, 125, 0.55); }
+    @media (prefers-reduced-motion: reduce) { .bc1, .bc2, .bc3, .hero-brain__pt--a, .hero-brain__pt--b, .hero-brain__glow--pulse, .hero-brain__float { animation: none !important; } }
+    @media (min-width: 1025px) { .hero-brain--ix .callout-card[tabindex="0"] { cursor: default; } }
+    #hero-brain-stage[data-hl="development"] .hero-brain__link--development { stroke: rgba(140, 120, 80, 0.22); stroke-opacity: 1; }
+    #hero-brain-stage[data-hl="leadership"] .hero-brain__link--leadership { stroke: rgba(140, 120, 80, 0.22); stroke-opacity: 1; }
+    #hero-brain-stage[data-hl="automation"] .hero-brain__link--automation { stroke: rgba(140, 120, 80, 0.22); stroke-opacity: 1; }
+
+    /* product bridge (post-hero) */
+    .product-bridge { padding-top: calc(var(--sec-pad) * 0.65); padding-bottom: var(--sec-pad); border-top: 1px solid var(--line-soft);
+      background: linear-gradient(180deg, rgba(196, 166, 74, 0.03) 0%, transparent 38%);
+    }
+    .kicker--gold { color: rgba(200, 175, 120, 0.75); letter-spacing: 0.2em; }
+    .product-bridge .h2--wide { max-width: 38rem; }
+    .product-bridge .lede { max-width: 40rem; margin-top: 0.85rem; }
+
+    /* 3 value cards */
+    .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: stretch; }
+    @media (max-width: 900px) { .trio { grid-template-columns: 1fr; } }
+    .tcard {
+      min-height: 0; padding: 1.15rem 1.2rem; border-radius: 10px;
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, rgba(0,0,0, 0.18) 100%);
+      border: 1px solid var(--line-soft);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
+    }
+    .tcard h3 { font-size: 0.88rem; font-weight: 600; color: #f0ebe3; margin: 0 0 0.45rem; letter-spacing: -0.02em; }
+    .tcard p { font-size: 0.8rem; line-height: 1.55; color: rgba(210, 202, 188, 0.7); margin: 0; }
+    .tcard__line { width: 32px; height: 1px; background: linear-gradient(90deg, rgba(196, 166, 74, 0.6), transparent); margin: 0 0 0.65rem; }
+
+    /* sections */
+    .section { padding: var(--sec-pad) 0; }
+    .section--caps { padding-top: calc(var(--sec-pad) * 0.5); }
+    .kicker { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin: 0 0 0.55rem; }
+    .h2 { font-size: clamp(1.35rem, 2.1vw, 1.85rem); font-weight: 700; letter-spacing: -0.03em; color: var(--text); line-height: 1.18; max-width: 22ch; }
+    .h2--convert { max-width: 30rem; font-size: clamp(1.5rem, 2.3vw, 1.95rem); }
+    .lede { font-size: 0.94rem; line-height: 1.65; color: var(--text-muted); max-width: 38rem; margin: 0.5rem 0 0; }
+    .lede--tight { font-size: 0.9rem; line-height: 1.62; }
+    .cap-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 0.9rem; }
+    @media (max-width: 1100px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .cap-grid { grid-template-columns: 1fr; } }
+    .ccard {
+      min-height: 0; padding: 0.65rem 0.8rem; border-radius: 6px;
+      background: rgba(255,255,255,0.018); border: 1px solid var(--line-soft);
+    }
+    .ccard h4 { font-size: 0.76rem; font-weight: 600; color: rgba(230, 224, 210, 0.92); margin: 0; line-height: 1.35; letter-spacing: -0.015em; }
+
+    /* waitlist */
+    .section--wait { padding-top: calc(var(--sec-pad) * 1.05); padding-bottom: calc(var(--sec-pad) * 1.1); }
+    .wl { border-radius: 12px; background: linear-gradient(168deg, rgba(196, 166, 74, 0.05) 0%, rgba(0,0,0, 0.28) 100%); padding: 1.35rem 1.4rem; border: 1px solid var(--line-soft); box-shadow: 0 0 0 1px rgba(0,0,0,0.35) inset, 0 12px 48px rgba(0,0,0, 0.28); max-width: 480px; }
+    .btn-prim--wl { min-height: 44px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; border-radius: 7px; }
+    .field { display: grid; gap: 4px; } .field-l { font-size: 0.7rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.04em; }
+    .in, .sel { width: 100%; min-height: 44px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--line); background: rgba(0,0,0,0.4); color: #ddd; }
+    .sel { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1.5L5 5.5L9 1.5' stroke='rgba%28196,166,74,0.5%29' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+    .fg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    @media (max-width: 480px) { .fg2 { grid-template-columns: 1fr; } }
+    .f-full { grid-column: 1 / -1; }
+    .tr { font-size: 0.7rem; color: rgba(140, 134, 120, 0.55); margin-top: 0.55rem; letter-spacing: 0.01em; }
+    .tr--wait { color: rgba(150, 144, 128, 0.58); }
+    .err { color: #d08080; font-size: 0.82rem; display: none; margin-top: 0.3rem; } .err.is-on { display: block; }
+    .okb { display: none; margin-top: 0.75rem; padding: 0.9rem; border-radius: 10px; border: 1px solid rgba(100, 150, 110, 0.35); background: rgba(40, 60, 45, 0.3); color: #c0dcc4; } .okb.is-on { display: block; }
+    #wf.is-off { display: none; }
+
+    .foot { border-top: 1px solid var(--line-soft); padding: 1.35rem 0; margin-top: 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.25rem; }
+    .foot__brand { display: grid; gap: 0.28rem; max-width: 26rem; }
+    .foot__name { font-size: 0.8rem; font-weight: 650; letter-spacing: -0.02em; color: var(--text); }
+    .foot__tag { font-size: 0.76rem; line-height: 1.45; color: rgba(165, 158, 145, 0.55); margin: 0; }
+    .foot__links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.15rem; }
+    .foot a { color: rgba(150, 145, 132, 0.65); font-size: 0.76rem; font-weight: 500; }
+    .foot a:hover { color: rgba(235, 228, 210, 0.85); }
+    @media (prefers-reduced-motion: reduce) { .btn-prim:hover { transform: none; } }
   </style>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Mainsches",
-  "url": "https://mainsches.com",
-  "description": "Mainsches builds and ships Android software with a focus on product development, security, and applied AI—including Mainsches AI and SwipeSort."
-}
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Mainsches AI","brand":{"@type":"Brand","name":"Mainsches"},"description":"AI Brain for development, leadership, and automation.","url":"https://mainsches.com/"}</script>
 </head>
 <body>
-
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="/index.html" aria-label="Mainsches home">
-        <span class="brand-mark"><img src="/assets/logo.png" alt=""></span>
-        <span>Mainsches</span>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" id="nav-brand" href="#hero" aria-label="Mainsches AI home">
+        <span class="brand__mark" aria-hidden="true">M</span>
+        <span class="brand__name" data-i18n="nav.title">Mainsches AI</span>
       </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="/index.html" aria-current="page">Home</a>
-        <a href="/contact.html" >Contact</a>
-        <a href="/sketchit.html" >Mainsches AI</a>
-        <a href="/swipesort.html" >SwipeSort</a>
-        <a href="/idradar.html" >ID Radar</a>
+      <nav class="header__nav" id="nav-aria" aria-label="Hauptnavigation">
+        <a href="#product" data-i18n="nav.vision">Vision</a>
+        <a href="#caps" data-i18n="nav.caps">Fähigkeiten</a>
+        <a href="#waitlist" data-i18n="nav.release">Release</a>
       </nav>
+      <div class="header__lang" id="lang-g" role="group" aria-label="Sprache">
+        <button type="button" id="lang-de" data-lang="de" aria-pressed="true">DE</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+      </div>
     </div>
   </header>
 
-
-  <main class="page">
-    <section class="container hero reveal">
-      <div class="hero-identity">
-        <div class="delay-1 reveal">
-          <p class="hero-kicker">Product company</p>
-          <h1>
-            <span class="hero-accent">Mainsches</span>
-            <span class="hero-line2">Product development, security, applied AI.</span>
-          </h1>
-          <p>
-            Android products we own—tight scope, defensive defaults, AI only where it cuts real work.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="/contact.html">Contact</a>
-            <a class="btn" href="#projects">View products</a>
-          </div>
-        </div>
-        <div class="identity-panel delay-2 reveal">
-          <div class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M4 18V6M10 18V10M16 18v-8M22 18V4" stroke="rgba(212,175,55,.78)" stroke-width="1.35" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <h3>Product development</h3>
-            <p>Design through release—one team, one bar for quality.</p>
-          </div>
-          <div class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 3l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4z" stroke="rgba(212,175,55,.78)" stroke-width="1.25" stroke-linejoin="round"/>
-                <path d="M9 12l2 2 4-5" stroke="rgba(212,175,55,.55)" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h3>Security</h3>
-            <p>Explainable paths and conservative defaults before features ship.</p>
-          </div>
-          <div class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="12" cy="12" r="2.5" fill="rgba(212,175,55,.75)"/>
-                <path d="M12 5v2M12 17v2M5 12h2M17 12h2M7 7l1.5 1.5M15.5 15.5L17 17M7 17l1.5-1.5M15.5 8.5L17 7" stroke="rgba(212,175,55,.5)" stroke-width="1.1" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <h3>AI</h3>
-            <p>Models behind concrete inputs—not a generic assistant layer.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="container section reveal delay-1" id="principles">
-      <div class="quote">
-        <p>
-          <strong>Mainsches</strong> is the house: one standard for how we design, secure, and ship—then the products follow.
-        </p>
-      </div>
-    </section>
-
-    <section class="container section reveal delay-2" id="approach">
-      <div class="section-head">
-        <div class="label">Practice</div>
-        <h2>Tight scope, obvious defaults.</h2>
-        <p>
-          If a change does not help the core loop, it does not ship.
-        </p>
-      </div>
-      <div class="statements">
-        <div class="statement">
-          <strong>Products</strong>
-          <span>Two store listings, two jobs in the app, no bundle underneath.</span>
-        </div>
-        <div class="statement">
-          <strong>Plain work</strong>
-          <span>Language you can repeat to someone else; screens you reach without training.</span>
-        </div>
-        <div class="statement">
-          <strong>Upkeep</strong>
-          <span>We run the same builds we ship. When something breaks, we fix it here.</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="container section reveal delay-3" id="projects">
-      <div class="section-head">
-        <div class="label">Tools</div>
-        <h2>Mainsches AI and SwipeSort.</h2>
-        <p>
-          Independent installs. Same bar for restraint, polish, and maintenance.
-        </p>
-      </div>
-      <div class="project-links">
-        <a class="project-link" href="/sketchit.html">
-          <div class="project-link-row">
-            <span class="project-link-mark" aria-hidden="true"><img src="/assets/mainsches-ai-logo.png" alt=""></span>
-            <div class="project-link-body">
-              <div class="kicker">Sketch → image</div>
-              <h3>Mainsches AI</h3>
-              <p>Sketch in, say what you want in chat, take the image back out.</p>
-            </div>
-          </div>
-        </a>
-        <a class="project-link" href="/swipesort.html">
-          <div class="project-link-row">
-            <span class="project-link-mark" aria-hidden="true"><img src="/assets/swipesort-logo.png" alt=""></span>
-            <div class="project-link-body">
-              <div class="kicker">Camera roll</div>
-              <h3>SwipeSort</h3>
-              <p>Keep, skip, or delete—built for long passes through the library.</p>
-            </div>
-          </div>
-        </a>
-        <a class="project-link" href="/idradar.html">
-          <div class="project-link-row">
-            <span class="project-link-mark" aria-hidden="true">
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="100" cy="100" r="88" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
-                <circle cx="100" cy="100" r="64" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-                <circle cx="100" cy="100" r="40" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                <line x1="100" y1="12" x2="100" y2="188" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                <line x1="12" y1="100" x2="188" y2="100" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                <path d="M100 100 L100 24" stroke="rgba(212,175,55,.45)" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M100 100 A 52 52 0 0 1 168 132" stroke="rgba(212,175,55,.28)" stroke-width="1.25" stroke-linecap="round" fill="none"/>
-                <circle cx="100" cy="100" r="5" fill="rgba(212,175,55,.55)"/>
-                <circle cx="100" cy="100" r="2.2" fill="rgba(255,252,248,.9)"/>
-              </svg>
+  <main>
+    <section class="container hero" id="hero" aria-labelledby="h1a">
+      <div class="hero__grid">
+        <div class="hero__col--copy">
+          <p class="hero__eyebrow" data-i18n="hero.eyebrow">MAINSCHES AI</p>
+          <h1 class="hero__h1" id="h1a">
+            <span class="line">
+              <span data-i18n="hero.h1pre">Ein </span><span class="is-gold" data-i18n="hero.h1gold">Brain</span><span data-i18n="hero.h1post1"> für</span>
             </span>
-            <div class="project-link-body">
-              <div class="kicker">Identity · Privacy</div>
-              <h3>ID Radar</h3>
-              <p>See how visible your identity is online.</p>
+            <span class="line" data-i18n="hero.h1line2">Entwicklung, Führung</span>
+            <span class="line" data-i18n="hero.h1line3">und Automatisierung.</span>
+          </h1>
+          <p class="hero__p" data-i18n="hero.body">Planen, steuern und umsetzen — von Software bis Unternehmensführung, aus einem ruhigen KI-Brain.</p>
+          <div class="hero__ctas">
+            <a class="btn-prim btn-prim--hero" href="#waitlist" data-i18n="hero.c1">Private Release sichern</a>
+            <a class="hero__link-sec" href="#product" data-i18n="hero.c2">Mehr erfahren</a>
+          </div>
+          <p class="hero__trust" data-i18n="hero.trust">Kostenlos • Früher Zugang • Kein Spam</p>
+        </div>
+        <div class="hero-brain" id="hero-brain-outer" data-hero-brain>
+          <div class="hero-brain__inner" id="hero-brain-stage">
+            <div class="hero-brain__parallax" id="hero-brain-parallax" aria-hidden="true">
+              <div class="hero-brain__grid-radar" aria-hidden="true"></div>
+              <div class="hero-brain__ambient" aria-hidden="true"></div>
+              <div class="hero-brain__glow hero-brain__glow--pulse" aria-hidden="true"></div>
+              <div class="hero-brain__float">
+                <img class="hero-brain__img" id="hero-brain-img" src="/assets/brain-hero.png" width="800" height="800" alt="" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 1024px) min(100vw - 28px, 420px), 530px" />
+              </div>
+              <div class="hero-brain__parallax-edge" aria-hidden="true"></div>
+            </div>
+            <div class="hero-brain__particles" id="hero-brain-particles" aria-hidden="true"></div>
+            <svg class="hero-brain__links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path class="hero-brain__link hero-brain__link--development" d="M 50 50 C 38 38 20 20 8 7" />
+              <path class="hero-brain__link hero-brain__link--leadership" d="M 50 50 C 62 36 78 20 90 5" />
+              <path class="hero-brain__link hero-brain__link--automation" d="M 50 50 C 62 65 80 80 90 90" />
+            </svg>
+            <div class="brain-callouts">
+              <div class="callout-card brain-card bc1" data-area="development" data-hero-callout data-aria-k="1t" role="group" tabindex="-1">
+                <div class="callout-card__ic brain-card__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h4M10 2v2M6 4h.5A2.5 2.5 0 0 1 9 8v8a2.5 2.5 0 0 1-2.5 2.5H6" /><rect x="13" y="2" width="6" height="4" rx="1" /><rect x="13" y="9" width="6" height="12" rx="1" stroke-linejoin="round" /></svg></div>
+                <p class="callout-card__t brain-card__t" data-i18n="call.1t">Entwicklung</p>
+                <p class="callout-card__s brain-card__s" data-i18n="call.1s">Planen. Bauen. Ausführen.</p>
+              </div>
+              <div class="callout-card brain-card bc2" data-area="leadership" data-hero-callout data-aria-k="2t" role="group" tabindex="-1">
+                <div class="callout-card__ic brain-card__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h3l2 3v4l-2 3H4" /><path d="M8 4h8v16H8" /><path d="M8 8h4M8 12h3" stroke-linecap="round" /><circle cx="19" cy="6" r="2" /></svg></div>
+                <p class="callout-card__t brain-card__t" data-i18n="call.2t">Führung</p>
+                <p class="callout-card__s brain-card__s" data-i18n="call.2s">Ziele. Prioritäten. Entscheidungen.</p>
+              </div>
+              <div class="callout-card brain-card bc3" data-area="automation" data-hero-callout data-aria-k="3t" role="group" tabindex="-1">
+                <div class="callout-card__ic brain-card__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.5 4.5l1.4 1.4M18.1 18.1l1.4 1.4M4.5 19.5l1.4-1.4M18.1 5.9l1.4-1.4" stroke-linecap="round" /><path d="M12 9v1M12 12v0" stroke-linecap="round" /></svg></div>
+                <p class="callout-card__t brain-card__t" data-i18n="call.3t">Automatisierung</p>
+                <p class="callout-card__s brain-card__s" data-i18n="call.3s">Prozesse erkennen. Arbeit automatisieren.</p>
+              </div>
             </div>
           </div>
-        </a>
-        <div class="project-link-future" aria-hidden="true"></div>
+        </div>
       </div>
     </section>
-</main>
 
+    <section class="container product-bridge" id="product" aria-labelledby="product-h">
+      <p class="kicker kicker--gold" data-i18n="prod.e">DAS PRODUKT</p>
+      <h2 class="h2 h2--wide" id="product-h" data-i18n="prod.h">Mainsches AI ist dein zentraler Denk- und Ausführungsraum.</h2>
+      <p class="lede" data-i18n="prod.p">Du gibst Richtung, Ziele und Freigaben. Mainsches AI ordnet Kontext, priorisiert nächste Schritte und koordiniert Arbeit im Hintergrund.</p>
+    </section>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a href="/impressum.html">Impressum</a>
-      <a href="/privacy.html">Privacy</a>
+    <div class="section container" id="values" style="padding-top:0" aria-labelledby="trio-h">
+      <h2 class="visually-hidden" id="trio-h" data-i18n="trio.aria">Kern: Denken, Entscheiden, Ausführen</h2>
+      <div class="trio">
+        <article class="tcard">
+          <div class="tcard__line" aria-hidden="true"></div>
+          <h3 data-i18n="t1.h">Denken</h3>
+          <p data-i18n="t1.p">Kontext verstehen, Ziele schärfen, Optionen klar ordnen.</p>
+        </article>
+        <article class="tcard">
+          <div class="tcard__line" aria-hidden="true"></div>
+          <h3 data-i18n="t2.h">Entscheiden</h3>
+          <p data-i18n="t2.p">Prioritäten setzen, den nächsten Schritt vorschlagen, mit dir abstimmen.</p>
+        </article>
+        <article class="tcard">
+          <div class="tcard__line" aria-hidden="true"></div>
+          <h3 data-i18n="t3.h">Ausführen</h3>
+          <p data-i18n="t3.p">Arbeit im Hintergrund koordinieren, Fortschritt sichtbar machen.</p>
+        </article>
+      </div>
+    </div>
+
+    <section class="section section--caps container" id="caps" aria-labelledby="caph">
+      <p class="kicker" id="caph" data-i18n="caps.e">Einsatzbereiche</p>
+      <div class="cap-grid" role="list">
+        <article class="ccard" role="listitem"><h4 data-i18n="caps.1">Software &amp; App Entwicklung</h4></article>
+        <article class="ccard" role="listitem"><h4 data-i18n="caps.2">Web-App Entwicklung</h4></article>
+        <article class="ccard" role="listitem"><h4 data-i18n="caps.3">Unternehmensführung</h4></article>
+        <article class="ccard" role="listitem"><h4 data-i18n="caps.4">Automatisierung</h4></article>
+        <article class="ccard" role="listitem"><h4 data-i18n="caps.5">AI-Workflows</h4></article>
+      </div>
+    </section>
+
+    <section class="section section--wait container" id="waitlist" aria-labelledby="wlt">
+      <h2 class="h2 h2--convert" id="wlt" data-i18n="wl.hed" style="margin-bottom:0.2rem">Private Release vormerken</h2>
+      <p class="lede lede--tight" data-i18n="wl.dek">Mainsches AI ist in Vorbereitung. Trag dich ein, wenn du frühen Zugang erhalten möchtest.</p>
+      <form class="fp wl" id="wf" style="margin-top:0.9rem" novalidate>
+        <div class="fg2">
+          <div class="field">
+            <label class="field-l" for="wn" data-i18n="wl.ln">Name (optional)</label>
+            <input class="in" type="text" name="name" id="wn" autocomplete="name" data-i18n-p="wn" />
+          </div>
+          <div class="field">
+            <label class="field-l" for="we"><span data-i18n="wl.le">E-Mail</span> *</label>
+            <input class="in" type="email" name="email" id="we" required autocomplete="email" data-i18n-p="we" />
+          </div>
+        </div>
+        <div class="field" style="margin-top:0.5rem">
+          <label class="field-l" for="wi" data-i18n="wl.li">Interesse</label>
+          <select class="sel" name="interest" id="wi" required>
+            <option value="" data-i18n="wi0">Wählen …</option>
+            <option value="app" data-i18n="wi1">Software &amp; App Entwicklung</option>
+            <option value="leadership" data-i18n="wi2">Unternehmensführung</option>
+            <option value="automation" data-i18n="wi3">Automatisierung</option>
+            <option value="workflows" data-i18n="wi4">AI-Workflows</option>
+            <option value="all" data-i18n="wi5">Alles</option>
+          </select>
+        </div>
+        <p class="tr tr--wait" data-i18n="wl.trust">Kostenlos. Kein Spam. Nur Release-Updates.</p>
+        <p class="err" id="werr" role="alert" aria-live="assertive"></p>
+        <button class="btn-prim btn-prim--wl" type="submit" data-i18n="wl.b" style="margin-top:0.5rem; width:100%">Zugang vormerken</button>
+      </form>
+      <div class="okb" id="wok" tabindex="-1" data-i18n="wl.ok"></div>
+    </section>
+  </main>
+
+  <footer class="container foot">
+    <div class="foot__brand">
+      <span class="foot__name" data-i18n="ft.m">Mainsches AI</span>
+      <p class="foot__tag" data-i18n="ft.tag">One Brain for development, leadership and automation.</p>
+    </div>
+    <div class="foot__links">
+      <a href="/impressum.html" data-i18n="ft.p1">Impressum</a>
+      <a href="/privacy.html" data-i18n="ft.p2">Datenschutz</a>
     </div>
   </footer>
 
-
   <script>
-    (function () {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const items = document.querySelectorAll('.reveal');
-
-      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-        items.forEach((item) => item.classList.add('is-visible'));
-        return;
+  (function () {
+    "use strict";
+    var S = {
+      de: {
+        nav: { title: "Mainsches AI", vision: "Vision", caps: "Fähigkeiten", release: "Release" },
+        na: "Hauptnavigation",
+        lg: "Sprache wählen",
+        hero: { eyebrow: "MAINSCHES AI", h1pre: "Ein ", h1gold: "Brain", h1post1: " für", h1line2: "Entwicklung, Führung", h1line3: "und Automatisierung.",
+          body: "Planen, steuern und umsetzen — von Software bis Unternehmensführung, aus einem ruhigen KI-Brain.",
+          c1: "Private Release sichern", c2: "Mehr erfahren", trust: "Kostenlos • Früher Zugang • Kein Spam" },
+        call: { "1t": "Entwicklung", "1s": "Planen. Bauen. Ausführen.", "2t": "Führung", "2s": "Ziele. Prioritäten. Entscheidungen.", "3t": "Automatisierung", "3s": "Prozesse erkennen. Arbeit automatisieren." },
+        prod: { e: "DAS PRODUKT", h: "Mainsches AI ist dein zentraler Denk- und Ausführungsraum.",
+          p: "Du gibst Richtung, Ziele und Freigaben. Mainsches AI ordnet Kontext, priorisiert nächste Schritte und koordiniert Arbeit im Hintergrund." },
+        trio: { aria: "Kern: Denken, Entscheiden, Ausführen" },
+        t1: { h: "Denken", p: "Kontext verstehen, Ziele schärfen, Optionen klar ordnen." },
+        t2: { h: "Entscheiden", p: "Prioritäten setzen, den nächsten Schritt vorschlagen, mit dir abstimmen." },
+        t3: { h: "Ausführen", p: "Arbeit im Hintergrund koordinieren, Fortschritt sichtbar machen." },
+        caps: { e: "Einsatzbereiche", "1": "Software & App Entwicklung", "2": "Web-App Entwicklung", "3": "Unternehmensführung", "4": "Automatisierung", "5": "AI-Workflows" },
+        wl: { hed: "Private Release vormerken", dek: "Mainsches AI ist in Vorbereitung. Trag dich ein, wenn du frühen Zugang erhalten möchtest.",
+          ln: "Name (optional)", le: "E-Mail", li: "Interesse", trust: "Kostenlos. Kein Spam. Nur Release-Updates.",
+          b: "Zugang vormerken", ok: "Du bist auf der Liste. Wir melden uns zum Release.",
+          e1: "Bitte eine gültige E-Mail eingeben.", e2: "Bitte ein Interesse auswählen." },
+        wn: "Name", we: "E-Mail",
+        wi0: "Wählen …", wi1: "Software & App Entwicklung", wi2: "Unternehmensführung", wi3: "Automatisierung", wi4: "AI-Workflows", wi5: "Alles",
+        ft: { m: "Mainsches AI", tag: "Ein Brain für Entwicklung, Führung und Automatisierung.", p1: "Impressum", p2: "Datenschutz" },
+        meta: { t: "Mainsches AI — KI-Brain", d: "Zentraler Denk- und Ausführungsraum. Entwicklung, Führung, Automatisierung — Mainsches AI." }
+      },
+      en: {
+        nav: { title: "Mainsches AI", vision: "Vision", caps: "Capabilities", release: "Release" },
+        na: "Primary",
+        lg: "Language",
+        hero: { eyebrow: "MAINSCHES AI", h1pre: "One ", h1gold: "Brain", h1post1: " for", h1line2: "development, leadership", h1line3: "and automation.",
+          body: "Plan, guide and execute — from software to company leadership, through one calm AI Brain.",
+          c1: "Secure private release", c2: "Learn more", trust: "Free • Early access • No spam" },
+        call: { "1t": "Development", "1s": "Plan. Build. Execute.", "2t": "Leadership", "2s": "Goals. Priorities. Decisions.", "3t": "Automation", "3s": "Spot processes. Automate work." },
+        prod: { e: "THE PRODUCT", h: "Mainsches AI is your central thinking and execution space.",
+          p: "You provide direction, goals and approvals. Mainsches AI organizes context, prioritizes next steps and coordinates work in the background." },
+        trio: { aria: "Core: Think, Decide, Execute" },
+        t1: { h: "Think", p: "Understand context, sharpen goals, order options with clarity." },
+        t2: { h: "Decide", p: "Set priorities, propose the next step, stay aligned with you." },
+        t3: { h: "Execute", p: "Coordinate work in the background and make progress visible." },
+        caps: { e: "Use cases", "1": "Software & App Development", "2": "Web-App Development", "3": "Company leadership", "4": "Automation", "5": "AI-Workflows" },
+        wl: { hed: "Join the private release", dek: "Mainsches AI is being prepared. Sign up if you want early access.",
+          ln: "Name (optional)", le: "Email", li: "Interest", trust: "Free. No spam. Release updates only.",
+          b: "Reserve access", ok: "You are on the list. We will be in touch for the release.",
+          e1: "Please enter a valid email.", e2: "Please select an interest." },
+        wn: "Name", we: "Email",
+        wi0: "Choose…", wi1: "Software & App Development", wi2: "Company leadership", wi3: "Automation", wi4: "AI-Workflows", wi5: "Everything",
+        ft: { m: "Mainsches AI", tag: "One Brain for development, leadership and automation.", p1: "Legal notice", p2: "Privacy" },
+        meta: { t: "Mainsches AI", d: "A central space to think and execute. Development, leadership, automation — Mainsches AI." }
       }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -5% 0px'
+    };
+    var K = "mainsches_lang";
+    function g(o, p) { return p.split(".").reduce(function (a, b) { return a && a[b] !== undefined ? a[b] : null; }, o); }
+    function L() { try { var s = localStorage.getItem(K); if (s === "en" || s === "de") return s; } catch (e) {} return "de"; }
+    function setL(lang) {
+      if (lang !== "en" && lang !== "de") return;
+      try { localStorage.setItem(K, lang); } catch (e) {}
+      document.documentElement.setAttribute("lang", lang);
+      var P = S[lang], m = P.meta;
+      document.title = m.t; var md = document.getElementById("meta-desc");
+      if (md) md.setAttribute("content", m.d);
+      var ogd = document.getElementById("og-desc");
+      if (ogd) ogd.setAttribute("content", m.d);
+      var ogt = document.getElementById("og-title");
+      if (ogt) ogt.setAttribute("content", m.t);
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        var path = el.getAttribute("data-i18n");
+        if (!path) return;
+        var v = g(P, path);
+        if (v != null) el.textContent = v;
       });
-
-      items.forEach((item) => observer.observe(item));
-    }());
+      document.querySelectorAll("[data-i18n-p]").forEach(function (el) { var p = el.getAttribute("data-i18n-p"); if (p) { var v = g(P, p); if (v != null) el.setAttribute("placeholder", v); } });
+      document.getElementById("nav-aria").setAttribute("aria-label", P.na);
+      document.getElementById("lang-g").setAttribute("aria-label", P.lg);
+      var nb = document.getElementById("nav-brand");
+      if (nb) { nb.setAttribute("aria-label", (lang === "de" ? "Mainsches AI – Start" : "Mainsches AI – home")); }
+      var err = document.getElementById("werr");
+      if (err) { err.textContent = ""; err.classList.remove("is-on"); }
+      var de = document.getElementById("lang-de");
+      var enb = document.getElementById("lang-en");
+      de.setAttribute("aria-pressed", lang === "de" ? "true" : "false");
+      enb.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+      document.querySelectorAll("#hero-brain-stage [data-aria-k]").forEach(function (el) {
+        var k = el.getAttribute("data-aria-k");
+        if (!k) return; var t = g(P, "call." + k);
+        if (t != null) { el.setAttribute("aria-label", t); }
+      });
+    }
+    setL(L());
+    (function initHeroImageBrain() {
+      var wrap = document.getElementById("hero-brain-outer");
+      var par = document.getElementById("hero-brain-parallax");
+      var pRoot = document.getElementById("hero-brain-particles");
+      if (!wrap || !par || !pRoot) return;
+      var reduceM = false;
+      try { reduceM = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+      if (!reduceM) {
+        for (var i = 0; i < 10; i++) {
+          var d = document.createElement("div");
+          d.className = "hero-brain__pt " + (i % 2 ? "hero-brain__pt--b" : "hero-brain__pt--a");
+          d.style.left = (4 + (i * 7.3 % 88)) + "%";
+          d.style.top = (6 + (i * 11.7 % 86)) + "%";
+          d.style.width = d.style.height = (1.2 + (i % 5) * 0.35) + "px";
+          pRoot.appendChild(d);
+        }
+        wrap.addEventListener("mousemove", function (e) {
+          var r = wrap.getBoundingClientRect();
+          if (r.width < 1) return;
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          par.style.transform = "translate3d(" + (x * 10) + "px," + (y * 7) + "px,0)";
+        });
+        wrap.addEventListener("mouseleave", function () { par.style.transform = ""; });
+      }
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { wrap.classList.add("hero-brain--in"); });
+      });
+    })();
+    (function initHeroCallouts() {
+      var outer = document.getElementById("hero-brain-outer");
+      var stage = document.getElementById("hero-brain-stage");
+      if (!outer || !stage) return;
+      function canInteract() { return matchMedia("(min-width: 1025px) and (hover: hover)").matches && !matchMedia("(pointer: coarse)").matches; }
+      function byArea(a) { return { card: stage.querySelector('.callout-card[data-area="' + a + '"]') }; }
+      function clearA() {
+        stage.removeAttribute("data-hl");
+        stage.querySelectorAll(".callout-card.is-active").forEach(function (x) { x.classList.remove("is-active"); });
+      }
+      function onA(a) {
+        if (!canInteract()) return;
+        clearA();
+        var p = byArea(a);
+        if (p.card) p.card.classList.add("is-active");
+        stage.setAttribute("data-hl", a);
+      }
+      function up() {
+        var h = canInteract();
+        outer.classList.toggle("hero-brain--ix", h);
+        stage.querySelectorAll(".callout-card").forEach(function (n) { n.setAttribute("tabindex", h ? "0" : "-1"); });
+        if (!h) clearA();
+      }
+      if (stage.getAttribute("data-hero-brain-wired") !== "1") {
+        ["development", "leadership", "automation"].forEach(function (a) {
+          var p0 = byArea(a);
+          var c = p0.card;
+          if (!c) return;
+          c.addEventListener("mouseenter", function () { onA(a); });
+          c.addEventListener("mouseleave", function (e) {
+            if (!canInteract()) return;
+            var t = e.relatedTarget;
+            if (t && stage.contains(t) && t.closest && t.closest(".callout-card")) return;
+            clearA();
+          });
+          c.addEventListener("focus", function () { onA(a); });
+          c.addEventListener("blur", function () {
+            setTimeout(function () {
+              if (!canInteract()) return;
+              var f = document.activeElement;
+              if (f && stage.contains(f) && f.closest && f.closest(".callout-card")) return;
+              clearA();
+            }, 0);
+          });
+        });
+        stage.setAttribute("data-hero-brain-wired", "1");
+        window.addEventListener("resize", up, { passive: true });
+        try { matchMedia("(min-width: 1025px)").addEventListener("change", up); } catch (e0) { matchMedia("(min-width: 1025px)").addListener(up); }
+      }
+      up();
+    })();
+    document.getElementById("lang-de").onclick = function () { setL("de"); };
+    document.getElementById("lang-en").onclick = function () { setL("en"); };
+    (function () {
+      var f = document.getElementById("wf");
+      if (!f) return;
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var P = S[L()];
+        var o = document.getElementById("wok");
+        var er = document.getElementById("werr");
+        var em = document.getElementById("we");
+        var inSel = document.getElementById("wi");
+        er.classList.remove("is-on");
+        if (!em || !em.value.trim()) { er.textContent = P.wl.e1; er.classList.add("is-on"); return; }
+        if (em && em.checkValidity && !em.checkValidity()) { er.textContent = P.wl.e1; er.classList.add("is-on"); return; }
+        if (!inSel || !inSel.value) { er.textContent = P.wl.e2; er.classList.add("is-on"); return; }
+        // TODO: POST to /api/waitlist (JSON: { name, email, interest, lang })
+          f.classList.add("is-off");
+        o.textContent = P.wl.ok;
+        o.classList.add("is-on");
+        o.focus();
+      });
+    })();
+  })();
   </script>
-
 </body>
 </html>
