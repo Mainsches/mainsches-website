@@ -2,7 +2,32 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/lib/i18n/types";
 import { localePath } from "@/lib/routes";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, LINKEDIN_URL } from "@/lib/site";
+
+/**
+ * LinkedIn glyph in the Lucide stroke style. Inlined because Lucide v1
+ * removed its brand icons, so lucide-react no longer exports one.
+ */
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
 
 export function Footer({ dict }: { dict: Dictionary }) {
   const locale = dict.locale;
@@ -80,6 +105,17 @@ export function Footer({ dict }: { dict: Dictionary }) {
                 className="text-sm text-ink-soft transition-colors duration-200 hover:text-ink"
               >
                 {CONTACT_EMAIL}
+              </a>
+            </li>
+            <li>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={dict.footer.linkedinAria}
+                className="-m-1 inline-flex p-1 text-ink-soft transition-colors duration-200 hover:text-gold focus-visible:text-gold"
+              >
+                <LinkedInIcon className="size-4.5" />
               </a>
             </li>
           </ul>

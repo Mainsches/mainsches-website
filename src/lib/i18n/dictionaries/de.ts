@@ -36,6 +36,7 @@ export const de = {
     contact: "Kontakt",
     impressum: "Impressum",
     privacy: "Datenschutz",
+    linkedinAria: "Mainsches auf LinkedIn – öffnet in neuem Tab",
     otherProductsTitle: "Weitere Produkte von Mainsches",
     copyright: "Mainsches, Schweiz. Alle Rechte vorbehalten.",
   },

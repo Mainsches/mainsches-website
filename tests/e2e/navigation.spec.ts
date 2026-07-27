@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { de } from "../../src/lib/i18n/dictionaries/de";
 import { en } from "../../src/lib/i18n/dictionaries/en";
+import { CONTACT_EMAIL } from "../../src/lib/site";
 
 test.describe("primary navigation (desktop)", () => {
   test("all nav links reach their pages in English", async ({ page }) => {
@@ -82,6 +83,45 @@ test.describe("footer and external links", () => {
     await expect(
       footer.getByRole("link", { name: de.footer.privacy }),
     ).toHaveAttribute("href", "/de/datenschutz");
+  });
+
+  test("footer links to the public LinkedIn company profile", async ({
+    page,
+  }) => {
+    const cases = [
+      { path: "/de", label: de.footer.linkedinAria },
+      { path: "/en", label: en.footer.linkedinAria },
+    ];
+    for (const { path, label } of cases) {
+      await page.goto(path);
+      const link = page
+        .getByRole("contentinfo")
+        .getByRole("link", { name: label });
+      await expect(link, path).toHaveAttribute(
+        "href",
+        "https://www.linkedin.com/company/136038044/",
+      );
+      await expect(link, path).toHaveAttribute("target", "_blank");
+      await expect(link, path).toHaveAttribute("rel", "noopener noreferrer");
+    }
+  });
+
+  test("the LinkedIn link is keyboard reachable with a visible focus", async ({
+    page,
+  }) => {
+    await page.goto("/en");
+    const footer = page.getByRole("contentinfo");
+
+    // Reach the link via a real keystroke so :focus-visible applies.
+    await footer.getByRole("link", { name: CONTACT_EMAIL }).focus();
+    await page.keyboard.press("Tab");
+
+    const link = footer.getByRole("link", { name: en.footer.linkedinAria });
+    await expect(link).toBeFocused();
+    const outlineStyle = await link.evaluate(
+      (element) => window.getComputedStyle(element).outlineStyle,
+    );
+    expect(outlineStyle).not.toBe("none");
   });
 
   test("other products keep their verified external targets", async ({

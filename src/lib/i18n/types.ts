@@ -87,6 +87,8 @@ export interface Dictionary {
     contact: string;
     impressum: string;
     privacy: string;
+    /** Accessible name for the icon-only LinkedIn link. */
+    linkedinAria: string;
     otherProductsTitle: string;
     copyright: string;
   };
