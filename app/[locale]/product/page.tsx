@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
@@ -71,6 +72,22 @@ export default async function ProductPage({
               </article>
             </Reveal>
           ))}
+        </div>
+        <div className="flex flex-wrap gap-x-8 gap-y-3">
+          <Link
+            href={localePath("workflows", locale)}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-gold-soft transition-colors duration-200 hover:text-gold"
+          >
+            {page.workflowsLink}
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
+          <Link
+            href={localePath("security", locale)}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-gold-soft transition-colors duration-200 hover:text-gold"
+          >
+            {page.securityLink}
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
         </div>
       </section>
 

@@ -172,6 +172,7 @@ export interface Dictionary {
       title: string;
       lede: string;
       points: { title: string; body: string }[];
+      moreLink: string;
     };
 
     flow: {
@@ -248,6 +249,9 @@ export interface Dictionary {
     heroLede: string;
     areasTitle: string;
     areas: { title: string; body: string }[];
+    /** Contextual deep links from the building blocks to their detail pages. */
+    workflowsLink: string;
+    securityLink: string;
     principlesTitle: string;
     principles: { title: string; body: string }[];
     faq: FaqItem[];
@@ -266,6 +270,7 @@ export interface Dictionary {
     examples: { title: string; body: string; steps: string[] }[];
     exampleNote: string;
     cta: string;
+    useCasesLink: string;
   };
 
   securityPage: {
@@ -288,6 +293,7 @@ export interface Dictionary {
     heroTitle: string;
     heroLede: string;
     scenariosTitle: string;
+    productLink: string;
     plannedTitle: string;
     plannedLede: string;
     plannedItems: { title: string; body: string }[];

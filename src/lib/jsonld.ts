@@ -1,6 +1,12 @@
 import type { Locale } from "@/lib/i18n/config";
 import type { FaqItem } from "@/lib/i18n/types";
-import { CONTACT_EMAIL, ORG_NAME, PRODUCT_NAME, SITE_URL } from "@/lib/site";
+import {
+  CONTACT_EMAIL,
+  LINKEDIN_URL,
+  ORG_NAME,
+  PRODUCT_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 type JsonLd = Record<string, unknown>;
 
@@ -12,6 +18,7 @@ export function organizationJsonLd(): JsonLd {
     url: SITE_URL,
     logo: `${SITE_URL}/assets/logo.png`,
     email: CONTACT_EMAIL,
+    sameAs: [LINKEDIN_URL],
     address: {
       "@type": "PostalAddress",
       addressCountry: "CH",
@@ -24,6 +31,7 @@ export function webSiteJsonLd(locale: Locale): JsonLd {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: PRODUCT_NAME,
+    alternateName: ORG_NAME,
     url: SITE_URL,
     inLanguage: locale,
     publisher: { "@id": `${SITE_URL}/#organization` },

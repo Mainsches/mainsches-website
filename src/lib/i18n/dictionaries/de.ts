@@ -43,9 +43,9 @@ export const de = {
 
   meta: {
     home: {
-      title: "Mainsches Hub — Das AI Operating System für kontrollierte KI-Arbeit",
+      title: "Mainsches Hub — AI Operating System für kontrollierte KI-Arbeit",
       description:
-        "Mainsches Hub orchestriert lokale und cloudbasierte KI-Modelle, Dateien und adaptive Workflows in einer kontrollierten Arbeitsoberfläche. Security und Privacy by Design. Aus der Schweiz.",
+        "Mainsches Hub orchestriert lokale und Cloud-KI, Dateien und adaptive Workflows in einer kontrollierten Arbeitsoberfläche. Security und Privacy by Design, aus der Schweiz.",
     },
     product: {
       title: "Produkt — Was Mainsches Hub ist und wie es funktioniert",
@@ -53,32 +53,32 @@ export const de = {
         "Mainsches Hub ist ein KI-Betriebssystem: ein Hub, der KI-Modelle, Dateien, Workflows und Aktionen unter expliziten Berechtigungen koordiniert. So ist es aufgebaut.",
     },
     workflows: {
-      title: "Adaptive KI-Workflows — erstellen, ausführen, verfeinern",
+      title: "Adaptive KI-Workflows erstellen und verwalten — Mainsches Hub",
       description:
         "Wiederkehrende Arbeit wird zum adaptiven KI-Workflow: aus echten Aufgaben erstellen, speichern, verwalten und laufend verbessern — unter voller Kontrolle im Mainsches Hub.",
     },
     security: {
-      title: "Security & Privacy by Design — lokale KI, Scopes, Nachvollziehbarkeit",
+      title: "Sicherheit & Privacy by Design — Mainsches Hub",
       description:
         "Lokale Verarbeitung, wo sie passt, explizite Auftragsgrenzen, Berechtigungen und Scope, nachvollziehbare Schritte. Sicherheit als Architektur statt Marketing.",
     },
     useCases: {
-      title: "Use Cases — KI-Orchestrierung für kleine und mittlere Unternehmen",
+      title: "Use Cases: KI-Orchestrierung für KMU — Mainsches Hub",
       description:
         "Dokumente kontrolliert auswerten, wiederkehrende Abläufe als Workflows abbilden, lokale und Cloud-KI je Aufgabe orchestrieren. Realistische Szenarien für KMU.",
     },
     pilot: {
-      title: "Pilotprogramm — früher Zugang für Unternehmen, Partner, Investoren",
+      title: "Pilotprogramm — früher Zugang zu Mainsches Hub",
       description:
         "Jetzt am Mainsches-Hub-Pilotprogramm teilnehmen: früher Zugang für kleine und mittlere Unternehmen sowie ein direkter Draht für strategische Partner und Investoren.",
     },
     legal: {
-      title: "Impressum",
+      title: "Impressum — Mainsches",
       description:
         "Impressum und Betreiberangaben für mainsches.com, die Website von Mainsches Hub und Mainsches, Schweiz.",
     },
     privacy: {
-      title: "Datenschutzerklärung",
+      title: "Datenschutzerklärung — Mainsches",
       description:
         "Wie mainsches.com mit personenbezogenen Daten umgeht: Websitebesuche, Pilotprogramm-Formular, Hosting und Ihre Rechte.",
     },
@@ -229,6 +229,7 @@ export const de = {
           body: "Schritte anpassen, Scopes schärfen, Modelle tauschen. Der Workflow wird mit jeder Iteration besser.",
         },
       ],
+      moreLink: "Adaptive Workflows im Detail",
     },
 
     flow: {
@@ -453,6 +454,16 @@ export const de = {
             "Sie, pro Aufgabe. Sensible Arbeit kann fest an lokale Modelle auf eigener Hardware gebunden werden; Cloud-Modelle laufen nur innerhalb eines freigegebenen Scopes. Der Hub setzt Ihre Regel durch.",
         },
         {
+          question: "Wie verarbeitet Mainsches Hub Dateien?",
+          answer:
+            "Dateien können direkt auf der eigenen Hardware verarbeitet werden — etwa für Zusammenfassungen oder Vergleiche mit Quellenbezug. Cloud-Modelle kommen nur zum Einsatz, wenn Sie einen Schritt ausdrücklich dafür freigeben.",
+        },
+        {
+          question: "Wie werden Berechtigungen und Scope kontrolliert?",
+          answer:
+            "Jeder Auftrag erhält explizite Grenzen: welche Daten er lesen darf, welche Aktionen er ausführen darf und welche Modellklasse er nutzt. Das System setzt diese Grenzen durch, und jeder Schritt bleibt nachvollziehbar.",
+        },
+        {
           question: "Kann ich eigene Workflows erstellen?",
           answer:
             "Ja. Workflows entstehen aus echten Aufgaben, werden in einer Bibliothek gespeichert und laufend verfeinert — sie sind Kernkonzept des Produkts, kein Zusatzmodul.",
@@ -490,6 +501,8 @@ export const de = {
         body: "Jeder Auftrag trägt explizite Grenzen: welche Daten, welche Aktionen, welche Modellklasse. Das System setzt sie durch; kein Auftrag erweitert sich stillschweigend selbst.",
       },
     ],
+    workflowsLink: "Mehr zu adaptiven Workflows",
+    securityLink: "Zum Sicherheitsmodell",
     principlesTitle: "Designprinzipien",
     principles: [
       {
@@ -596,6 +609,7 @@ export const de = {
     exampleNote:
       "Illustrative Beispiele für das angestrebte Produkterlebnis — gemeinsam mit Pilotkunden geformt.",
     cta: "Bringen Sie Ihren Prozess ins Pilotprogramm",
+    useCasesLink: "Realistische Use Cases ansehen",
   },
 
   securityPage: {
@@ -675,6 +689,7 @@ export const de = {
     heroLede:
       "Mainsches Hub wird für kleine und mittlere Unternehmen gebaut. Diese Szenarien zeigen, wie kontrollierte KI-Orchestrierung im Alltag aussieht.",
     scenariosTitle: "Kernszenarien",
+    productLink: "Zur Produktarchitektur",
     plannedTitle: "Geplante Connectoren",
     plannedLede:
       "Die nächste Ausbaustufe verbindet den Hub mit den Werkzeugen, in denen Arbeit ankommt. In Entwicklung, klar vom heutigen Kern getrennt:",

@@ -209,6 +209,13 @@ export default async function HomePage({
               </Reveal>
             ))}
           </div>
+          <Link
+            href={localePath("workflows", locale)}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-gold-soft transition-colors duration-200 hover:text-gold"
+          >
+            {home.adaptive.moreLink}
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
         </div>
       </section>
 

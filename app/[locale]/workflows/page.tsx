@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
@@ -109,11 +110,18 @@ export default async function WorkflowsPage({
           <p className="max-w-2xl text-xs leading-relaxed text-ink-faint">
             {page.exampleNote}
           </p>
-          <div>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
             <ButtonLink href={localePath("pilot", locale)}>
               {page.cta}
               <ArrowRight aria-hidden="true" className="size-4" />
             </ButtonLink>
+            <Link
+              href={localePath("useCases", locale)}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-gold-soft transition-colors duration-200 hover:text-gold"
+            >
+              {page.useCasesLink}
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
           </div>
         </div>
       </section>

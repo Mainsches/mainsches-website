@@ -1,23 +1,30 @@
 import { expect, test, type Page } from "@playwright/test";
+import { de } from "../../src/lib/i18n/dictionaries/de";
+import { en } from "../../src/lib/i18n/dictionaries/en";
 
 const SITE = "https://mainsches.com";
 
-async function jsonLdTypes(page: Page): Promise<string[]> {
+type JsonLdNode = { "@type": string } & Record<string, unknown>;
+
+async function jsonLdNodes(page: Page): Promise<JsonLdNode[]> {
   const scripts = await page
     .locator('script[type="application/ld+json"]')
     .allTextContents();
-  const types: string[] = [];
+  const nodes: JsonLdNode[] = [];
   for (const raw of scripts) {
-    const parsed = JSON.parse(raw) as
-      | { "@graph"?: { "@type": string }[] }
-      | { "@type": string };
-    if ("@graph" in parsed && parsed["@graph"]) {
-      for (const node of parsed["@graph"]) types.push(node["@type"]);
-    } else if ("@type" in parsed) {
-      types.push(parsed["@type"]);
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const graph = parsed["@graph"];
+    if (Array.isArray(graph)) {
+      nodes.push(...(graph as JsonLdNode[]));
+    } else if (typeof parsed["@type"] === "string") {
+      nodes.push(parsed as JsonLdNode);
     }
   }
-  return types;
+  return nodes;
+}
+
+async function jsonLdTypes(page: Page): Promise<string[]> {
+  return (await jsonLdNodes(page)).map((node) => node["@type"]);
 }
 
 test.describe("metadata", () => {
@@ -119,6 +126,95 @@ test.describe("structured data", () => {
     const types = await jsonLdTypes(page);
     expect(types).toContain("BreadcrumbList");
   });
+
+  test("Organization carries the verified LinkedIn profile as sameAs", async ({
+    page,
+  }) => {
+    await page.goto("/en");
+    const nodes = await jsonLdNodes(page);
+    const organization = nodes.find((node) => node["@type"] === "Organization");
+    expect(organization).toBeDefined();
+    expect(organization?.sameAs).toEqual([
+      "https://www.linkedin.com/company/136038044/",
+    ]);
+  });
+
+  test("FAQPage JSON-LD only contains questions that are visible on the page", async ({
+    page,
+  }) => {
+    for (const path of ["/en", "/de", "/en/product", "/de/security"]) {
+      await page.goto(path);
+      const nodes = await jsonLdNodes(page);
+      const faqPages = nodes.filter((node) => node["@type"] === "FAQPage");
+      expect(faqPages.length, path).toBeGreaterThan(0);
+
+      const visibleQuestions = (
+        await page.locator("details summary").allTextContents()
+      ).map((text) => text.trim());
+      const visibleAnswers = (
+        await page.locator("details > p").allTextContents()
+      ).map((text) => text.trim());
+
+      for (const faq of faqPages) {
+        const mainEntity = faq.mainEntity as {
+          name: string;
+          acceptedAnswer: { text: string };
+        }[];
+        for (const entry of mainEntity) {
+          expect(visibleQuestions, `${path}: ${entry.name}`).toContain(
+            entry.name,
+          );
+          expect(visibleAnswers, `${path}: ${entry.name}`).toContain(
+            entry.acceptedAnswer.text,
+          );
+        }
+      }
+    }
+  });
+});
+
+test.describe("contextual internal links", () => {
+  test("home links to the workflows page from the adaptive section", async ({
+    page,
+  }) => {
+    await page.goto("/en");
+    await expect(
+      page
+        .locator("main")
+        .getByRole("link", { name: en.home.adaptive.moreLink }),
+    ).toHaveAttribute("href", "/en/workflows");
+  });
+
+  test("product page deep-links to workflows and security", async ({
+    page,
+  }) => {
+    await page.goto("/en/product");
+    const main = page.locator("main");
+    await expect(
+      main.getByRole("link", { name: en.product.workflowsLink }),
+    ).toHaveAttribute("href", "/en/workflows");
+    await expect(
+      main.getByRole("link", { name: en.product.securityLink }),
+    ).toHaveAttribute("href", "/en/security");
+  });
+
+  test("workflows page links to use cases; use cases page links to product", async ({
+    page,
+  }) => {
+    await page.goto("/de/workflows");
+    await expect(
+      page
+        .locator("main")
+        .getByRole("link", { name: de.workflowsPage.useCasesLink }),
+    ).toHaveAttribute("href", "/de/use-cases");
+
+    await page.goto("/de/use-cases");
+    await expect(
+      page
+        .locator("main")
+        .getByRole("link", { name: de.useCasesPage.productLink }),
+    ).toHaveAttribute("href", "/de/product");
+  });
 });
 
 test.describe("sitemap and robots", () => {
@@ -149,6 +245,12 @@ test.describe("sitemap and robots", () => {
       expect(xml).toContain(`<loc>${SITE}${path}</loc>`);
     }
     expect(xml.match(/<loc>/g)).toHaveLength(16);
+
+    // hreflang annotations match the on-page metadata, including x-default.
+    expect(xml).toContain(`hreflang="x-default"`);
+    expect(xml).not.toContain("vercel.app");
+    expect(xml).not.toContain(".html");
+    expect(xml).not.toContain("/api/");
   });
 
   test("robots.txt allows crawling and references the sitemap", async ({

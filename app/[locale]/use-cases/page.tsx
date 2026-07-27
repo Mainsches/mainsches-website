@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
@@ -85,6 +86,13 @@ export default async function UseCasesPage({
             </Reveal>
           ))}
         </div>
+        <Link
+          href={localePath("product", locale)}
+          className="inline-flex items-center gap-2 text-sm font-semibold text-gold-soft transition-colors duration-200 hover:text-gold"
+        >
+          {page.productLink}
+          <ArrowRight aria-hidden="true" className="size-4" />
+        </Link>
       </section>
 
       {/* Planned connectors — clearly separated */}

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { defaultLocale } from "@/lib/i18n/config";
 import { routeDefs, type RouteKey } from "@/lib/routes";
 import { SITE_URL } from "@/lib/site";
 
@@ -28,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             de: `${SITE_URL}${paths.de}`,
             en: `${SITE_URL}${paths.en}`,
+            "x-default": `${SITE_URL}${paths[defaultLocale]}`,
           },
         },
       });

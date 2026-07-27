@@ -43,7 +43,7 @@ export const en = {
 
   meta: {
     home: {
-      title: "Mainsches Hub — The AI Operating System for Controlled AI Work",
+      title: "Mainsches Hub — AI Operating System for Controlled AI Work",
       description:
         "Mainsches Hub orchestrates local and cloud AI models, files, and adaptive workflows in one controlled workspace. Security and privacy by design. Built in Switzerland.",
     },
@@ -53,32 +53,32 @@ export const en = {
         "Mainsches Hub is an AI operating system: one hub that coordinates AI models, files, workflows, and actions under explicit permissions. See how it is built.",
     },
     workflows: {
-      title: "Adaptive AI Workflows — Create, Run, and Refine",
+      title: "Create and Manage Adaptive AI Workflows — Mainsches Hub",
       description:
         "Turn real tasks into adaptive AI workflows: create them from actual work, save and manage them, and refine them over time — under full control in Mainsches Hub.",
     },
     security: {
-      title: "Security & Privacy by Design — Local AI, Scopes, Traceability",
+      title: "Security & Privacy by Design — Mainsches Hub",
       description:
         "Local processing where it fits, explicit job boundaries, permissions and scope, traceable steps. How Mainsches Hub treats security as architecture, not marketing.",
     },
     useCases: {
-      title: "Use Cases — AI Orchestration for Small and Mid-Sized Companies",
+      title: "Use Cases: AI Orchestration for SMEs — Mainsches Hub",
       description:
         "Evaluate documents in a controlled way, turn recurring processes into workflows, and orchestrate local and cloud AI per task. Realistic scenarios for SMEs.",
     },
     pilot: {
-      title: "Pilot Program — Early Access for Companies, Partners, Investors",
+      title: "Pilot Program — Early Access to Mainsches Hub",
       description:
         "Join the Mainsches Hub pilot program: early access for small and mid-sized companies, plus a direct line for strategic partners and investors.",
     },
     legal: {
-      title: "Legal Notice",
+      title: "Legal Notice — Mainsches",
       description:
         "Legal notice and operator information for mainsches.com, the website of Mainsches Hub and Mainsches, Switzerland.",
     },
     privacy: {
-      title: "Privacy Policy",
+      title: "Privacy Policy — Mainsches",
       description:
         "How mainsches.com handles personal data: website visits, the pilot program contact form, hosting, and your rights.",
     },
@@ -223,6 +223,7 @@ export const en = {
           body: "Adjust steps, tighten scopes, swap models. The workflow improves with every iteration.",
         },
       ],
+      moreLink: "Adaptive workflows in depth",
     },
 
     flow: {
@@ -451,6 +452,16 @@ export const en = {
             "You do, per task. Sensitive work can be pinned to local models on your own hardware; cloud models run only within an approved scope. The Hub enforces the rule you set.",
         },
         {
+          question: "How does Mainsches Hub process files?",
+          answer:
+            "Files can be processed directly on your own hardware — for example for summaries or comparisons with source references. Cloud models are used only when you explicitly approve a step for them.",
+        },
+        {
+          question: "How are permissions and scope controlled?",
+          answer:
+            "Every job receives explicit boundaries: which data it may read, which actions it may take, and which model class it uses. The system enforces these boundaries, and every step remains traceable.",
+        },
+        {
           question: "Can I build my own workflows?",
           answer:
             "Yes. Workflows are created from real tasks, saved to a library, and refined over time — they are a core concept of the product, not an add-on.",
@@ -488,6 +499,8 @@ export const en = {
         body: "Every job carries explicit boundaries: which data, which actions, which model class. The system enforces them; no job silently widens its own scope.",
       },
     ],
+    workflowsLink: "More on adaptive workflows",
+    securityLink: "Explore the security model",
     principlesTitle: "Design principles",
     principles: [
       {
@@ -594,6 +607,7 @@ export const en = {
     exampleNote:
       "Illustrative examples of the intended product experience — shaped together with pilot customers.",
     cta: "Bring your process to the pilot program",
+    useCasesLink: "See realistic use cases",
   },
 
   securityPage: {
@@ -674,6 +688,7 @@ export const en = {
     heroLede:
       "Mainsches Hub is built for small and mid-sized companies. These scenarios show what controlled AI orchestration looks like in real operations.",
     scenariosTitle: "Core scenarios",
+    productLink: "Explore the product architecture",
     plannedTitle: "Planned connectors",
     plannedLede:
       "The next expansion stage connects the Hub to the tools where work arrives. In development, clearly separated from the current core:",
