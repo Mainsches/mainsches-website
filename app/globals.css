@@ -30,6 +30,8 @@
   --color-gold-deep: #9d8228;
   --color-gold-line: rgba(212, 175, 55, 0.28);
   --color-gold-tint: rgba(212, 175, 55, 0.08);
+  /* Sequence tracks: visible on near-black, still a hairline rather than a fill. */
+  --color-gold-track: rgba(212, 175, 55, 0.62);
 
   /* Semantic */
   --color-danger: #e2695e;

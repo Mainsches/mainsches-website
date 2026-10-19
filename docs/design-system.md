@@ -33,6 +33,7 @@ Gold (heritage `#D4AF37`, kept from the existing Mainsches brand):
 | `gold-deep` | `#9d8228`                 | pressed states                   |
 | `gold-line` | `rgba(212,175,55,.28)`    | selected borders                 |
 | `gold-tint` | `rgba(212,175,55,.08)`    | selected fills                   |
+| `gold-track`| `rgba(212,175,55,.62)`    | hairline sequence connectors     |
 
 Rules for gold: it marks **selection, priority, and progress** — never large
 areas, never glows. Body text is never gold. Semantic red `danger #e2695e`

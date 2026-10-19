@@ -7,6 +7,7 @@ import { OtherProducts } from "@/components/home/OtherProducts";
 import { SystemDiagram } from "@/components/home/SystemDiagram";
 import { UseCaseSwitcher } from "@/components/home/UseCaseSwitcher";
 import { WorkflowExplorer } from "@/components/home/WorkflowExplorer";
+import { StageTrack } from "@/components/ui/StageTrack";
 import { JsonLd } from "@/components/JsonLd";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
@@ -192,23 +193,14 @@ export default async function HomePage({
               lede={home.adaptive.lede}
             />
           </Reveal>
-          <div className="grid gap-4 md:grid-cols-3">
-            {home.adaptive.points.map((point, index) => (
-              <Reveal key={point.title} delay={index * 0.06}>
-                <article className="h-full rounded-panel border border-line bg-raised p-6">
-                  <p className="font-mono text-[0.66rem] tracking-wider text-gold uppercase">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="mt-3 font-display text-base font-medium text-ink">
-                    {point.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-pretty text-ink-soft">
-                    {point.body}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <StageTrack
+            stages={home.adaptive.points.map((point, index) => ({
+              key: point.title,
+              marker: String(index + 1).padStart(2, "0"),
+              title: point.title,
+              body: point.body,
+            }))}
+          />
           <Link
             href={localePath("workflows", locale)}
             className="inline-flex items-center gap-2 text-sm font-semibold text-gold-soft transition-colors duration-200 hover:text-gold"
