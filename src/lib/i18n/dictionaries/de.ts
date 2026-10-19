@@ -299,7 +299,7 @@ export const de = {
             "Verträge, Berichte und interne Dokumente kontrolliert auswerten — lokal, wo es darauf ankommt.",
           points: [
             "Zusammenfassungen mit Quellenbezug",
-            "Vergleiche über Dokumentbestände",
+            "Vergleiche über Dokumentenbestände",
             "Lokale Verarbeitung für sensibles Material",
           ],
         },
