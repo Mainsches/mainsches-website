@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { Dictionary } from "@/lib/i18n/types";
 import { Cloud, Cpu, FileText, GitBranch, Plug, Zap } from "lucide-react";
 
@@ -23,70 +24,133 @@ const NODES: Node[] = [
 
 /**
  * Visual explanation of the AI-OS idea: the Hub in the center, resources
- * around it. Desktop gets an SVG-connected layout, small screens a compact
- * grid — same information, no tiny unreadable SVG text.
+ * joined to it by spokes. Small screens use a vertical spine from the Hub
+ * downward — same information, no tiny unreadable SVG text.
  */
 export function SystemDiagram({ dict }: { dict: DiagramDict }) {
+  const left = NODES.slice(0, 3);
+  const right = NODES.slice(3);
+
   return (
     <figure aria-label={dict.ariaLabel} className="w-full">
-      {/* Desktop: hub row with connector lines */}
-      <div className="relative hidden rounded-panel border border-line bg-raised p-10 sm:block">
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 600 40"
-          className="absolute inset-x-10 top-1/2 h-10 w-[calc(100%-5rem)] -translate-y-1/2"
-          preserveAspectRatio="none"
-        >
-          {[50, 150, 250, 350, 450, 550].map((x) => (
-            <line
-              key={x}
-              x1="300"
-              y1="20"
-              x2={x}
-              y2="20"
-              stroke="rgba(212,175,55,0.16)"
-              strokeWidth="1"
+      <div className="hidden rounded-panel border border-line bg-raised p-6 sm:block lg:p-10">
+        <div className="grid grid-cols-[minmax(0,1fr)_2.75rem_auto_2.75rem_minmax(0,1fr)] grid-rows-3 items-center gap-y-3">
+          {left.map((node, index) => (
+            <div
+              key={node.key}
+              style={cell(1, index + 1)}
+              className="min-w-0"
+            >
+              <DiagramNode node={node} dict={dict} align="right" />
+            </div>
+          ))}
+          {left.map((node, index) => (
+            <Spoke
+              key={`spoke-l-${node.key}`}
+              planned={node.planned}
+              style={cell(2, index + 1)}
             />
           ))}
-        </svg>
-
-        <div className="relative grid grid-cols-3 items-center gap-6">
-          <div className="flex flex-col gap-4">
-            {NODES.slice(0, 3).map((node) => (
-              <DiagramNode key={node.key} node={node} dict={dict} align="left" />
-            ))}
+          <div
+            style={{ gridColumn: 3, gridRow: "1 / span 3" }}
+            className="flex items-center justify-center"
+          >
+            <Hub label={dict.hub} />
           </div>
-
-          <div className="flex justify-center">
-            <div className="flex flex-col items-center gap-2 rounded-panel border border-gold-line bg-gold-tint px-8 py-10 text-center shadow-panel">
-              <span className="size-2.5 rounded-full bg-gold" aria-hidden="true" />
-              <p className="font-display text-lg font-medium text-ink">
-                {dict.hub}
-              </p>
+          {right.map((node, index) => (
+            <Spoke
+              key={`spoke-r-${node.key}`}
+              planned={node.planned}
+              style={cell(4, index + 1)}
+            />
+          ))}
+          {right.map((node, index) => (
+            <div
+              key={node.key}
+              style={cell(5, index + 1)}
+              className="min-w-0"
+            >
+              <DiagramNode node={node} dict={dict} align="left" />
             </div>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            {NODES.slice(3).map((node) => (
-              <DiagramNode key={node.key} node={node} dict={dict} align="right" />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile: compact grid */}
-      <div className="rounded-panel border border-line bg-raised p-5 sm:hidden">
-        <div className="mb-4 flex items-center justify-center gap-2 rounded-card border border-gold-line bg-gold-tint px-4 py-4">
-          <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-          <p className="font-display font-medium text-ink">{dict.hub}</p>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          {NODES.map((node) => (
-            <DiagramNode key={node.key} node={node} dict={dict} align="left" />
           ))}
         </div>
       </div>
+
+      <div className="rounded-panel border border-line bg-raised p-5 sm:hidden">
+        <div className="flex flex-col items-center">
+          <Hub label={dict.hub} />
+          <span aria-hidden="true" className="h-4 w-px bg-gold-track" />
+        </div>
+        <ul className="flex flex-col">
+          {NODES.map((node, index) => {
+            const last = index === NODES.length - 1;
+            return (
+              <li key={node.key} className="flex items-stretch gap-3">
+                <span
+                  aria-hidden="true"
+                  className="flex w-4 shrink-0 flex-col items-center"
+                >
+                  <span
+                    className={`mt-[1.15rem] size-2 shrink-0 rounded-full ${
+                      node.planned
+                        ? "border border-dashed border-line-strong bg-transparent"
+                        : "bg-gold"
+                    }`}
+                  />
+                  {!last ? (
+                    <span
+                      className={`mt-1 w-px flex-1 ${
+                        node.planned
+                          ? "border-l border-dashed border-line-strong"
+                          : "bg-gold-track"
+                      }`}
+                    />
+                  ) : null}
+                </span>
+                <div className="min-w-0 flex-1 pb-2.5">
+                  <DiagramNode node={node} dict={dict} align="left" />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </figure>
+  );
+}
+
+function cell(column: number, row: number): CSSProperties {
+  return { gridColumn: column, gridRow: row };
+}
+
+function Hub({ label }: { label: string }) {
+  return (
+    <div className="flex flex-col items-center gap-2.5 rounded-panel border border-gold-line bg-gold-tint px-6 py-7 text-center sm:px-7 sm:py-9">
+      <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
+      <p className="font-display text-base font-medium text-balance text-ink sm:text-lg">
+        {label}
+      </p>
+    </div>
+  );
+}
+
+function Spoke({
+  planned,
+  style,
+}: {
+  planned?: boolean;
+  style: CSSProperties;
+}) {
+  return (
+    <div aria-hidden="true" style={style} className="flex items-center">
+      <span
+        className={`h-px w-full ${
+          planned
+            ? "border-t border-dashed border-line-strong"
+            : "bg-gold-track"
+        }`}
+      />
+    </div>
   );
 }
 
@@ -100,13 +164,14 @@ function DiagramNode({
   align: "left" | "right";
 }) {
   const Icon = node.icon;
+  const towardHub = align === "right";
   return (
     <div
-      className={`flex items-center gap-3 rounded-card border px-4 py-3 ${
+      className={`flex items-center gap-3 rounded-card border px-3.5 py-3 ${
         node.planned
           ? "border-dashed border-line-strong bg-transparent"
           : "border-line bg-surface"
-      } ${align === "right" ? "sm:flex-row-reverse sm:text-right" : ""}`}
+      } ${towardHub ? "sm:flex-row-reverse sm:text-right" : ""}`}
     >
       <Icon
         aria-hidden="true"

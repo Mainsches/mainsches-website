@@ -165,45 +165,83 @@ export function HubConsole({
           id="hub-console-panel"
           role="tabpanel"
           aria-labelledby={`hub-tab-${scenario.id}`}
-          className="flex min-h-[320px] flex-col p-5"
+          className="flex min-h-[320px] flex-col p-4 sm:p-5"
         >
-          <ol aria-live="polite" className="flex flex-1 flex-col gap-3">
+          <ol aria-live="polite" className="flex flex-1 flex-col">
             {STEP_ORDER.map((stepKey, index) => {
               const visible = index < shownSteps;
-              const isLast = index === shownSteps - 1;
-              const running = isLast && !done;
-
-              if (!visible) {
-                return (
-                  <li
-                    key={stepKey}
-                    aria-hidden="true"
-                    className="h-[52px] rounded-card border border-dashed border-line-soft"
-                  />
-                );
-              }
+              const running = visible && index === shownSteps - 1 && !done;
+              const complete = visible && !running;
+              const last = index === STEP_ORDER.length - 1;
 
               return (
                 <li
-                  key={`${scenario.id}-${stepKey}`}
-                  className="flex min-h-[52px] items-center gap-4 rounded-card border border-line bg-surface px-4 py-3 motion-safe:animate-console-in"
+                  key={visible ? `${scenario.id}-${stepKey}` : `pending-${stepKey}`}
+                  className={`flex items-stretch gap-3 ${last ? "" : "pb-2.5"} ${
+                    visible ? "motion-safe:animate-console-in" : ""
+                  }`}
                 >
-                  <span className="w-20 shrink-0 font-mono text-[0.68rem] tracking-wider text-gold uppercase">
-                    {dict.stepLabels[stepKey]}
+                  <span
+                    aria-hidden="true"
+                    className="flex w-6 shrink-0 flex-col items-center"
+                  >
+                    <span
+                      className={`mt-3 flex size-[22px] shrink-0 items-center justify-center rounded-full border ${
+                        running
+                          ? "border-gold bg-gold-tint"
+                          : complete
+                            ? "border-gold bg-gold text-bg"
+                            : "border-dashed border-line-strong bg-transparent text-ink-soft"
+                      }`}
+                    >
+                      {complete ? (
+                        <Check className="size-3" />
+                      ) : running ? (
+                        <span className="size-1.5 rounded-full bg-gold motion-safe:animate-pulse-dot" />
+                      ) : (
+                        <span className="font-mono text-[0.55rem]">
+                          {index + 1}
+                        </span>
+                      )}
+                    </span>
+                    {!last ? (
+                      <span
+                        className={`mt-1 w-px flex-1 ${
+                          complete ? "bg-gold" : "bg-line-strong"
+                        }`}
+                      />
+                    ) : null}
                   </span>
-                  <span className="flex-1 text-sm leading-snug text-ink-soft">
-                    {stepContent[stepKey]}
-                  </span>
-                  <span className="shrink-0" aria-hidden="true">
-                    {running ? (
-                      <span className="block size-2 rounded-full bg-gold motion-safe:animate-pulse-dot" />
+
+                  <div
+                    className={`min-w-0 flex-1 rounded-card border px-3.5 py-2.5 ${
+                      running
+                        ? "border-gold-line bg-gold-tint"
+                        : visible
+                          ? "border-line bg-surface"
+                          : "border-dashed border-line bg-transparent"
+                    }`}
+                  >
+                    <p
+                      className={`font-mono text-[0.66rem] tracking-wider uppercase ${
+                        visible ? "text-gold" : "text-ink-soft"
+                      }`}
+                    >
+                      {dict.stepLabels[stepKey]}
+                    </p>
+                    {visible ? (
+                      <p className="mt-1 text-sm leading-snug text-ink-soft">
+                        {stepContent[stepKey]}
+                      </p>
                     ) : (
-                      <Check className="size-4 text-gold" />
+                      <p aria-hidden="true" className="mt-1 h-5" />
                     )}
-                  </span>
-                  <span className="sr-only">
-                    {running ? dict.statusRunning : dict.statusDone}
-                  </span>
+                    {visible ? (
+                      <span className="sr-only">
+                        {running ? dict.statusRunning : dict.statusDone}
+                      </span>
+                    ) : null}
+                  </div>
                 </li>
               );
             })}
@@ -213,14 +251,24 @@ export function HubConsole({
             <p className="max-w-md text-xs leading-relaxed text-ink-faint">
               {scenario.routingNote}
             </p>
-            <button
-              type="button"
-              onClick={() => play(1)}
-              className="inline-flex items-center gap-2 rounded-control border border-line-strong px-3.5 py-2 text-xs font-semibold text-ink-soft transition-colors duration-200 hover:border-gold-line hover:text-ink"
-            >
-              <RotateCcw aria-hidden="true" className="size-3.5" />
-              {dict.replay}
-            </button>
+            <div className="flex items-center gap-3">
+              <p
+                aria-hidden="true"
+                className="font-mono text-[0.66rem] tracking-wider text-ink-faint"
+              >
+                {String(shownSteps).padStart(2, "0")}
+                <span className="text-line-strong">/</span>
+                {String(STEP_ORDER.length).padStart(2, "0")}
+              </p>
+              <button
+                type="button"
+                onClick={() => play(1)}
+                className="inline-flex items-center gap-2 rounded-control border border-line-strong px-3.5 py-2 text-xs font-semibold text-ink-soft transition-colors duration-200 hover:border-gold-line hover:text-ink"
+              >
+                <RotateCcw aria-hidden="true" className="size-3.5" />
+                {dict.replay}
+              </button>
+            </div>
           </div>
         </div>
       </div>
