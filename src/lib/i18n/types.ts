@@ -307,6 +307,7 @@ export interface Dictionary {
     heroTitle: string;
     heroLede: string;
     offersTitle: string;
+    priceOnRequest: string;
     offers: {
       id: string;
       number: string;

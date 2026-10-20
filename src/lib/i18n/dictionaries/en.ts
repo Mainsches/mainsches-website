@@ -717,6 +717,7 @@ export const en = {
     heroLede:
       "Mainsches helps you identify worthwhile AI use cases, choose suitable tools, and implement concrete solutions — without unnecessary complexity.",
     offersTitle: "What we offer",
+    priceOnRequest: "Price on request",
     offers: [
       {
         id: "potentialAnalysis",

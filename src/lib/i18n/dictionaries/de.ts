@@ -718,6 +718,7 @@ export const de = {
     heroLede:
       "Mainsches unterstützt Unternehmen dabei, passende KI-Anwendungsfälle zu erkennen, geeignete Werkzeuge auszuwählen und konkrete Lösungen umzusetzen — ohne unnötige Komplexität.",
     offersTitle: "Leistungen",
+    priceOnRequest: "Preis auf Anfrage",
     offers: [
       {
         id: "potentialAnalysis",

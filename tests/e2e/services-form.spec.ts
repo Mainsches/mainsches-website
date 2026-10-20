@@ -64,9 +64,22 @@ test.describe("services offers layout", () => {
     const titles = await articles.locator("h3").allTextContents();
     expect(titles).toEqual(en.servicesPage.offers.map((offer) => offer.title));
 
+    for (const article of await articles.all()) {
+      await expect(article.getByText(en.servicesPage.priceOnRequest)).toBeVisible();
+    }
+
     await expect(page.locator("dialog[open]")).toHaveCount(0);
     await expect(page.getByLabel(new RegExp(formEn.email))).toBeHidden();
     await expect(page.getByRole("button", { name: formEn.submit })).toBeHidden();
+  });
+
+  test("German offer cards show price on request", async ({ page }) => {
+    await page.goto("/de/angebot");
+    const articles = page.locator("main article");
+    await expect(articles).toHaveCount(5);
+    for (const article of await articles.all()) {
+      await expect(article.getByText(de.servicesPage.priceOnRequest)).toBeVisible();
+    }
   });
 });
 
