@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
-import { ServicesForm } from "@/components/services/ServicesForm";
+import { ServicesEnquiryDialog } from "@/components/services/ServicesEnquiryDialog";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -20,18 +20,22 @@ export function ServicesMainContent({
 }) {
   const page = dict.servicesPage;
   const [interest, setInterest] = useState<ServiceInterest | "">("");
-  const enquiryRef = useRef<HTMLElement>(null);
+  const [selectedServiceTitle, setSelectedServiceTitle] = useState("");
+  const [formSessionKey, setFormSessionKey] = useState(0);
+  const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
 
-  function scrollToEnquiry(next: ServiceInterest) {
-    setInterest(next);
-    enquiryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    requestAnimationFrame(() => {
-      document
-        .querySelector<HTMLSelectElement>(
-          "#services-enquiry select[name='interest']",
-        )
-        ?.focus();
-    });
+  const handleDialogClosed = useCallback(() => {
+    lastTriggerRef.current?.focus();
+  }, []);
+
+  function openEnquiry(
+    offer: (typeof page.offers)[number],
+    trigger: HTMLButtonElement,
+  ) {
+    lastTriggerRef.current = trigger;
+    setInterest(offer.id as ServiceInterest);
+    setSelectedServiceTitle(offer.title);
+    setFormSessionKey((key) => key + 1);
   }
 
   return (
@@ -40,10 +44,10 @@ export function ServicesMainContent({
         <Reveal>
           <SectionHeader label={page.heroLabel} title={page.offersTitle} />
         </Reveal>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
           {page.offers.map((offer, index) => (
             <Reveal key={offer.id} delay={index * 0.05}>
-              <article className="flex h-full flex-col gap-4 rounded-panel border border-line bg-raised p-7">
+              <article className="flex flex-col gap-4 rounded-panel border border-line bg-raised p-7">
                 <p className="font-mono text-xs tracking-wider text-ink-faint">
                   {offer.number}
                 </p>
@@ -69,10 +73,8 @@ export function ServicesMainContent({
                 </ul>
                 <button
                   type="button"
-                  onClick={() =>
-                    scrollToEnquiry(offer.id as ServiceInterest)
-                  }
-                  className="mt-auto inline-flex w-fit items-center gap-2 text-sm font-semibold text-gold-soft transition-colors duration-200 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  onClick={(event) => openEnquiry(offer, event.currentTarget)}
+                  className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-gold-soft transition-colors duration-200 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                 >
                   {offer.cta}
                   <ArrowRight aria-hidden="true" className="size-4" />
@@ -83,33 +85,15 @@ export function ServicesMainContent({
         </div>
       </section>
 
-      <section
-        ref={enquiryRef}
-        id="services-enquiry"
-        className="border-t border-line scroll-mt-20"
-      >
-        <div className="shell grid gap-12 py-16 sm:py-20 lg:grid-cols-[1fr_1.4fr]">
-          <Reveal>
-            <div className="lg:sticky lg:top-24">
-              <SectionHeader
-                label={page.heroLabel}
-                title={page.formTitle}
-                lede={page.formLede}
-              />
-            </div>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <div className="rounded-panel border border-line bg-raised p-6 sm:p-8">
-              <ServicesForm
-                dict={page.form}
-                locale={locale}
-                interest={interest}
-                onInterestChange={setInterest}
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <ServicesEnquiryDialog
+        page={page}
+        locale={locale}
+        interest={interest}
+        onInterestChange={setInterest}
+        selectedServiceTitle={selectedServiceTitle}
+        formSessionKey={formSessionKey}
+        onClosed={handleDialogClosed}
+      />
 
       <section className="border-t border-line">
         <div className="shell py-16 sm:py-20">

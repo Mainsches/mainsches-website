@@ -787,6 +787,7 @@ export const en = {
     formTitle: "Send an enquiry",
     formLede:
       "Briefly describe what you need. We will get back to you without obligation.",
+    dialogClose: "Close dialog",
     form: {
       name: "Name *",
       company: "Company",

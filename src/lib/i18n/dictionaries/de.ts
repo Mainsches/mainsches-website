@@ -788,6 +788,7 @@ export const de = {
     formTitle: "Anfrage stellen",
     formLede:
       "Beschreiben Sie kurz Ihr Anliegen. Wir melden uns unverbindlich bei Ihnen.",
+    dialogClose: "Dialog schliessen",
     form: {
       name: "Name *",
       company: "Unternehmen",

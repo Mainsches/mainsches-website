@@ -317,6 +317,7 @@ export interface Dictionary {
     }[];
     formTitle: string;
     formLede: string;
+    dialogClose: string;
     form: {
       name: string;
       company: string;
