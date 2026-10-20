@@ -75,6 +75,7 @@ export interface Dictionary {
     workflows: string;
     security: string;
     useCases: string;
+    services: string;
     pilot: string;
     homeAria: string;
   };
@@ -99,6 +100,7 @@ export interface Dictionary {
     workflows: PageMeta;
     security: PageMeta;
     useCases: PageMeta;
+    services: PageMeta;
     pilot: PageMeta;
     legal: PageMeta;
     privacy: PageMeta;
@@ -298,6 +300,58 @@ export interface Dictionary {
     plannedLede: string;
     plannedItems: { title: string; body: string }[];
     cta: string;
+  };
+
+  servicesPage: {
+    heroLabel: string;
+    heroTitle: string;
+    heroLede: string;
+    offersTitle: string;
+    priceOnRequest: string;
+    offers: {
+      id: string;
+      number: string;
+      title: string;
+      purpose: string;
+      points: string[];
+      cta: string;
+    }[];
+    formTitle: string;
+    formLede: string;
+    dialogClose: string;
+    form: {
+      name: string;
+      company: string;
+      email: string;
+      emailHint: string;
+      phone: string;
+      interest: string;
+      interestPotentialAnalysis: string;
+      interestToolConsulting: string;
+      interestStarterCourses: string;
+      interestAutomation: string;
+      interestAiWebsites: string;
+      interestUnsure: string;
+      message: string;
+      submit: string;
+      submitting: string;
+      errorSummaryTitle: string;
+      errors: {
+        name: string;
+        email: string;
+        interest: string;
+        message: string;
+      };
+      success: string;
+      successDetail: string;
+      notConfiguredTitle: string;
+      notConfiguredBody: string;
+      serverError: string;
+      fallbackLabel: string;
+    };
+    pilotPanelTitle: string;
+    pilotPanelLede: string;
+    pilotPanelCta: string;
   };
 
   pilotPage: {

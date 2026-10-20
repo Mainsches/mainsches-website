@@ -64,6 +64,9 @@ describe("i18n dictionaries", () => {
     expect(de.home.useCases.cases.map((c) => c.id)).toEqual(
       en.home.useCases.cases.map((c) => c.id),
     );
+    expect(de.servicesPage.offers.map((o) => o.id)).toEqual(
+      en.servicesPage.offers.map((o) => o.id),
+    );
     expect(de.home.useCases.cases.map((c) => Boolean(c.planned))).toEqual(
       en.home.useCases.cases.map((c) => Boolean(c.planned)),
     );

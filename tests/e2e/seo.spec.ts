@@ -127,6 +127,19 @@ test.describe("structured data", () => {
     expect(types).toContain("BreadcrumbList");
   });
 
+  test("services pages expose BreadcrumbList without FAQ or Offer schema", async ({
+    page,
+  }) => {
+    for (const path of ["/de/angebot", "/en/services"]) {
+      await page.goto(path);
+      const types = await jsonLdTypes(page);
+      expect(types, path).toContain("BreadcrumbList");
+      expect(types, path).not.toContain("FAQPage");
+      expect(types, path).not.toContain("Service");
+      expect(types, path).not.toContain("Offer");
+    }
+  });
+
   test("Organization carries the verified LinkedIn profile as sameAs", async ({
     page,
   }) => {
@@ -218,7 +231,7 @@ test.describe("contextual internal links", () => {
 });
 
 test.describe("sitemap and robots", () => {
-  test("sitemap lists all 16 localized URLs", async ({ request }) => {
+  test("sitemap lists all 18 localized URLs", async ({ request }) => {
     const response = await request.get("/sitemap.xml");
     expect(response.status()).toBe(200);
     const xml = await response.text();
@@ -234,6 +247,8 @@ test.describe("sitemap and robots", () => {
       "/en/security",
       "/de/use-cases",
       "/en/use-cases",
+      "/de/angebot",
+      "/en/services",
       "/de/pilot-program",
       "/en/pilot-program",
       "/de/impressum",
@@ -244,7 +259,7 @@ test.describe("sitemap and robots", () => {
     for (const path of expected) {
       expect(xml).toContain(`<loc>${SITE}${path}</loc>`);
     }
-    expect(xml.match(/<loc>/g)).toHaveLength(16);
+    expect(xml.match(/<loc>/g)).toHaveLength(18);
 
     // hreflang annotations match the on-page metadata, including x-default.
     expect(xml).toContain(`hreflang="x-default"`);

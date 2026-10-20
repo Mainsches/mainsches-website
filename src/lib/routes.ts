@@ -13,6 +13,7 @@ export const routeDefs = {
   workflows: { de: "/de/workflows", en: "/en/workflows" },
   security: { de: "/de/security", en: "/en/security" },
   useCases: { de: "/de/use-cases", en: "/en/use-cases" },
+  services: { de: "/de/angebot", en: "/en/services" },
   pilot: { de: "/de/pilot-program", en: "/en/pilot-program" },
   legal: { de: "/de/impressum", en: "/en/legal-notice" },
   privacy: { de: "/de/datenschutz", en: "/en/privacy" },

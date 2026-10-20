@@ -14,6 +14,7 @@ export function Header({ dict }: { dict: Dictionary }) {
     { href: localePath("workflows", locale), label: dict.nav.workflows },
     { href: localePath("security", locale), label: dict.nav.security },
     { href: localePath("useCases", locale), label: dict.nav.useCases },
+    { href: localePath("services", locale), label: dict.nav.services },
     { href: localePath("pilot", locale), label: dict.nav.pilot },
   ];
 
@@ -45,7 +46,7 @@ export function Header({ dict }: { dict: Dictionary }) {
           <NavLinks
             items={items}
             className="flex items-center gap-1"
-            linkClassName="rounded-control px-3 py-2 text-sm font-medium"
+            linkClassName="rounded-control px-2.5 py-2 text-sm font-medium"
           />
         </nav>
 

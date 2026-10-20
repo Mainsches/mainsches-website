@@ -6,7 +6,13 @@ test.describe("responsive layout", () => {
   for (const width of BREAKPOINTS) {
     test(`no horizontal scrollbar at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
-      for (const path of ["/en", "/de", "/en/pilot-program"]) {
+      for (const path of [
+        "/en",
+        "/de",
+        "/en/pilot-program",
+        "/de/angebot",
+        "/en/services",
+      ]) {
         await page.goto(path);
         const overflow = await page.evaluate(() => {
           const root = document.documentElement;

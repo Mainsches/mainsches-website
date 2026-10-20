@@ -23,6 +23,7 @@ export const de = {
     workflows: "Workflows",
     security: "Sicherheit",
     useCases: "Use Cases",
+    services: "Angebot",
     pilot: "Pilotprogramm",
     homeAria: "Mainsches Hub — Startseite",
   },
@@ -66,6 +67,11 @@ export const de = {
       title: "Use Cases: KI-Orchestrierung für KMU — Mainsches Hub",
       description:
         "Dokumente kontrolliert auswerten, wiederkehrende Abläufe als Workflows abbilden, lokale und Cloud-KI je Aufgabe orchestrieren. Realistische Szenarien für KMU.",
+    },
+    services: {
+      title: "Angebot — KI praktisch im Unternehmen | Mainsches",
+      description:
+        "Mainsches unterstützt Unternehmen bei KI-Potenzialanalyse, Tool-Beratung, Einsteigerkursen, Automatisierung wiederkehrender Aufgaben und KI-gestützten Webseiten.",
     },
     pilot: {
       title: "Pilotprogramm — früher Zugang zu Mainsches Hub",
@@ -704,6 +710,124 @@ export const de = {
       },
     ],
     cta: "Bringen Sie Ihr Szenario ins Pilotprogramm",
+  },
+
+  servicesPage: {
+    heroLabel: "Angebot",
+    heroTitle: "KI praktisch und sinnvoll im Unternehmen einsetzen.",
+    heroLede:
+      "Mainsches unterstützt Unternehmen dabei, passende KI-Anwendungsfälle zu erkennen, geeignete Werkzeuge auszuwählen und konkrete Lösungen umzusetzen — ohne unnötige Komplexität.",
+    offersTitle: "Leistungen",
+    priceOnRequest: "Preis auf Anfrage",
+    offers: [
+      {
+        id: "potentialAnalysis",
+        number: "01",
+        title: "KI-Potenzialanalyse",
+        purpose:
+          "Analysieren, wo KI im Unternehmen sinnvoll eingesetzt werden kann und welche Aufgaben oder Prozesse konkretes Potenzial haben.",
+        points: [
+          "bestehende Arbeitsabläufe analysieren",
+          "sinnvolle KI-Anwendungsfälle identifizieren",
+          "konkrete nächste Schritte priorisieren",
+        ],
+        cta: "Anfrage stellen",
+      },
+      {
+        id: "toolConsulting",
+        number: "02",
+        title: "KI- & Tool-Beratung",
+        purpose:
+          "Unterstützung bei der Auswahl und beim Einsatz geeigneter KI-Werkzeuge — abgestimmt auf Ihre Anforderungen.",
+        points: [
+          "Cloud- und lokale KI vergleichen",
+          "passende Tools auswählen",
+          "Datenschutz, Anforderungen und Nutzen berücksichtigen",
+        ],
+        cta: "Anfrage stellen",
+      },
+      {
+        id: "starterCourses",
+        number: "03",
+        title: "KI-Einsteigerkurse für Unternehmen",
+        purpose:
+          "Praxisnaher Einstieg für Mitarbeitende und Teams, die KI sicher und sinnvoll in den Arbeitsalltag integrieren möchten.",
+        points: [
+          "sinnvoll mit KI arbeiten",
+          "Prompting und Arbeit mit Dateien",
+          "Datenschutz, Grenzen und Best Practices",
+        ],
+        cta: "Anfrage stellen",
+      },
+      {
+        id: "automation",
+        number: "04",
+        title: "Automatisierung wiederkehrender Aufgaben",
+        purpose:
+          "Manuelle und wiederkehrende Tätigkeiten strukturieren, vereinfachen oder automatisieren — mit passenden Werkzeugen.",
+        points: [
+          "wiederkehrende Aufgaben identifizieren",
+          "geeignete Automatisierungen entwickeln",
+          "Beispiel: Social-Media-Automation bei wiederkehrenden Posts",
+        ],
+        cta: "Anfrage stellen",
+      },
+      {
+        id: "aiWebsites",
+        number: "05",
+        title: "KI-gestützte Webseiten",
+        purpose:
+          "Moderne Unternehmens-, Projekt- und Landingpages planen und umsetzen — mit gezielter KI-Unterstützung bei Konzeption, Inhalten und Technik.",
+        points: [
+          "Konzeption und Seitenstruktur",
+          "Inhalte und Design",
+          "technische Umsetzung und Deployment",
+        ],
+        cta: "Anfrage stellen",
+      },
+    ],
+    formTitle: "Anfrage stellen",
+    formLede:
+      "Beschreiben Sie kurz Ihr Anliegen. Wir melden uns unverbindlich bei Ihnen.",
+    dialogClose: "Dialog schliessen",
+    form: {
+      name: "Name *",
+      company: "Unternehmen",
+      email: "E-Mail *",
+      emailHint: "Wir antworten an diese Adresse.",
+      phone: "Telefonnummer",
+      interest: "Interesse *",
+      interestPotentialAnalysis: "KI-Potenzialanalyse",
+      interestToolConsulting: "KI- & Tool-Beratung",
+      interestStarterCourses: "KI-Einsteigerkurs für Unternehmen",
+      interestAutomation: "Automatisierung wiederkehrender Aufgaben",
+      interestAiWebsites: "KI-gestützte Webseite",
+      interestUnsure: "Noch unsicher / Beratung gewünscht",
+      message: "Was möchten Sie verbessern oder umsetzen? *",
+      submit: "Unverbindlich anfragen",
+      submitting: "Wird gesendet …",
+      errorSummaryTitle: "Bitte prüfen Sie die markierten Felder",
+      errors: {
+        name: "Bitte geben Sie Ihren Namen an.",
+        email: "Bitte geben Sie eine gültige E-Mail-Adresse an.",
+        interest: "Bitte wählen Sie eine Leistung oder «Noch unsicher».",
+        message: "Bitte beschreiben Sie Ihr Anliegen (mindestens 10 Zeichen).",
+      },
+      success: "Vielen Dank für Ihre Anfrage",
+      successDetail:
+        "Wir haben Ihre Nachricht erhalten und melden uns in Kürze bei Ihnen.",
+      notConfiguredTitle: "Formular derzeit nicht verfügbar",
+      notConfiguredBody:
+        "Der Versand ist auf dieser Umgebung nicht eingerichtet. Schreiben Sie uns direkt per E-Mail.",
+      serverError:
+        "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder schreiben Sie uns direkt.",
+      fallbackLabel: "E-Mail senden",
+    },
+    pilotPanelTitle:
+      "Einen realen Unternehmensprozess mit Mainsches Hub erproben?",
+    pilotPanelLede:
+      "Wenn Sie nicht nur eine einzelne Leistung anfragen möchten, sondern Mainsches Hub an einem echten Ablauf testen wollen, ist das Pilotprogramm der passende Weg.",
+    pilotPanelCta: "Zum Pilotprogramm",
   },
 
   pilotPage: {

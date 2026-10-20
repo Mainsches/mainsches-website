@@ -104,4 +104,16 @@ test.describe("404 handling", () => {
       expect(response.status(), path).toBe(404);
     }
   });
+
+  test("services slugs are locale-guarded", async ({ request }) => {
+    for (const path of ["/en/angebot", "/de/services"]) {
+      const response = await request.get(path);
+      expect(response.status(), path).toBe(404);
+    }
+  });
+
+  test("localized services routes resolve", async ({ request }) => {
+    expect((await request.get("/de/angebot")).status()).toBe(200);
+    expect((await request.get("/en/services")).status()).toBe(200);
+  });
 });
