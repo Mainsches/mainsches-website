@@ -13,7 +13,7 @@ import { LINKEDIN_URL, SITE_URL } from "@/lib/site";
 const routeKeys = Object.keys(routeDefs) as RouteKey[];
 
 describe("page meta (titles and descriptions)", () => {
-  it("titles are unique across all 16 localized pages", () => {
+  it("titles are unique across all localized pages", () => {
     const titles = [de, en].flatMap((dict) =>
       routeKeys.map((key) => dict.meta[key].title),
     );

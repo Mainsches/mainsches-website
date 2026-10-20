@@ -134,7 +134,14 @@ test.describe("reduced motion", () => {
 });
 
 test.describe("console and hydration health", () => {
-  for (const path of ["/en", "/de", "/en/product", "/en/pilot-program"]) {
+  for (const path of [
+    "/en",
+    "/de",
+    "/en/product",
+    "/en/pilot-program",
+    "/de/angebot",
+    "/en/services",
+  ]) {
     test(`no console errors on ${path}`, async ({ page }) => {
       const errors: string[] = [];
       page.on("console", (message) => {

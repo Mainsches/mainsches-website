@@ -23,6 +23,7 @@ export const en = {
     workflows: "Workflows",
     security: "Security",
     useCases: "Use cases",
+    services: "Services",
     pilot: "Pilot program",
     homeAria: "Mainsches Hub — home",
   },
@@ -66,6 +67,11 @@ export const en = {
       title: "Use Cases: AI Orchestration for SMEs — Mainsches Hub",
       description:
         "Evaluate documents in a controlled way, turn recurring processes into workflows, and orchestrate local and cloud AI per task. Realistic scenarios for SMEs.",
+    },
+    services: {
+      title: "Services — Practical AI for Your Business | Mainsches",
+      description:
+        "Mainsches helps companies with AI potential analysis, tool consulting, starter courses, automating recurring tasks, and AI-supported websites.",
     },
     pilot: {
       title: "Pilot Program — Early Access to Mainsches Hub",
@@ -703,6 +709,120 @@ export const en = {
       },
     ],
     cta: "Bring your scenario to the pilot program",
+  },
+
+  servicesPage: {
+    heroLabel: "Services",
+    heroTitle: "Put AI to practical use in your business.",
+    heroLede:
+      "Mainsches helps you identify worthwhile AI use cases, choose suitable tools, and implement concrete solutions — without unnecessary complexity.",
+    offersTitle: "What we offer",
+    offers: [
+      {
+        id: "potentialAnalysis",
+        number: "01",
+        title: "AI potential analysis",
+        purpose:
+          "Analyse where AI can add value in your organisation and which tasks or processes have clear potential.",
+        points: [
+          "review existing workflows",
+          "identify sensible AI use cases",
+          "prioritise concrete next steps",
+        ],
+        cta: "Request consultation",
+      },
+      {
+        id: "toolConsulting",
+        number: "02",
+        title: "AI & tool consulting",
+        purpose:
+          "Support with selecting and using AI tools that fit your requirements and way of working.",
+        points: [
+          "compare cloud and local AI options",
+          "select suitable tools",
+          "weigh privacy, requirements, and benefits",
+        ],
+        cta: "Request consultation",
+      },
+      {
+        id: "starterCourses",
+        number: "03",
+        title: "AI starter courses for teams",
+        purpose:
+          "Hands-on introduction for employees and teams who want to use AI safely and effectively in daily work.",
+        points: [
+          "work productively with AI",
+          "prompting and working with files",
+          "privacy, limits, and best practices",
+        ],
+        cta: "Request consultation",
+      },
+      {
+        id: "automation",
+        number: "04",
+        title: "Automating recurring tasks",
+        purpose:
+          "Structure, simplify, or automate manual and recurring work with appropriate tools.",
+        points: [
+          "identify recurring tasks",
+          "design suitable automations",
+          "example: social media automation for recurring posts",
+        ],
+        cta: "Request consultation",
+      },
+      {
+        id: "aiWebsites",
+        number: "05",
+        title: "AI-supported websites",
+        purpose:
+          "Plan and build modern company, project, and landing pages — with targeted AI support for structure, content, and implementation.",
+        points: [
+          "concept and page structure",
+          "content and design",
+          "technical implementation and deployment",
+        ],
+        cta: "Request consultation",
+      },
+    ],
+    formTitle: "Send an enquiry",
+    formLede:
+      "Briefly describe what you need. We will get back to you without obligation.",
+    form: {
+      name: "Name *",
+      company: "Company",
+      email: "Email *",
+      emailHint: "We will reply to this address.",
+      phone: "Phone number",
+      interest: "Interest *",
+      interestPotentialAnalysis: "AI potential analysis",
+      interestToolConsulting: "AI & tool consulting",
+      interestStarterCourses: "AI starter courses for teams",
+      interestAutomation: "Automating recurring tasks",
+      interestAiWebsites: "AI-supported website",
+      interestUnsure: "Not sure yet / general consultation",
+      message: "What would you like to improve or implement? *",
+      submit: "Send enquiry",
+      submitting: "Sending …",
+      errorSummaryTitle: "Please check the highlighted fields",
+      errors: {
+        name: "Please enter your name.",
+        email: "Please enter a valid email address.",
+        interest: "Please select a service or “Not sure yet”.",
+        message: "Please describe your request (at least 10 characters).",
+      },
+      success: "Thank you for your enquiry",
+      successDetail: "We have received your message and will reply shortly.",
+      notConfiguredTitle: "Form unavailable on this environment",
+      notConfiguredBody:
+        "Sending is not configured here. Please email us directly instead.",
+      serverError:
+        "Something went wrong while sending. Please try again later or email us directly.",
+      fallbackLabel: "Send email",
+    },
+    pilotPanelTitle: "Want to trial a real business process with Mainsches Hub?",
+    pilotPanelLede:
+      "If you are not only looking for a specific service but want to test Mainsches Hub on a real workflow, the pilot program is the right path.",
+    pilotPanelCta: "Go to pilot program",
   },
 
   pilotPage: {

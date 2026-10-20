@@ -38,6 +38,7 @@ export function Footer({ dict }: { dict: Dictionary }) {
     { href: localePath("workflows", locale), label: dict.nav.workflows },
     { href: localePath("security", locale), label: dict.nav.security },
     { href: localePath("useCases", locale), label: dict.nav.useCases },
+    { href: localePath("services", locale), label: dict.nav.services },
     { href: localePath("pilot", locale), label: dict.nav.pilot },
   ];
 

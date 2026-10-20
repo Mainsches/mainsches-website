@@ -16,6 +16,7 @@ describe("route map", () => {
         "privacy",
         "product",
         "security",
+        "services",
         "useCases",
         "workflows",
       ].sort(),
@@ -31,6 +32,11 @@ describe("route map", () => {
     expect(localePath("legal", "en")).toBe("/en/legal-notice");
     expect(localePath("privacy", "de")).toBe("/de/datenschutz");
     expect(localePath("privacy", "en")).toBe("/en/privacy");
+  });
+
+  it("uses localized slugs for the services page", () => {
+    expect(localePath("services", "de")).toBe("/de/angebot");
+    expect(localePath("services", "en")).toBe("/en/services");
   });
 
   it("returns hreflang alternates for a route", () => {
@@ -54,6 +60,11 @@ describe("route map", () => {
       expect(switchLocalePath("/en/legal-notice", "de")).toBe("/de/impressum");
       expect(switchLocalePath("/de/datenschutz", "en")).toBe("/en/privacy");
       expect(switchLocalePath("/en/privacy", "de")).toBe("/de/datenschutz");
+    });
+
+    it("maps localized services slugs to their twin", () => {
+      expect(switchLocalePath("/de/angebot", "en")).toBe("/en/services");
+      expect(switchLocalePath("/en/services", "de")).toBe("/de/angebot");
     });
 
     it("handles trailing slashes", () => {

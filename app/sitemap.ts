@@ -9,6 +9,7 @@ const PRIORITIES: Record<RouteKey, number> = {
   workflows: 0.8,
   security: 0.8,
   useCases: 0.8,
+  services: 0.8,
   pilot: 0.9,
   legal: 0.3,
   privacy: 0.3,

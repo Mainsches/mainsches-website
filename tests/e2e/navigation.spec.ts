@@ -13,6 +13,7 @@ test.describe("primary navigation (desktop)", () => {
       [en.nav.workflows, "/en/workflows"],
       [en.nav.security, "/en/security"],
       [en.nav.useCases, "/en/use-cases"],
+      [en.nav.services, "/en/services"],
       [en.nav.pilot, "/en/pilot-program"],
     ];
 
@@ -47,6 +48,12 @@ test.describe("language switcher", () => {
     await page.getByRole("link", { name: "English" }).click();
     await expect(page).toHaveURL("/en/legal-notice");
   });
+
+  test("maps localized services slugs to their twin", async ({ page }) => {
+    await page.goto("/de/angebot");
+    await page.getByRole("link", { name: "English" }).click();
+    await expect(page).toHaveURL("/en/services");
+  });
 });
 
 test.describe("mobile navigation", () => {
@@ -74,6 +81,22 @@ test.describe("mobile navigation", () => {
 });
 
 test.describe("footer and external links", () => {
+  test("footer links to services in both locales", async ({ page }) => {
+    await page.goto("/de");
+    await expect(
+      page
+        .getByRole("contentinfo")
+        .getByRole("link", { name: de.nav.services, exact: true }),
+    ).toHaveAttribute("href", "/de/angebot");
+
+    await page.goto("/en");
+    await expect(
+      page
+        .getByRole("contentinfo")
+        .getByRole("link", { name: en.nav.services, exact: true }),
+    ).toHaveAttribute("href", "/en/services");
+  });
+
   test("footer links to legal pages", async ({ page }) => {
     await page.goto("/de");
     const footer = page.getByRole("contentinfo");
